@@ -1,0 +1,1 @@
+export const SPA_IMAGE_URL = "https://hydro-heaven.s3-us-west-1.amazonaws.com/";

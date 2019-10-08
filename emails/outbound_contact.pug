@@ -1,0 +1,12 @@
+extends master
+
+block main_content
+	p.title #{header}
+	.breaker
+	.messageHolder
+		.to Hi #{name},
+		.message Thank you for contacting us, we appreciate your interest. Your message has been passed on to a member of our team and we will get back you as soon as possible. If you have contacted us outside of our business hours please note that your reply will come first thing in the morning. 
+		.inlet #{message}
+		.message If this is an emergency, please contact us directly by one of the phone numbers provided below and we can provide assistance directly.
+		.from - The Hydro Heaven Team.
+	.breaker

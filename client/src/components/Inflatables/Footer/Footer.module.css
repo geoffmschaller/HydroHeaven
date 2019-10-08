@@ -1,0 +1,25 @@
+.footer {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  color: white;
+  background: #1f618d;
+  background: -moz-radial-gradient(circle, #1f618d 0%, #154360 100%);
+  background: -webkit-radial-gradient(circle, #1f618d 0%, #154360 100%);
+  background: -o-radial-gradient(circle, #1f618d 0%, #154360 100%);
+  background: radial-gradient(circle, #1f618d 0%, #154360 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1f618d", endColorstr="#154360", GradientType=1); }
+  .footer img {
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 20px; }
+  .footer .address {
+    font-size: 18px; }
+  .footer .copyright {
+    font-size: 10px; }
+
+@media (max-width: 400px) {
+  .footer {
+    padding: 50px 10px; }
+    .footer img {
+      width: 100%; } }

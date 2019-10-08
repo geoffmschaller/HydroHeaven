@@ -1,0 +1,82 @@
+
+.mainHeader
+	width: 100%
+	height: 800px
+	overflow: hidden
+	position: relative
+
+	.video
+		width: 100%
+		position: absolute
+		top: 0
+		left: 0
+
+	.img
+		width: 100%
+		position: absolute
+		top: 0
+		left: 0
+
+	.mediaOverlay
+		width: 100%
+		height: 100%
+		position: absolute
+		top: 0
+		left: 0
+		background-color: rgba(21, 67, 96, .5)
+		z-index: 2
+		display: flex
+		flex-direction: column
+		justify-content: center
+
+		.contentShifter
+			width: 600px
+			margin: 0 auto
+			text-align: center
+
+			img
+				width: 100%
+
+			p
+				text-align: center
+				color: white
+				font-size: 20px
+
+			button
+				color: #f8c471
+				border: 2px solid #f8c471
+				padding: 10px 80px
+
+				&:hover
+					color: white
+					background-color: #f8c471
+
+@media (max-width: 400px)
+	.mainHeader
+		height: 90vh
+
+		.video, .img
+			height: 90vh
+			width: auto
+
+		.mediaOverlay
+			padding: 0 10px
+
+			.contentShifter
+				width: 100%
+
+@media(min-width: 401px) and (max-width: 800px)
+	.mainHeader
+		height: 90vh
+
+		.video, .img
+			height: 90vh
+			width: auto
+
+@media(min-width: 801px) and (max-width: 1500px)
+	.mainHeader
+		height: 90vh
+
+		.video, .img
+			height: 90vh
+			width: auto

@@ -1,0 +1,16 @@
+extends master
+
+block main_content
+	p.title #{header}
+	.breaker
+	.messageHolder
+		.to Hi Raffi,
+		.message We just recieved a new message from the website! This is an automated message. Please do not reply directly to this message. Click the email link below to reply directly	to the customer.
+		.inlet
+			.inlet-message #{message}
+			.inlet-from  #{name}
+			.inlet-email #{email}
+		.from
+			div - Clementine
+			.ps *beep boop boop beep*
+	.breaker

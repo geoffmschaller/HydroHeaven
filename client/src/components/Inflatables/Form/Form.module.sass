@@ -1,0 +1,70 @@
+
+.form
+	width: 100%
+
+	.input
+		width: 100%
+		position: relative
+		margin-bottom: 20px
+
+		input
+			width: 100%
+			padding: 10px
+			border: 1px solid #abb2b9
+
+		textarea
+			width: 100%
+			padding: 10px
+			border: 1px solid #abb2b9
+
+		.label
+			position: absolute
+			top: 10px
+			left: 10px
+			transition: all .2s ease-in-out
+			background-color: white
+			font-size: 14px
+
+		.open
+			top: -5px
+			left: 0
+			font-size: 10px
+			padding: 0 10px
+
+	button
+		color: #f8c471
+		border: 2px solid #f8c471
+		float: right
+
+		i
+			animation: Rotate 1s infinite
+
+		&:hover
+			color: white
+			background-color: #f8c471
+
+	.successButton
+		color: #7dcea0
+		text-align: right
+		font-size: 16px
+		font-weight: bold
+
+	.errorMessage
+		color: red
+
+
+@keyframes Rotate
+	0%
+		transform: rotate(0deg)
+
+	25%
+		transform: rotate(90deg)
+
+	50%
+		transform: rotate(180deg)
+
+	75%
+		transform: rotate(270deg)
+
+	100%
+		transform: rotate(360deg)

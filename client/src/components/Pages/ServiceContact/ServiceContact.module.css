@@ -1,0 +1,19 @@
+.serviceRestrictor {
+  padding: 0 30px; }
+  .serviceRestrictor .service img {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #d5d8dc; }
+  .serviceRestrictor .service .serviceHolder {
+    margin: 30px 0;
+    color: #808b96; }
+    .serviceRestrictor .service .serviceHolder .address {
+      font-size: 14px; }
+    .serviceRestrictor .service .serviceHolder .title {
+      font-size: 16px;
+      margin: 15px 0;
+      border-bottom: 1px solid #d5d8dc;
+      color: #2c3e50; }
+    .serviceRestrictor .service .serviceHolder .day {
+      font-size: 13px;
+      margin-bottom: 5px; }

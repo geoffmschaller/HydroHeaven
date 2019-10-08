@@ -1,0 +1,39 @@
+.featured {
+  width: 100%;
+  padding: 70px 0;
+  background: #1f618d;
+  background: -moz-radial-gradient(circle, #1f618d 0%, #154360 100%);
+  background: -webkit-radial-gradient(circle, #1f618d 0%, #154360 100%);
+  background: -o-radial-gradient(circle, #1f618d 0%, #154360 100%);
+  background: radial-gradient(circle, #1f618d 0%, #154360 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1f618d", endColorstr="#154360", GradientType=1); }
+  .featured .category {
+    padding: 0 30px;
+    width: 33%;
+    float: left; }
+    .featured .category img {
+      width: 100%;
+      margin-bottom: 10px; }
+    .featured .category .title {
+      font-size: 18px;
+      color: #ebf5fb;
+      text-transform: uppercase; }
+    .featured .category p {
+      height: 100px;
+      font-size: 15px;
+      margin-bottom: 20px;
+      color: #abb2b9; }
+    .featured .category button {
+      color: #82e0aa;
+      border: 2px solid #82e0aa;
+      float: right; }
+      .featured .category button:hover {
+        color: white;
+        background-color: #82e0aa; }
+
+@media (max-width: 400px) {
+  .featured {
+    display: block; }
+    .featured .category {
+      width: 100%;
+      margin-bottom: 30px; } }

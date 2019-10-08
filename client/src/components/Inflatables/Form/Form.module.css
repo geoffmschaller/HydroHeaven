@@ -1,0 +1,79 @@
+.form {
+  width: 100%; }
+  .form .input {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px; }
+    .form .input input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #abb2b9; }
+    .form .input textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #abb2b9; }
+    .form .input .label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      -webkit-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      background-color: white;
+      font-size: 14px; }
+    .form .input .open {
+      top: -5px;
+      left: 0;
+      font-size: 10px;
+      padding: 0 10px; }
+  .form button {
+    color: #f8c471;
+    border: 2px solid #f8c471;
+    float: right; }
+    .form button i {
+      -webkit-animation: Rotate 1s infinite;
+      animation: Rotate 1s infinite; }
+    .form button:hover {
+      color: white;
+      background-color: #f8c471; }
+  .form .successButton {
+    color: #7dcea0;
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold; }
+  .form .errorMessage {
+    color: red; }
+
+@-webkit-keyframes Rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  25% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg); }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+  75% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes Rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  25% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg); }
+  50% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg); }
+  75% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
