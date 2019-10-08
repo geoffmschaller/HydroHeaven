@@ -4,9 +4,9 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const nodemailer = require('nodemailer');
 const mg = require('nodemailer-mailgun-transport');
-const validator = require('validator');
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+const escapeTool = require('validator');
+const validator = require('./utils/Validators');
+const inputTypes = require('./utils/InputTypes');
 
 require('dotenv').config();
 require('pug');
@@ -30,40 +30,36 @@ app.get("*", (req, res) => {
 app.post("/api/customer-contact", async (req, res) => {
 
 
-	// VALIDATE INPUTS
-	const name = req.body.name;
-	const email = req.body.email;
-	const message = req.body.message;
+	// CLEAN INPUTS
+	const name_NOTSAFE = req.body.name;
+	const email_NOTSAFE = req.body.email;
+	const message_NOTSAFE = req.body.message;
 
+	// VALIDATE INPUTS
 	let errors = [];
-	let seperator = "are";
-	if (typeof name !== 'string' || name === "") {
-		errors.push("Name");
-	}
-	if (validator.isEmpty(email) || !validator.isEmail(email)) {
-		errors.push("Email");
-	}
-	if (typeof message !== 'string' || message === "") {
-		errors.push("Message");
-	}
+	let separator = "are";
+	if (!validator(name_NOTSAFE, inputTypes.NON_NUMERIC_TEXT_INPUT)) errors.push("Name");
+	if (!validator(email_NOTSAFE, inputTypes.EMAIL_INPUT)) errors.push("Email");
+	if (!validator(message_NOTSAFE, inputTypes.NON_NUMERIC_TEXT_INPUT)) errors.push("Message");
 	if (errors.length > 0) {
-		if (errors.length === 1) {
-			seperator = "is";
-		}
+		if (errors.length === 1) separator = "is";
 		return res.json({
 			status: 500,
-			message: "Valid " + errors.join(", ") + " " + seperator + " required"
+			message: "Valid " + errors.join(", ") + " " + separator + " required"
 		})
 	}
-	let nameSafe = validator.escape(req.body.name);
-	let emailSafe = validator.escape(req.body.email);
-	let messageSafe = validator.escape(req.body.message);
 
+	// CLEAN INPUTS
+	const nameSafe = escapeTool.escape(name_NOTSAFE);
+	const emailSafe = escapeTool.escape(email_NOTSAFE);
+	const messageSafe = escapeTool.escape(message_NOTSAFE);
+
+	/*
 	// SEND EMAIL
 	const clientPayload = {
 		from: {name: "Hydro Heaven", address: "mailer@hydroheavenspas.com"},
 		to: emailSafe,
-		subject: 'Message Recieved!', 'h:Reply-To': process.env.HOUSE_CONTACT_EMAIL,
+		subject: 'Message Received!', 'h:Reply-To': process.env.HOUSE_CONTACT_EMAIL,
 		template: {
 			name: './emails/outbound_contact.pug',
 			engine: 'pug',
@@ -71,7 +67,7 @@ app.post("/api/customer-contact", async (req, res) => {
 				name: nameSafe,
 				email: emailSafe,
 				message: messageSafe,
-				header: "We have recieved your message!"
+				header: "We have Received your message!"
 			}
 		}
 	};
@@ -99,6 +95,8 @@ app.post("/api/customer-contact", async (req, res) => {
 			message: "Error Sending Emails"
 		});
 	}
+
+	 */
 
 
 	return res.json({
