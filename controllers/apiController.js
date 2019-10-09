@@ -5,6 +5,8 @@ const validator = require('../utils/Validators');
 const inputTypes = require('../utils/InputTypes');
 const nodemailer = require('nodemailer');
 const mg = require('nodemailer-mailgun-transport');
+const ContactModel = require('../models/contactModel');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 
@@ -33,6 +35,20 @@ router.post("/customer-contact", async (req, res) => {
 	const nameSafe = escapeTool.escape(name_NOTSAFE);
 	const emailSafe = escapeTool.escape(email_NOTSAFE);
 	const messageSafe = escapeTool.escape(message_NOTSAFE);
+
+	// SAVE TO DB
+	let con = new ContactModel({
+		_id: new mongoose.Types.ObjectId(),
+		name: nameSafe,
+		email: emailSafe,
+		message: messageSafe
+	});
+	try {
+		await con.save();
+	} catch (e) {
+		return res.json({status: 500, message: "Network Error. Please try again."});
+	}
+
 
 	// CUT OFF FOR DEV ENV TO NOT SEND EMAILS
 	if (process.env.FULL_ENVIROMENT === "DEV") return res.json({status: 200, message: "Done"});
