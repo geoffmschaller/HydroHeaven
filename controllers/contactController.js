@@ -10,14 +10,20 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-router.post("/customer-contact", async (req, res) => {
+router.post("/send-contact", async (req, res) => {
 
-	// CLEAN INPUTS
+	/*
+		RAW USER INPUT
+		User input straight from FE. User input at this point is still NOT SAFE.
+	 */
 	const name_NOTSAFE = req.body.name;
 	const email_NOTSAFE = req.body.email;
 	const message_NOTSAFE = req.body.message;
 
-	// VALIDATE INPUTS
+	/*
+		VALIDATE INPUTS
+		Custom validators to check user input. User input at this point is still NOT SAFE.
+	 */
 	let errors = [];
 	let separator = "are";
 	if (!validator(name_NOTSAFE, inputTypes.NON_NUMERIC_TEXT_INPUT)) errors.push("Name");
@@ -31,12 +37,18 @@ router.post("/customer-contact", async (req, res) => {
 		})
 	}
 
-	// CLEAN INPUTS
+	/*
+		CLEAN INPUTS
+		Must run validators first. The escape method only takes a string and crashes otherwise.
+	 */
 	const nameSafe = escapeTool.escape(name_NOTSAFE);
 	const emailSafe = escapeTool.escape(email_NOTSAFE);
 	const messageSafe = escapeTool.escape(message_NOTSAFE);
 
-	// SAVE TO DB
+	/*
+		SAVE TO DB
+		Saves safe user input to DB.
+	 */
 	let con = new ContactModel({
 		_id: new mongoose.Types.ObjectId(),
 		name: nameSafe,
@@ -49,11 +61,16 @@ router.post("/customer-contact", async (req, res) => {
 		return res.json({status: 500, message: "Network Error. Please try again."});
 	}
 
-
-	// CUT OFF FOR DEV ENV TO NOT SEND EMAILS
+	/*
+		DEV ENVIRONMENT CUT OFF
+		Ends function in Dev Environment to not send contact emails.
+	 */
 	if (process.env.FULL_ENVIROMENT === "DEV") return res.json({status: 200, message: "Done"});
 
-	// SEND EMAIL
+	/*
+		SEND CONTACT EMAILS
+		Sends summary emails to User and Notification emails to house.
+	 */
 	const auth = {
 		auth: {
 			api_key: process.env.MAILGUN_API_KEY,
@@ -61,7 +78,6 @@ router.post("/customer-contact", async (req, res) => {
 		}
 	};
 	const nodemailerMailgun = nodemailer.createTransport(mg(auth));
-
 	const clientPayload = {
 		from: {name: "Hydro Heaven", address: "mailer@hydroheavenspas.com"},
 		to: emailSafe,

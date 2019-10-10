@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
-const APIRouter = require('./controllers/apiController');
+const ContactRouter = require('./controllers/contactController');
+const AuthRouter = require('./controllers/authController');
+const SecretRouter = require('./controllers/secretController');
 const mongoose = require('mongoose');
 
 
@@ -25,6 +27,8 @@ app.get("*", (req, res) => {
 	res.sendFile(path.resolve(__dirname, "./client/build/index.html"));
 });
 
-app.use("/api", APIRouter);
+app.use("/api/contact", ContactRouter);
+app.use("/api/auth", AuthRouter);
+app.use("/api/hidden", SecretRouter);
 
 app.listen(4000);

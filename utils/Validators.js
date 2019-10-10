@@ -1,5 +1,9 @@
 let InputTypes = require('./InputTypes');
 
+/*
+	MAIN VALIDATION FUNCTION
+	Main validation for input and type.
+ */
 const validate = (input, type) => {
 	if (type === InputTypes.NON_NUMERIC_TEXT_INPUT) return nonNumericTextInput(input);
 	return emailValidation(input);

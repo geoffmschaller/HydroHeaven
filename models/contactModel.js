@@ -8,6 +8,4 @@ let ContactSchema = new Schema({
 	message: {type: String, required: true},
 });
 
-
-// Export the model
 module.exports = mongoose.model('Contact', ContactSchema);
