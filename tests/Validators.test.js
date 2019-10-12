@@ -1,5 +1,5 @@
-let validator = require('./Validators');
-let inputTypes = require('./InputTypes');
+let validator = require('../utils/Validators');
+let inputTypes = require('../utils/InputTypes');
 
 test("Test Input Validator", () => {
 
