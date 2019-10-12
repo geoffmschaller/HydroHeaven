@@ -1,5 +1,5 @@
 export const generateProductId = (brand, name) => {
-	let item = brand.replace(" ", "-").trim() + '-' + name.replace(" ", "-").trim();
+	let item = brand.replace(/ /g, "-").trim() + '-' + name.replace(/ /g, "-").trim();
 	return item.toLowerCase();
 };
 

@@ -18,7 +18,7 @@ const FeaturedCategory = (props) => {
 				<div className={styles.category}>
 					<img src={HOT_TUB_IMAGE} alt=""/>
 					<div className={styles.title}>Hot Tubs & Spas</div>
-					<p>We searched the country and found the spa brands that provide the highest product quality, affordable priceing, and highest customer
+					<p>We searched the country and found the spa brands that provide the highest product quality, affordable pricing, and highest customer
 						satisfaction.</p>
 					<Link to={"/spas-hot-tubs"}>
 						<button>View Hot Tubs</button>
