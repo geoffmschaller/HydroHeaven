@@ -18,7 +18,14 @@ const StoreLocations = (props) => {
 				<div className={styles.address}>200 Higuera Street - San Luis Obispo, CA</div>
 				<div className={styles.phone}>(805) 544 - 1772</div>
 			</div>
-
+			<div className={styles.service}>
+				<div className={styles.serviceHolder}>
+					<div className={styles.title}>Hours of Operation:</div>
+					<div className={styles.day}>Monday - Friday: 9:30A - 5:30P</div>
+					<div className={styles.day}>Saturday: 10A - 5P</div>
+					<div className={styles.day}>Sunday: CLOSED</div>
+				</div>
+			</div>
 		</div>
 	);
 

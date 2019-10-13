@@ -3,6 +3,8 @@ import Services from "./Services";
 
 const wrapper = <Services/>;
 
-it("Services", () => {
-	expect(wrapper).toMatchSnapshot();
+describe("Services Inflatable", () => {
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
 });

@@ -23,9 +23,7 @@ class Block extends Component {
 	};
 
 	render() {
-
 		let width = this.state.windowWidth >= 400 ? this.props.width + '%' : '100%';
-
 		return (
 			<div className={styles.block} style={{float: this.props.float, width: width}}>{this.props.children}</div>
 		);

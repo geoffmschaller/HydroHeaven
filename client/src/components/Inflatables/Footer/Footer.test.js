@@ -3,6 +3,10 @@ import Footer from "./Footer";
 
 const wrapper = <Footer/>;
 
-it("Footer Inflatable", () => {
-	expect(wrapper).toMatchSnapshot();
+describe('Footer Inflatable', () => {
+
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+
 });

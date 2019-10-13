@@ -3,6 +3,10 @@ import FeaturedCategory from "./FeaturedCategory";
 
 const wrapper = <FeaturedCategory/>;
 
-it("Featured Category Inflatable", () => {
-	expect(wrapper).toMatchSnapshot();
+describe("Featured Category Inflatable", () => {
+
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+
 });

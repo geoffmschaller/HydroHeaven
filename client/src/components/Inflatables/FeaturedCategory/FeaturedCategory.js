@@ -6,6 +6,7 @@ import BBQ_ISLANDS_IMAGE from '../../../static/images/categories/bbq_islands.jpg
 import {Link} from "react-router-dom";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import VerticalSpacer from "../VerticalSpacer/VerticalSpacer";
+import COMMERCIAL_VIDEO from "../../../static/video/hh_commercial.mp4";
 
 const FeaturedCategory = (props) => {
 
@@ -44,6 +45,9 @@ const FeaturedCategory = (props) => {
 					<div className="clear"/>
 				</div>
 				<div className="clear"/>
+				<VerticalSpacer height={75}/>
+				<SectionTitle title={"Our Sales & Specials"} darkMode={true}/>
+				<video src={COMMERCIAL_VIDEO} autoPlay={false} muted={false} controls={true}/>
 			</div>
 
 			<div className="clear"/>

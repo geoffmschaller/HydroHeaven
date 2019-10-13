@@ -3,6 +3,10 @@ import NavigationBar from "./NavigationBar";
 
 const wrapper = <NavigationBar/>;
 
-it("Navigation Bar Inflatable", () => {
-	expect(wrapper).toMatchSnapshot();
+describe("Navigation Bar Inflatable", () => {
+
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+
 });

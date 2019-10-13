@@ -5,6 +5,11 @@ import {VIDEO_FILE} from "../../../utils/MediaTypes";
 
 const wrapper = <MainHeader type={VIDEO_FILE} media={MAIN_HEADER_TEST_IMAGE}/>;
 
-it("Main Header Inflatable", () => {
-	expect(wrapper).toMatchSnapshot();
+
+describe("Main Header Inflatable", () => {
+
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+
 });

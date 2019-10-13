@@ -1,6 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Block Component Test 1`] = `
+exports[`Block Component Block Component Test 1`] = `
+<div
+  className="block"
+  style={
+    Object {
+      "float": "left",
+      "width": "30%",
+    }
+  }
+>
+  <p>
+    I AM INSIDE OF A BLOCK
+  </p>
+</div>
+`;
+
+exports[`Block Component Renders Correctly 1`] = `
 <div
   className="block"
   style={

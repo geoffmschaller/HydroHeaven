@@ -22,14 +22,6 @@ const ServiceContact = (props) => {
 					<div className={styles.serviceRestrictor}>
 						<VerticalSpacer height={30}/>
 						<StoreLocations/>
-						<div className={styles.service}>
-							<div className={styles.serviceHolder}>
-								<div className={styles.title}>Hours of Operation:</div>
-								<div className={styles.day}>Monday - Friday: 9:30A - 5:30P</div>
-								<div className={styles.day}>Saturday: 10A - 5P</div>
-								<div className={styles.day}>Sunday: CLOSED</div>
-							</div>
-						</div>
 					</div>
 				</Block>
 				<Block float={FLOAT_RIGHT} width={60}>

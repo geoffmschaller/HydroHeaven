@@ -3,6 +3,8 @@ import SectionTitle from "./SectionTitle";
 
 const wrapper = <SectionTitle title={"This is the title"}/>;
 
-it("Section Title Inflatable", () => {
-	expect(wrapper).toMatchSnapshot();
+describe("Section Title Inflatable", () => {
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
 });

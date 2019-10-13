@@ -3,6 +3,8 @@ import VerticalSpacer from "./VerticalSpacer";
 
 const wrapper = <VerticalSpacer height={500}/>;
 
-it("Vertical Spacer Inflatable", () => {
-	expect(wrapper).toMatchSnapshot();
+describe("Vertical Spacer Inflatable", () => {
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
 });

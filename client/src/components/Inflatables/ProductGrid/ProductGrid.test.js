@@ -11,6 +11,8 @@ const product = [
 
 const wrapper = <ProductGrid productData={product} link={"/fake-link"} count={4}/>;
 
-it("Product Grid Inflatable", () => {
-	expect(wrapper).toMatchSnapshot();
+describe("Product Grid Inflatable", () => {
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
 });

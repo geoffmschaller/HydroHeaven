@@ -20,6 +20,10 @@ const formData = {
 };
 const wrapper = <Form formData={formData}/>;
 
-it("Form Inflatable", () => {
-	expect(wrapper).toMatchSnapshot();
+describe("Form Inflatable", () => {
+
+	it("Renders Correctly", () => {
+		expect(wrapper).toMatchSnapshot();
+	});
+
 });
