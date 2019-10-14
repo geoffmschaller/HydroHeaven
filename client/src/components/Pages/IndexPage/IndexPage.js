@@ -11,12 +11,15 @@ import StoreLocations from "../../Inflatables/StoreLocations/StoreLocations";
 import Services from "../../Inflatables/Services/Services";
 import {SpaData} from "../../../data/SpaData";
 import ProductGrid from "../../Inflatables/ProductGrid/ProductGrid";
+import NavigationBar from "../../Inflatables/NavigationBar/NavigationBar";
+import Footer from "../../Inflatables/Footer/Footer";
 
 export default class IndexPage extends React.Component {
 
 	render() {
 		return (
 			<>
+				<NavigationBar/>
 				<MainHeader media={JETS_IMAGE} type={VIDEO_FILE}/>
 				<FeaturedCategory/>
 				<div className="widthRestriction">
@@ -34,6 +37,8 @@ export default class IndexPage extends React.Component {
 					</Block>
 				</div>
 				<div className="clear"/>
+				<VerticalSpacer height={150}/>
+				<Footer/>
 			</>
 		);
 	}

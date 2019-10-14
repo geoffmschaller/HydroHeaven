@@ -16,9 +16,9 @@ router.post("/send-contact", async (req, res) => {
 		RAW USER INPUT
 		User input straight from FE. User input at this point is still NOT SAFE.
 	 */
-	const name_NOTSAFE = req.body.name;
-	const email_NOTSAFE = req.body.email;
-	const message_NOTSAFE = req.body.message;
+	const name_NOTSAFE = req.body.values[0].value;
+	const email_NOTSAFE = req.body.values[1].value;
+	const message_NOTSAFE = req.body.values[2].value;
 
 	/*
 		VALIDATE INPUTS

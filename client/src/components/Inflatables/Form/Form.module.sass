@@ -2,34 +2,25 @@
 .form
 	width: 100%
 
-	.input
+	input
 		width: 100%
-		position: relative
-		margin-bottom: 20px
+		padding: 10px
+		border: 1px solid #abb2b9
+		margin-bottom: 15px
 
-		input
-			width: 100%
-			padding: 10px
-			border: 1px solid #abb2b9
+	textarea
+		width: 100%
+		padding: 10px
+		border: 1px solid #abb2b9
+		margin-bottom: 15px
 
-		textarea
-			width: 100%
-			padding: 10px
-			border: 1px solid #abb2b9
-
-		.label
-			position: absolute
-			top: 10px
-			left: 10px
-			transition: all .2s ease-in-out
-			background-color: white
-			font-size: 14px
-
-		.open
-			top: -5px
-			left: 0
-			font-size: 10px
-			padding: 0 10px
+	.label
+		position: absolute
+		top: 10px
+		left: 10px
+		transition: all .2s ease-in-out
+		background-color: white
+		font-size: 14px
 
 	button
 		color: #f8c471
@@ -43,14 +34,17 @@
 			color: white
 			background-color: #f8c471
 
-	.successButton
-		color: #7dcea0
-		text-align: right
-		font-size: 16px
+	.errorMessage
+		color: #ec7063
+		width: 100%
+		text-align: center
 		font-weight: bold
 
-	.errorMessage
-		color: red
+	.successMessage
+		color: #5499c7
+		width: 100%
+		text-align: center
+		font-weight: bold
 
 
 @keyframes Rotate

@@ -1,31 +1,24 @@
 .form {
   width: 100%; }
-  .form .input {
+  .form input {
     width: 100%;
-    position: relative;
-    margin-bottom: 20px; }
-    .form .input input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #abb2b9; }
-    .form .input textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #abb2b9; }
-    .form .input .label {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      -webkit-transition: all .2s ease-in-out;
-      -o-transition: all .2s ease-in-out;
-      transition: all .2s ease-in-out;
-      background-color: white;
-      font-size: 14px; }
-    .form .input .open {
-      top: -5px;
-      left: 0;
-      font-size: 10px;
-      padding: 0 10px; }
+    padding: 10px;
+    border: 1px solid #abb2b9;
+    margin-bottom: 15px; }
+  .form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #abb2b9;
+    margin-bottom: 15px; }
+  .form .label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    background-color: white;
+    font-size: 14px; }
   .form button {
     color: #f8c471;
     border: 2px solid #f8c471;
@@ -36,13 +29,16 @@
     .form button:hover {
       color: white;
       background-color: #f8c471; }
-  .form .successButton {
-    color: #7dcea0;
-    text-align: right;
-    font-size: 16px;
-    font-weight: bold; }
   .form .errorMessage {
-    color: red; }
+    color: #ec7063;
+    width: 100%;
+    text-align: center;
+    font-weight: bold; }
+  .form .successMessage {
+    color: #5499c7;
+    width: 100%;
+    text-align: center;
+    font-weight: bold; }
 
 @-webkit-keyframes Rotate {
   0% {

@@ -6,11 +6,14 @@ import VerticalSpacer from "../../Inflatables/VerticalSpacer/VerticalSpacer";
 import SectionTitle from "../../Inflatables/SectionTitle/SectionTitle";
 import {BBQData} from "../../../data/BBQData";
 import ProductGrid from "../../Inflatables/ProductGrid/ProductGrid";
+import NavigationBar from "../../Inflatables/NavigationBar/NavigationBar";
+import Footer from "../../Inflatables/Footer/Footer";
 
 const BBQDisplay = (props) => {
 
 	return (
 		<>
+			<NavigationBar/>
 			<MainHeader media={BBQ_HEADER_IMAGE} type={IMAGE_FILE}/>
 			<div className="widthRestriction">
 				<VerticalSpacer height={100}/>
@@ -18,6 +21,8 @@ const BBQDisplay = (props) => {
 				<ProductGrid productData={BBQData} link={"/bbq-islands/"} count={0}/>
 			</div>
 			<div className="clear"/>
+			<VerticalSpacer height={150}/>
+			<Footer/>
 		</>
 	);
 

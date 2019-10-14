@@ -12,6 +12,8 @@ import SectionTitle from "../../Inflatables/SectionTitle/SectionTitle";
 import {TileData} from "../../../data/TileData";
 import {StuccoData} from "../../../data/StuccoData";
 import ProductGrid from "../../Inflatables/ProductGrid/ProductGrid";
+import NavigationBar from "../../Inflatables/NavigationBar/NavigationBar";
+import Footer from "../../Inflatables/Footer/Footer";
 
 class BBQDetails extends React.Component {
 
@@ -44,6 +46,7 @@ class BBQDetails extends React.Component {
 	render() {
 		return (
 			<>
+				<NavigationBar/>
 				<MainHeader media={BBQ_HEADER_IMAGE} type={IMAGE_FILE}/>
 				<div className="widthRestriction">
 					<div ref={this.scrollRef}/>
@@ -123,6 +126,8 @@ class BBQDetails extends React.Component {
 					}
 				</div>
 				<div className="clear"/>
+				<VerticalSpacer height={150}/>
+				<Footer/>
 			</>
 		);
 	}

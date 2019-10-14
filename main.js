@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 const ContactRouter = require('./controllers/contactController');
+const AuthRouter = require('./controllers/authController');
 const mongoose = require('mongoose');
 
 require('dotenv').config();
@@ -25,5 +26,6 @@ app.get("*", (req, res) => {
 });
 
 app.use("/api/contact", ContactRouter);
+app.use("/api/auth", AuthRouter);
 
 app.listen(4000);

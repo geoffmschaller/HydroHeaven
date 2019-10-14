@@ -12,6 +12,8 @@ import SectionTitle from "../../Inflatables/SectionTitle/SectionTitle";
 import {AcrylicData} from "../../../data/AcrylicData";
 import {CabinetData} from "../../../data/CabinetData";
 import ProductGrid from "../../Inflatables/ProductGrid/ProductGrid";
+import NavigationBar from "../../Inflatables/NavigationBar/NavigationBar";
+import Footer from "../../Inflatables/Footer/Footer";
 
 class SwimSpaDetails extends React.Component {
 
@@ -44,6 +46,7 @@ class SwimSpaDetails extends React.Component {
 	render() {
 		return (
 			<>
+				<NavigationBar/>
 				<MainHeader media={SWIM_SPA_HEADER} type={IMAGE_FILE}/>
 				<div className="widthRestriction">
 					<div ref={this.scrollRef}/>
@@ -122,6 +125,8 @@ class SwimSpaDetails extends React.Component {
 					}
 				</div>
 				<div className="clear"/>
+				<VerticalSpacer height={150}/>
+				<Footer/>
 			</>
 		);
 	}

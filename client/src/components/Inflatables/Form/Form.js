@@ -1,79 +1,62 @@
 import React from 'react';
 import styles from './Form.module.css';
-import Input from "./Input";
 import PropTypes from 'prop-types';
 import {FORM_READY, FORM_SUBMITTING, FORM_SUCCESS} from "../../../utils/FormModes";
-import Axios from "axios";
+import {ERROR, NONE, SUCCESS} from "../../../data/ActionResults";
+import {LINE_INPUT, MULTI_LINE_INPUT, PASSWORD_INPUT} from "../../../utils/InputTypes";
 
 class Form extends React.Component {
 
-	state = {
-		form: this.props.formData,
-		errorMessage: ""
-	};
-
-	submitForm = () => {
-		let s = this.state;
-		s.form.mode = FORM_SUBMITTING;
-		this.setState(s);
-		Axios.post(this.state.form.url, {
-			name: this.state.form.inputs[0].value,
-			email: this.state.form.inputs[1].value,
-			message: this.state.form.inputs[2].value
-		}).then(result => {
-			if (result.data.status === 500) {
-				s.form.mode = FORM_READY;
-				s.errorMessage = result.data.message;
-				this.setState(s);
-			} else {
-				s.form.mode = FORM_SUCCESS;
-				s.errorMessage = "";
-				for (let i = 0; i < s.form.inputs.length; i++) {
-					s.form.inputs[i].value = "";
-				}
-				this.setState(s);
-			}
-		}).catch(err => {
-			s.errorMessage = "Network Error. Please try again";
-			s.form.mode = FORM_READY;
-			this.setState(s);
-		});
-	};
-
-	updateValue = (event, index) => {
-		let s = {...this.state};
-		s.form.inputs[index].value = event.target.value;
-		this.setState(s);
-	};
-
 	render() {
-
-
 		return (
 			<div className={styles.form}>
 				{
-					this.state.form.inputs.map((inp, index) => {
-						return <Input inputData={inp} key={index} change={(event) => this.updateValue(event, index)} val={this.state.form.inputs[index].value}/>
-					})
+					this.props.inputs ? this.props.inputs.map((inp, index) => {
+
+						if (inp.type === LINE_INPUT) {
+							return <input type="text"
+							              key={index}
+							              placeholder={inp.name}
+							              onChange={(event) => this.props.updateValue(event, index)}
+							              value={inp.value}
+							/>
+						}
+						if (inp.type === PASSWORD_INPUT) {
+							return <input type="password"
+							              key={index}
+							              placeholder={inp.name}
+							              onChange={(event) => this.props.updateValue(event, index)}
+							              value={inp.value}
+							/>
+						}
+						if (inp.type === MULTI_LINE_INPUT) {
+							return <textarea placeholder={inp.name}
+							                 key={index}
+							                 onChange={(event) => this.props.updateValue(event, index)}
+							                 value={inp.value}
+							/>
+						}
+					}) : null
 				}
 				{
-					this.state.form.mode === FORM_READY ?
-						<button onClick={() => this.submitForm()}>Submit</button> : null
+					this.props.mode === FORM_READY ?
+						<button onClick={() => this.props.submit()}>Submit</button> : null
 				}
 				{
-					this.state.form.mode === FORM_SUBMITTING ?
+					this.props.mode === FORM_SUBMITTING ?
 						<button><i className="fad fa-spinner-third"/></button> : null
 				}
-				{
-					this.state.form.mode === FORM_SUCCESS ?
-						<p className={styles.successButton}>Thank you! We have received your message!</p> : null
-				}
 				<div className="clear"/>
-				<p className={styles.errorMessage}>
+				<div className={styles.errorMessage}>
 					{
-						this.state.errorMessage !== "" ? this.state.errorMessage : null
+						this.props.messages && this.props.messages.status === ERROR ? <p>{this.props.messages.message}</p> : null
 					}
-				</p>
+				</div>
+				<div className={styles.successMessage}>
+					{
+						this.props.messages && this.props.messages.status === SUCCESS ? <p>{this.props.messages.message}</p> : null
+					}
+				</div>
 			</div>
 		);
 	}
@@ -81,16 +64,19 @@ class Form extends React.Component {
 
 
 Form.propTypes = {
-	formData: PropTypes.shape({
-		mode: PropTypes.string.isRequired,
-		url: PropTypes.string.isRequired,
-		inputs: PropTypes.arrayOf(PropTypes.shape({
-			name: PropTypes.string.isRequired,
-			type: PropTypes.string.isRequired,
-			required: PropTypes.bool.isRequired,
-			value: PropTypes.string.isRequired
-		})).isRequired
-	})
+	inputs: PropTypes.arrayOf(PropTypes.shape({
+		name: PropTypes.string.isRequired,
+		type: PropTypes.string.isRequired,
+		required: PropTypes.bool.isRequired,
+		value: PropTypes.string.isRequired
+	})).isRequired,
+	messages: PropTypes.shape({
+		status: PropTypes.oneOf([SUCCESS, ERROR, NONE]).isRequired,
+		message: PropTypes.string.isRequired
+	}).isRequired,
+	mode: PropTypes.oneOf([FORM_READY, FORM_SUBMITTING, FORM_SUCCESS]).isRequired,
+	updateValue: PropTypes.func.isRequired,
+	submit: PropTypes.func.isRequired
 };
 
 export default Form;
