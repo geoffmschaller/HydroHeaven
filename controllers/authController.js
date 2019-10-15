@@ -53,7 +53,53 @@ router.post("/login", async (req, res) => {
 		After Successful Validation returns json token to Front End.
 	 */
 	let token = jwt.sign({email: user.email, id: user.id}, process.env.JWT_SECRET_KEY);
-	return res.json({status: 200, message: "Login Successful! Redirecting you now...", token: token});
+	return res.json({
+		status: 200,
+		message: "Login Successful! Redirecting you now...",
+		user: {
+			email: user.email,
+			id: user.id,
+			token: token
+		}
+	});
+
+});
+
+router.post("/verify-token", async (req, res) => {
+
+	/*
+		GET TOKEN FROM FE
+		Retrieves token from the body.
+	 */
+	let token = req.body.token;
+	if (!token) {
+		return res.json({
+			status: 500,
+			message: "Invalid Token"
+		})
+	}
+
+	/*
+		VERIFY TOKEN
+		Verifies the Token and returns user or error.
+	 */
+	let verify = await jwt.decode(token, process.env.JWT_SECRET_KEY);
+	if (!verify) {
+		return res.json({
+			status: 500,
+			message: "Invalid Token"
+		})
+	} else {
+		let decode = jwt.decode(token);
+		return res.json({
+			status: 200,
+			message: "Verified User!",
+			user: {
+				email: decode.email,
+				id: decode.id
+			}
+		})
+	}
 
 });
 
