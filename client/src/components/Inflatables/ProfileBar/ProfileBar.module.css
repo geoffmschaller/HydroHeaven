@@ -1,0 +1,66 @@
+.profileBar {
+  width: 100%; }
+  .profileBar img {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #566573; }
+  .profileBar .name {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-top: 10px;
+    font-weight: 600;
+    text-transform: uppercase; }
+  .profileBar .job {
+    font-size: 18px;
+    color: #2c3e50;
+    text-transform: lowercase; }
+  .profileBar .sectionTitle {
+    font-size: 10px;
+    width: 100%;
+    border-bottom: 1px solid #d5dbdb;
+    margin: 20px 0 10px 0; }
+  .profileBar .item {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 0 10px; }
+    .profileBar .item .icon {
+      width: 15%;
+      float: left;
+      font-size: 20px;
+      color: #2c3e50; }
+    .profileBar .item .label {
+      width: 85%;
+      float: left;
+      padding-top: 3px; }
+  .profileBar .stat {
+    width: 33%;
+    text-align: center;
+    float: left; }
+    .profileBar .stat .num {
+      font-size: 30px;
+      color: #2c3e50;
+      font-weight: 600; }
+    .profileBar .stat .label {
+      font-size: 12px; }
+  .profileBar .coworkers {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    .profileBar .coworkers .coworker {
+      width: 33%;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer; }
+      .profileBar .coworkers .coworker img {
+        border-radius: 100px; }
+      .profileBar .coworkers .coworker .name {
+        font-size: 10px;
+        font-weight: normal; }

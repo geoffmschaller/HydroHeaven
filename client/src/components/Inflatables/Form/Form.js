@@ -3,7 +3,7 @@ import styles from './Form.module.css';
 import PropTypes from 'prop-types';
 import {FORM_READY, FORM_SUBMITTING, FORM_SUCCESS} from "../../../utils/FormModes";
 import {ERROR, NONE, SUCCESS} from "../../../data/ActionResults";
-import {LINE_INPUT, MULTI_LINE_INPUT, PASSWORD_INPUT} from "../../../utils/InputTypes";
+import {LINE_INPUT, PASSWORD_INPUT} from "../../../utils/InputTypes";
 
 class Form extends React.Component {
 
@@ -29,13 +29,13 @@ class Form extends React.Component {
 							              value={inp.value}
 							/>
 						}
-						if (inp.type === MULTI_LINE_INPUT) {
-							return <textarea placeholder={inp.name}
-							                 key={index}
-							                 onChange={(event) => this.props.updateValue(event, index)}
-							                 value={inp.value}
-							/>
-						}
+
+						return <textarea placeholder={inp.name}
+						                 key={index}
+						                 onChange={(event) => this.props.updateValue(event, index)}
+						                 value={inp.value}
+						/>
+						
 					}) : null
 				}
 				{

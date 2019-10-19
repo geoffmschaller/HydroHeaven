@@ -12,7 +12,7 @@ import BBQDetails from "../Pages/BBQDetails/BBQDetails";
 import Login from "../Pages/Login/Login";
 import {connect} from "react-redux";
 import Axios from "axios";
-import Dashboard from "../BackEnd/Dashboard/Dashboard";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 class App extends React.Component {
 

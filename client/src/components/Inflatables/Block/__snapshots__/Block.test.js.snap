@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Block Component Block Component Test 1`] = `
+exports[`DashboardBlock Component DashboardBlock Component Test 1`] = `
 <div
   className="block"
   style={
@@ -16,7 +16,7 @@ exports[`Block Component Block Component Test 1`] = `
 </div>
 `;
 
-exports[`Block Component Renders Correctly 1`] = `
+exports[`DashboardBlock Component Renders Correctly 1`] = `
 <div
   className="block"
   style={

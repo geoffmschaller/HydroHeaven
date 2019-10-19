@@ -4,11 +4,11 @@ import './index.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 import {createStore} from "redux";
-import authReducer from "./reducers/authReducer";
+import stateReducer from "./reducers/stateReducer";
 import {Provider} from "react-redux";
 
 const store = createStore(
-	authReducer,
+	stateReducer,
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

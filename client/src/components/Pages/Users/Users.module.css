@@ -1,0 +1,66 @@
+.users {
+  width: 100%; }
+  .users .liveSearch {
+    width: 100%;
+    margin-top: 10px; }
+    .users .liveSearch input {
+      width: 50%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #abb2b9; }
+    .users .liveSearch .searchName {
+      width: 100%;
+      font-size: 10px;
+      font-weight: bold;
+      margin-top: 10px;
+      text-transform: uppercase;
+      color: #808b96; }
+  .users .newUser {
+    width: 100%; }
+    .users .newUser table {
+      width: 100%; }
+      .users .newUser table tr {
+        width: 100%; }
+        .users .newUser table tr th {
+          font-size: 10px;
+          text-align: left; }
+        .users .newUser table tr td {
+          padding: 10px 0; }
+          .users .newUser table tr td i {
+            color: #417eeb;
+            cursor: pointer; }
+          .users .newUser table tr td input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #abb2b9; }
+          .users .newUser table tr td button {
+            width: 100%;
+            padding: 5px;
+            color: #5499c7; }
+          .users .newUser table tr td select {
+            width: 100%;
+            padding: 10px; }
+  .users .userList {
+    width: 100%; }
+    .users .userList table {
+      width: 100%;
+      margin-top: 10px; }
+      .users .userList table tr {
+        width: 100%; }
+        .users .userList table tr th {
+          font-size: 10px;
+          text-align: left; }
+        .users .userList table tr td {
+          padding: 10px 0;
+          border-bottom: 1px solid #d5d8dc;
+          color: #566573; }
+          .users .userList table tr td i {
+            color: #417eeb;
+            cursor: pointer; }
+          .users .userList table tr td input {
+            width: 100%;
+            padding: 5px; }
+          .users .userList table tr td button {
+            width: 100%;
+            padding: 5px;
+            color: #5499c7; }

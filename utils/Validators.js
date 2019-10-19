@@ -6,6 +6,7 @@ let InputTypes = require('./InputTypes');
  */
 const validate = (input, type) => {
 	if (type === InputTypes.NON_NUMERIC_TEXT_INPUT) return nonNumericTextInput(input);
+	if (type === InputTypes.PHONE_INPUT) return phoneValidation(input);
 	return emailValidation(input);
 };
 
@@ -22,6 +23,11 @@ const emailValidation = (input) => {
 	if (domain.length < 2) return false;
 	if (domain[0] === null || domain[0] === "" || typeof domain[0] !== 'string') return false;
 
+	return true;
+};
+
+const phoneValidation = (input) => {
+	if (input === null || input === "") return false;
 	return true;
 };
 

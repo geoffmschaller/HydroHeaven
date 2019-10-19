@@ -9,7 +9,7 @@ const wrapper = shallow(
 );
 const instance = wrapper.instance();
 
-describe("Block Inflatable", () => {
+describe("DashboardBlock Inflatable", () => {
 
 	it("Renders Correctly", () => {
 		expect(wrapper).toMatchSnapshot();

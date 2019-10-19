@@ -1,0 +1,112 @@
+.clientDetails {
+  width: 100%; }
+  .clientDetails .map {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px; }
+  .clientDetails .address {
+    font-size: 30px;
+    text-align: center;
+    color: #566573; }
+  .clientDetails .breaker {
+    width: 100%;
+    height: 1px;
+    background-color: #d5dbdb;
+    margin: 50px 0;
+    clear: both; }
+  .clientDetails .breadcrumbs {
+    width: 100%; }
+    .clientDetails .breadcrumbs i {
+      margin-right: 10px; }
+    .clientDetails .breadcrumbs a {
+      text-decoration: none;
+      color: #417eeb;
+      font-size: 12px;
+      text-transform: uppercase; }
+  .clientDetails .spaDetails {
+    width: 100%;
+    text-align: center; }
+    .clientDetails .spaDetails img {
+      width: 100%; }
+    .clientDetails .spaDetails .scale {
+      color: #154360;
+      font-size: 10px;
+      text-align: left;
+      margin-bottom: 10px; }
+      .clientDetails .spaDetails .scale i {
+        color: #f8c471; }
+    .clientDetails .spaDetails .model {
+      font-size: 18px; }
+    .clientDetails .spaDetails .make {
+      font-size: 12px; }
+  .clientDetails .cleaningRoute {
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 20px; }
+    .clientDetails .cleaningRoute .result {
+      font-size: 16px;
+      margin-top: 5px;
+      text-transform: uppercase; }
+    .clientDetails .cleaningRoute .route {
+      text-transform: uppercase;
+      color: #417eeb;
+      font-weight: bold; }
+  .clientDetails .serviceHistory {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px; }
+    .clientDetails .serviceHistory table {
+      width: 100%;
+      margin-top: 10px; }
+      .clientDetails .serviceHistory table tr th {
+        font-size: 10px;
+        text-align: left;
+        color: #566573; }
+      .clientDetails .serviceHistory table tr td {
+        color: #808b96;
+        border-bottom: 1px solid #d5d8dc;
+        padding: 5px; }
+        .clientDetails .serviceHistory table tr td i {
+          color: #417eeb;
+          cursor: pointer; }
+  .clientDetails .orderHistory {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px; }
+    .clientDetails .orderHistory table {
+      width: 100%;
+      margin-top: 10px; }
+      .clientDetails .orderHistory table tr th {
+        font-size: 10px;
+        text-align: left;
+        color: #566573; }
+      .clientDetails .orderHistory table tr td {
+        color: #808b96;
+        border-bottom: 1px solid #d5d8dc;
+        padding: 5px; }
+        .clientDetails .orderHistory table tr td i {
+          color: #417eeb;
+          cursor: pointer; }
+  .clientDetails .clientNotes {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px; }
+    .clientDetails .clientNotes table {
+      width: 100%;
+      margin-top: 10px; }
+      .clientDetails .clientNotes table tr th {
+        font-size: 10px;
+        text-align: left;
+        color: #566573; }
+      .clientDetails .clientNotes table tr td {
+        color: #808b96;
+        border-bottom: 1px solid #d5d8dc;
+        padding: 5px; }
+        .clientDetails .clientNotes table tr td .edit {
+          color: #5499c7;
+          cursor: pointer; }
+        .clientDetails .clientNotes table tr td .delete {
+          color: #f1948a;
+          cursor: pointer; }

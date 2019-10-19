@@ -1,0 +1,66 @@
+.cleaningList {
+  width: 100%; }
+  .cleaningList .liveSearch {
+    width: 100%;
+    margin-top: 10px; }
+    .cleaningList .liveSearch input {
+      width: 50%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #abb2b9; }
+    .cleaningList .liveSearch .searchName {
+      width: 100%;
+      font-size: 10px;
+      font-weight: bold;
+      margin-top: 10px;
+      text-transform: uppercase;
+      color: #808b96; }
+  .cleaningList .newStop {
+    width: 100%; }
+    .cleaningList .newStop table {
+      width: 100%; }
+      .cleaningList .newStop table tr {
+        width: 100%; }
+        .cleaningList .newStop table tr th {
+          font-size: 10px;
+          text-align: left; }
+        .cleaningList .newStop table tr td {
+          padding: 10px 0; }
+          .cleaningList .newStop table tr td i {
+            color: #417eeb;
+            cursor: pointer; }
+          .cleaningList .newStop table tr td input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #abb2b9; }
+          .cleaningList .newStop table tr td button {
+            width: 100%;
+            padding: 5px;
+            color: #5499c7; }
+          .cleaningList .newStop table tr td select {
+            width: 100%;
+            padding: 10px; }
+  .cleaningList .routeList {
+    width: 100%; }
+    .cleaningList .routeList table {
+      width: 100%;
+      margin-top: 10px; }
+      .cleaningList .routeList table tr {
+        width: 100%; }
+        .cleaningList .routeList table tr th {
+          font-size: 10px;
+          text-align: left; }
+        .cleaningList .routeList table tr td {
+          padding: 10px 0;
+          border-bottom: 1px solid #d5d8dc;
+          color: #566573; }
+          .cleaningList .routeList table tr td i {
+            color: #417eeb;
+            cursor: pointer; }
+          .cleaningList .routeList table tr td input {
+            width: 100%;
+            padding: 5px; }
+          .cleaningList .routeList table tr td button {
+            width: 100%;
+            padding: 5px;
+            color: #5499c7; }
