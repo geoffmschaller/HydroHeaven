@@ -6,8 +6,8 @@ import {connect} from "react-redux";
 const DashboardTitle = (props) => {
 	return (
 		<div className={styles.sectionTitle}>
-			<div className={styles.title}>{props.title}</div>
-			<div className={styles.border}/>
+			<div className={styles.title}>{props.title}{props.children}</div>
+			<div className="breaker"/>
 			<div className={styles.welcome}>Welcome, {props.user.email}</div>
 		</div>
 	);

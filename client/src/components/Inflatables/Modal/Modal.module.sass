@@ -1,0 +1,76 @@
+
+.modal
+	width: 100%
+	height: 0
+	z-index: 10
+	overflow: hidden
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+
+	.frame
+		width: 800px
+		margin: -100vh auto
+		padding: 30px
+		background-color: white
+		border-radius: 10px
+		border: 2px solid #808b96
+		transition: all .2s ease-in-out
+
+		.closeBar
+			width: 100%
+			font-size: 20px
+			text-align: right
+			color: #abb2b9
+			cursor: pointer
+
+		.title
+			width: 100%
+			text-transform: uppercase
+			margin-bottom: 35px
+			color: #808b96
+			font-size: 20px
+
+		input
+			width: 100%
+			padding: 10px
+			border: none
+			border-bottom: 1px solid #808b96
+			margin-bottom: 10px
+
+		.submit
+			padding: 10px 40px
+			color: #58d68d
+			border: 1px solid #58d68d
+			float: right
+			margin-left: 15px
+
+			&:hover
+				color: white
+				background: #58d68d
+
+		.close
+			padding: 10px 30px
+			color: #f1948a
+			border: 1px solid #f1948a
+			float: right
+
+			&:hover
+				color: white
+				background: #f1948a
+
+.open
+	height: 100vh
+	animation: fadeIn .2s 1
+	background-color: rgba(0, 0, 0, .4)
+
+	.frame
+		margin: 50px auto
+
+@keyframes fadeIn
+	0%
+		background-color: transparent
+
+	100%
+		background-color: rgba(0, 0, 0, .4)

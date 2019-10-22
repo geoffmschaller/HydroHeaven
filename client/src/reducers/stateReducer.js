@@ -25,7 +25,22 @@ const stateReducer = (state = initialState, action) => {
 		return s;
 	}
 
-	if (action.type === 'GET_ALL_CLIENTS') {
+	if (action.type === 'UPDATE_CLIENT') {
+		let s = {...state};
+		let index = -1;
+		let client = s.clients.filter((client, ind) => {
+			if (client._id === action.data._id) {
+				index = ind;
+				return client;
+			}
+		});
+		if (client.length > 0 && index !== -1) {
+			s.clients[index] = action.data;
+		}
+		return s;
+	}
+
+	if (action.type === 'SET_ALL_CLIENTS') {
 		let s = {...state};
 		s.clients = action.data;
 		return s;

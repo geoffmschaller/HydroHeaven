@@ -27,7 +27,7 @@ const emailValidation = (input) => {
 };
 
 const phoneValidation = (input) => {
-	if (input === null || input === "") return false;
+	if (input === null || input === "" || input.length < 10) return false;
 	return true;
 };
 

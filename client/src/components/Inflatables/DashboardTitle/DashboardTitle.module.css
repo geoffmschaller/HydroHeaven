@@ -5,10 +5,11 @@
     text-transform: uppercase;
     color: #566573;
     margin-bottom: 10px; }
-  .sectionTitle .border {
-    width: 100%;
-    height: 1px;
-    background-color: #e5e8e8; }
+  .sectionTitle i {
+    float: right;
+    cursor: pointer;
+    color: #7fb3d5;
+    font-size: 20px; }
   .sectionTitle .welcome {
     text-align: right;
     font-size: 12px;

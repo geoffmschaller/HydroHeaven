@@ -44,27 +44,13 @@
             color: #5499c7; }
   .clients .newClient {
     width: 100%; }
-    .clients .newClient .error {
-      color: red; }
-    .clients .newClient .success {
-      color: green; }
-    .clients .newClient table {
-      width: 100%; }
-      .clients .newClient table tr {
-        width: 100%; }
-        .clients .newClient table tr th {
-          font-size: 10px;
-          text-align: left; }
-        .clients .newClient table tr td {
-          padding: 10px 0; }
-          .clients .newClient table tr td i {
-            color: #417eeb;
-            cursor: pointer; }
-          .clients .newClient table tr td input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #abb2b9; }
-          .clients .newClient table tr td button {
-            width: 100%;
-            padding: 5px;
-            color: #5499c7; }
+    .clients .newClient button {
+      border: 1px solid #85c1e9;
+      color: #85c1e9;
+      margin-top: 20px; }
+      .clients .newClient button:hover {
+        color: white;
+        background-color: #85c1e9; }
+
+.error {
+  color: red; }

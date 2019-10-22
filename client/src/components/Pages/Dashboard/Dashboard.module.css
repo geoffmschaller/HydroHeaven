@@ -1,7 +1,8 @@
 .dashboard {
   width: 100%;
   overflow-x: hidden;
-  margin-left: 75px; }
+  margin-left: 75px;
+  position: relative; }
   .dashboard .workspace {
     width: calc(100% - 75px);
     background-color: #d5dbdb;
