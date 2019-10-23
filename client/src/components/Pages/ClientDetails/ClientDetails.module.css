@@ -54,16 +54,19 @@
       font-size: 12px; }
   .clientDetails .cleaningRoute {
     width: 100%;
-    padding: 0 20px;
     margin-bottom: 20px; }
-    .clientDetails .cleaningRoute .result {
-      font-size: 16px;
-      margin-top: 5px;
-      text-transform: uppercase; }
-    .clientDetails .cleaningRoute .route {
-      text-transform: uppercase;
+    .clientDetails .cleaningRoute .cleaningCenter {
+      width: 100%;
+      text-align: center; }
+    .clientDetails .cleaningRoute i {
+      font-size: 150px;
       color: #417eeb;
-      font-weight: bold; }
+      margin-bottom: 10px;
+      text-shadow: 3px 2px rgba(0, 0, 0, 0.4); }
+    .clientDetails .cleaningRoute .route {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #566573; }
   .clientDetails .serviceHistory {
     width: 100%;
     margin-bottom: 20px;

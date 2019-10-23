@@ -128,6 +128,15 @@ class ClientDetails extends React.Component {
 
 				<div className={styles.breaker}/>
 				<Block float={FLOAT_LEFT} width={30}>
+				<div className={styles.cleaningRoute}>
+						<SubTitle title={"Cleaning Route"}/>
+						<VerticalSpacer height={30}/>
+						<div className={styles.cleaningCenter}>
+							<i class="far fa-shield-alt"/>
+							<div className={styles.route}>San Luis Cleaning Route</div>
+						</div>
+					</div>
+					<VerticalSpacer height={45}/>
 					<SubTitle title={"Spa Information"}/>
 					<div className={styles.spaDetails}>
 						<img src={SPA_IMAGE} alt=""/>
@@ -138,13 +147,9 @@ class ClientDetails extends React.Component {
 						<div className={styles.make}>By American Whirlpool</div>
 					</div>
 					<div className="clear"/>
+					
 				</Block>
 				<Block float={FLOAT_RIGHT} width={70}>
-					<div className={styles.cleaningRoute}>
-						<SubTitle title={"Cleaning Route"}/>
-						<div className={styles.result}>Cleaning Route: <span className={styles.route}>SLO</span></div>
-					</div>
-					<VerticalSpacer height={30}/>
 					<div className={styles.serviceHistory}>
 						<SubTitle title={"Service History"}/>
 						<table>
@@ -169,17 +174,11 @@ class ClientDetails extends React.Component {
 								<td>PAID</td>
 								<td><i className="fad fa-long-arrow-right"/></td>
 							</tr>
-							<tr>
-								<td>10/19/19</td>
-								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, tempore.</td>
-								<td>PAID</td>
-								<td><i className="fad fa-long-arrow-right"/></td>
-							</tr>
 							</tbody>
 
 						</table>
 					</div>
-					<VerticalSpacer height={30}/>
+					<VerticalSpacer height={50}/>
 					<div className={styles.orderHistory}>
 						<SubTitle title={"Order History"}/>
 						<table>
@@ -203,46 +202,6 @@ class ClientDetails extends React.Component {
 								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, tempore.</td>
 								<td>PAID</td>
 								<td><i className="fad fa-long-arrow-right"/></td>
-							</tr>
-							<tr>
-								<td>10/19/19</td>
-								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, tempore.</td>
-								<td>PAID</td>
-								<td><i className="fad fa-long-arrow-right"/></td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
-					<VerticalSpacer height={30}/>
-					<div className={styles.clientNotes}>
-						<SubTitle title={"Notes About Client"}/>
-						<table>
-							<thead>
-							<tr>
-								<th>Date</th>
-								<th>Note</th>
-								<th>Edit</th>
-								<th>Delete</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>10/19/19</td>
-								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, tempore.</td>
-								<td><i className={styles.edit + " fad fa-money-check-edit"}/></td>
-								<td><i className={styles.delete + " fad fa-backspace"}/></td>
-							</tr>
-							<tr>
-								<td>10/19/19</td>
-								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, tempore.</td>
-								<td><i className={styles.edit + " fad fa-money-check-edit"}/></td>
-								<td><i className={styles.delete + " fad fa-backspace"}/></td>
-							</tr>
-							<tr>
-								<td>10/19/19</td>
-								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, tempore.</td>
-								<td><i className={styles.edit + " fad fa-money-check-edit"}/></td>
-								<td><i className={styles.delete + " fad fa-backspace"}/></td>
 							</tr>
 							</tbody>
 						</table>
