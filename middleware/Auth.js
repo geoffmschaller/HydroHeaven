@@ -1,26 +1,27 @@
 const jwt = require('jsonwebtoken');
 
 const VerifyAuthToken = async (req, res, next) => {
-
-	let token = req.body.token;
+	const { token } = req.body;
 
 	if (!token) {
 		return res.json({
 			status: 500,
-			message: "Network Error - Please try again."
-		})
+			message: 'Network Error - Please try again.',
+		});
 	}
 
-	let result = await jwt.verify(token, process.env.JWT_SECRET_KEY);
-	if (!result) {
+	try {
+		await jwt.verify(token, process.env.JWT_SECRET_KEY);
+	} catch (e) {
 		return res.json({
 			status: 500,
-			message: "Network Error - Invalid Credentials."
-		})
+			message: 'Network Error - Invalid Credentials.',
+		});
 	}
 
 	next();
 
+	return null;
 };
 
 module.exports = VerifyAuthToken;

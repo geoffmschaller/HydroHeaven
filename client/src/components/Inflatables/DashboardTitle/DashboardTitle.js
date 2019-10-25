@@ -1,26 +1,31 @@
 import React from 'react';
-import styles from './DashboardTitle.module.css';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
+import { connect } from 'react-redux';
+import styles from './DashboardTitle.module.css';
 
-const DashboardTitle = (props) => {
-	return (
-		<div className={styles.sectionTitle}>
-			<div className={styles.title}>{props.title}{props.children}</div>
-			<div className="breaker"/>
-			<div className={styles.welcome}>Welcome, {props.user.email}</div>
+const DashboardTitle = (props) => (
+	<div className={styles.sectionTitle}>
+		<div className={styles.title}>
+			{props.title}
+			{props.children}
 		</div>
-	);
-};
+		<div className="breaker" />
+		<div className={styles.welcome}>
+			Welcome,
+			{props.user.email}
+		</div>
+	</div>
+);
 
 DashboardTitle.propTypes = {
-	title: PropTypes.string.isRequired
+	title: PropTypes.string.isRequired,
+	user: PropTypes.shape({
+		email: PropTypes.string.isRequired,
+	}).isRequired,
 };
 
-const mapStateToProps = state => {
-	return {
-		user: state.auth
-	}
-};
+const mapStateToProps = (state) => ({
+	user: state.auth,
+});
 
 export default connect(mapStateToProps)(DashboardTitle);

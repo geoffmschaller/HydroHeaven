@@ -19,12 +19,11 @@ class BBQDetails extends React.Component {
 
 	constructor(props) {
 		super(props);
+		state = {
+			selectedBBQ: null
+		};
 		this.scrollRef = React.createRef();
 	}
-
-	state = {
-		selectedBBQ: null
-	};
 
 	componentDidMount() {
 		this.getSelectedBBQ(this.props.match.url.replace("/bbq-islands/", ""));

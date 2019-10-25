@@ -1,16 +1,14 @@
 import React from 'react';
-import styles from './ProductGrid.module.css';
 import PropTypes from 'prop-types';
-import {getBrandFromId, getNameFromId} from "../../../utils/StringHelpers";
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
+import styles from './ProductGrid.module.css';
+import { getBrandFromId, getNameFromId } from '../../../utils/StringHelpers';
 
 class ProductGrid extends React.Component {
-
 	render() {
-
 		let prods = [];
 		if (this.props.count > 0) {
-			for (let i = 0; i < this.props.count; i++) {
+			for (let i = 0; i < this.props.count; i += 1) {
 				prods.push(this.props.productData[Math.floor(Math.random() * this.props.productData.length)]);
 			}
 		} else {
@@ -20,29 +18,37 @@ class ProductGrid extends React.Component {
 		return (
 			<div className={styles.featured}>
 				{
-					!this.props.click ?
-						prods.map((prod, index) => {
-							return <div className={styles.bbq} key={index}>
-								<img src={prod.image} alt=""/>
+					!this.props.click
+						? prods.map((prod, index) => (
+							<div className={styles.bbq} key={index}>
+								<img src={prod.image} alt="" />
 								<div className={styles.title}>{getNameFromId(prod.id)}</div>
-								<div className={styles.brand}>By {getBrandFromId(prod.id)}</div>
+								<div className={styles.brand}>
+									By
+									{' '}
+									{getBrandFromId(prod.id)}
+								</div>
 								<Link to={this.props.link + prod.id}>
-									<button>View Details</button>
+									<button type="button">View Details</button>
 								</Link>
-								<div className="clear"/>
+								<div className="clear" />
 							</div>
-						}) :
-						prods.map((prod, index) => {
-							return <div className={styles.bbq} key={index}>
-								<img src={prod.image} alt=""/>
+						))
+						: prods.map((prod, index) => (
+							<div className={styles.bbq} key={index}>
+								<img src={prod.image} alt="" />
 								<div className={styles.title}>{getNameFromId(prod.id)}</div>
-								<div className={styles.brand}>By {getBrandFromId(prod.id)}</div>
+								<div className={styles.brand}>
+									By
+									{' '}
+									{getBrandFromId(prod.id)}
+								</div>
 								<Link to={this.props.link + prod.id} onClick={() => this.props.click(prod.id)}>
-									<button>View Details</button>
+									<button type="button">View Details</button>
 								</Link>
-								<div className="clear"/>
+								<div className="clear" />
 							</div>
-						})
+						))
 				}
 			</div>
 		);
@@ -52,11 +58,11 @@ class ProductGrid extends React.Component {
 ProductGrid.propTypes = {
 	productData: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,
-		image: PropTypes.string.isRequired
+		image: PropTypes.string.isRequired,
 	})).isRequired,
 	link: PropTypes.string.isRequired,
 	count: PropTypes.number.isRequired,
-	click: PropTypes.func
+	click: PropTypes.func.isRequired,
 };
 
 export default ProductGrid;
