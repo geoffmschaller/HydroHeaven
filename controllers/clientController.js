@@ -36,9 +36,7 @@ router.post('/add-new-client', VerifyAuthToken, async (req, res) => {
 	const firstNameUnsafe = req.body.client.firstName;
 	const lastNameUnsafe = req.body.client.lastName;
 	const emailUnsafe = req.body.client.email;
-	const phoneUnsafe = req.body.client.phone.toString().replace(/(\()/g, '').replace(/(\))/g, '').replace(/-/g, '')
-		.replace(/ /g, '')
-		.trim();
+	const phoneUnsafe = req.body.client.phone.toString().replace(/\D/g,'').trim();
 	const addressUnsafe = req.body.client.address;
 
 	// VALIDATE INPUTS
@@ -107,9 +105,7 @@ router.post('/update-client-by-id', VerifyAuthToken, async (req, res) => {
 	const firstNameUnsafe = req.body.client.firstName;
 	const lastNameUnsafe = req.body.client.lastName;
 	const emailUnsafe = req.body.client.email;
-	const phoneUnsafe = req.body.client.phone.toString().replace(/(\()/g, '').replace(/(\))/g, '').replace(/-/g, '')
-		.replace(/ /g, '')
-		.trim();
+	const phoneUnsafe = req.body.client.phone.toString().replace(/\D/g,'').trim();
 	const addressUnsafe = req.body.client.address;
 
 	// VALIDATE INPUTS

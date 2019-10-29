@@ -8,6 +8,7 @@ import Axios from "axios";
 import {connect} from "react-redux";
 import Modal from "../../Inflatables/Modal/Modal";
 import {transformToPhoneNumber} from "../../../utils/StringHelpers";
+import BlockMenu from '../../Inflatables/BlockMenu/BlockMenu';
 
 class Clients extends React.Component {
 
@@ -38,29 +39,19 @@ class Clients extends React.Component {
 			// REDIRECT OUT
 			console.log("NO AUTH TOKEN")
 		}
-
 		let result = await Axios.post("/api/clients/add-new-client", {
-			client: {
-				firstName: s.firstName,
-				lastName: s.lastName,
-				phone: s.phone,
-				email: s.email,
-				address: s.address
-			},
+			client: {firstName: s.firstName, lastName: s.lastName, phone: s.phone, email: s.email, address: s.address},
 			token: token
 		});
-		// NETWORK ERROR
 		if (result.status !== 200) {
 			s.errorMessage = "Network Error. Please try again.";
 			await this.setState(s);
 		}
 		console.log(result);
-		// CREATION ERROR
 		if (result.data.status !== 200) {
 			s.errorMessage = result.data.message;
 			await this.setState(s);
 		}
-		// SUCCESS
 		if (result.data.status === 200) {
 			s.modal = false;
 			this.props.onSuccessfulNewClient(result.data.client);
@@ -82,11 +73,23 @@ class Clients extends React.Component {
 
 
 	render() {
+
+		let blockData = [
+			{num: this.props.clients.length, label: "Total Clients"},
+			{num: this.props.clients.length, label: "Clients This Week"},
+			{num: this.props.clients.length, label: "Clients This Month"},
+			{num: this.props.clients.length, label: "Clients This Year"}
+		]
+
 		return (
 			<div className={styles.clients}>
 				<DashboardTitle title={"Client List"}>
 					<i className="fad fa-user-plus" onClick={() => this.setModal(true)}/>
 				</DashboardTitle>
+				<VerticalSpacer height={20}/>
+				<BlockMenu data={blockData}/>
+				<div className={"breaker"}/>
+				<VerticalSpacer height={20}/>
 				<SubTitle title={"Live Search"}/>
 				<div className={styles.liveSearch}>
 					<input type="text" placeholder={"Begin Typing To Search..."}/>
