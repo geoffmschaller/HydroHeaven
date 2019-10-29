@@ -64,6 +64,11 @@ class Clients extends React.Component {
 		if (result.data.status === 200) {
 			s.modal = false;
 			this.props.onSuccessfulNewClient(result.data.client);
+			s.firstName = "";
+			s.lastName = "";
+			s.phone = "";
+			s.address = "";
+			s.email = "";
 			await this.setState(s);
 		}
 
