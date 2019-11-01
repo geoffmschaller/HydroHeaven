@@ -88,3 +88,4 @@ typings/
 .dynamodb/
 
 .idea/*
+.vscode/settings.json
