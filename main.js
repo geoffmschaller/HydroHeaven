@@ -5,13 +5,11 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const ContactRouter = require('./controllers/contactController');
-const AuthRouter = require('./controllers/authController');
-const ClientRouter = require('./controllers/clientController');
 
 require('dotenv').config();
 require('pug');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('./client/build'));
 
@@ -28,7 +26,5 @@ app.get('*', (req, res) => {
 });
 
 app.use('/api/contact', ContactRouter);
-app.use('/api/auth', AuthRouter);
-app.use('/api/clients', ClientRouter);
 
 app.listen(4000);

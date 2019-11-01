@@ -31,15 +31,13 @@ class SpaDetails extends React.Component {
 	}
 
 	getSelectedSpa = (id) => {
-		let spa = SpaData.filter(spa => {
-			return spa.id === id;
-		});
-		if (spa.length > 0) {
-			this.setState({selectedSpa: spa[0]});
-			window.scrollTo(0, this.scrollRef.current.offsetTop);
-		} else {
+		let spa = SpaData.filter(spa => spa.id === id)[0];
+		if (!spa) {
 			this.props.history.push("/spas-hot-tubs");
+			return;
 		}
+		this.setState({selectedSpa: spa});
+		window.scrollTo(0, this.scrollRef.current.offsetTop);
 	};
 
 

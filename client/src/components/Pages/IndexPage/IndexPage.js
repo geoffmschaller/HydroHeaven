@@ -24,15 +24,15 @@ export default class IndexPage extends React.Component {
 				<FeaturedCategory/>
 				<div className="widthRestriction">
 					<VerticalSpacer height={100}/>
-					<SectionTitle title={"Featured Spas & Hot Tubs"}/>
+					<SectionTitle title={"Featured Spas & Hot Tubs"} darkMode={false}/>
 					<ProductGrid productData={SpaData} link={"/spas-hot-tubs/"} count={4}/>
 					<VerticalSpacer height={100}/>
 					<Block float={FLOAT_LEFT} width={40}>
-						<SectionTitle title={"Locations"}/>
+						<SectionTitle title={"Locations"} darkMode={false}/>
 						<StoreLocations/>
 					</Block>
 					<Block float={FLOAT_RIGHT} width={60}>
-						<SectionTitle title={"Our Services"}/>
+						<SectionTitle title={"Our Services"} darkMode={false}/>
 						<Services/>
 					</Block>
 				</div>

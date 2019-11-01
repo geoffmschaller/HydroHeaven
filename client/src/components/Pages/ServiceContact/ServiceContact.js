@@ -8,62 +8,92 @@ import Block from "../../Inflatables/Block/Block";
 import {FLOAT_LEFT, FLOAT_RIGHT} from "../../../utils/FloatTypes";
 import styles from './ServiceContact.module.css';
 import Form from "../../Inflatables/Form/Form";
-import {ServiceContactForm} from "../../../data/FormData";
 import StoreLocations from "../../Inflatables/StoreLocations/StoreLocations";
 import NavigationBar from "../../Inflatables/NavigationBar/NavigationBar";
 import Footer from "../../Inflatables/Footer/Footer";
 import {FORM_READY, FORM_SUBMITTING} from "../../../utils/FormModes";
 import {ERROR, NONE, SUCCESS} from "../../../data/ActionResults";
-import Axios from "axios";
+import {SendContactForm} from "../../../api/contactAPICalls";
+import {LINE_INPUT, MULTI_LINE_INPUT} from "../../../utils/InputTypes";
+import {EMAIL_VALIDATION, TEXT_VALIDATION} from "../../../utils/ValidationTypes";
 
 class ServiceContact extends React.Component {
 
 	state = {
-		form: null,
-		mode: FORM_READY,
-		messages: {
-			status: NONE,
-			message: ""
+		form: {
+			mode: FORM_READY,
+			messages: {
+				status: NONE,
+				message: ""
+			},
+			inputs: [
+				{
+					name: "Name",
+					type: LINE_INPUT,
+					required: true,
+					value: "",
+					validator: TEXT_VALIDATION
+				},
+				{
+					name: "Email",
+					type: LINE_INPUT,
+					required: true,
+					value: "",
+					validator: EMAIL_VALIDATION
+				},
+				{
+					name: "Message",
+					type: MULTI_LINE_INPUT,
+					required: true,
+					value: "",
+					validator: TEXT_VALIDATION
+				}
+			]
 		}
 	};
 
-	componentWillMount() {
-		let s = {...this.state};
-		s.form = ServiceContactForm;
-		this.setState(s);
-	}
-
-	updateInputValue = (event, index) => {
+	updateInputValue = async (event, index) => {
 		let s = {...this.state};
 		s.form.inputs[index].value = event.target.value;
-		this.setState(s);
+		await this.setState(s);
 	};
 
 	handleSubmit = async () => {
-		let s = {...this.state};
-		s.mode = FORM_SUBMITTING;
-		await this.setState(s);
-		let result = await Axios.post(this.state.form.url, {values: this.state.form.inputs});
-		if (result && result.data.status === 500) {
-			let s = {...this.state};
-			s.mode = FORM_READY;
-			s.messages = {status: ERROR, message: result.data.message};
-			await this.setState(s);
-		} else if (result && result.data.status === 200) {
-			let s = {...this.state};
-			s.mode = FORM_READY;
-			s.messages = {status: SUCCESS, message: result.data.message};
-			for (let i = 0; i < this.state.form.inputs.length; i++) {
-				s.form.inputs[i].value = "";
-			}
-			await this.setState(s);
-			// OTHER SUCCESS FUNCTIONS
-		} else {
-			let s = {...this.state};
-			s.mode = FORM_READY;
-			s.messages = {status: ERROR, message: "Network Error. Please try again."};
-			await this.setState(s);
+		await this.updateFormMode(FORM_SUBMITTING);
+		let result = await SendContactForm(this.state.form.inputs);
+		if (result.status === 500) {
+			await this.updateFormMode(FORM_READY);
+			await this.updateFormMessage(ERROR, "Network Error. Please try again.");
+			return;
 		}
+		if (result && result.data.status === 200) {
+			await this.updateFormMode(FORM_READY);
+			await this.updateFormMessage(SUCCESS, result.data.message);
+			await this.resetInputValues();
+			return;
+		}
+		await this.updateFormMode(FORM_READY);
+		await this.updateFormMessage(ERROR, result.data.message);
+	};
+
+	resetInputValues = async () => {
+		let s = {...this.state};
+		for (let i = 0; i < this.state.form.inputs.length; i++) {
+			s.form.inputs[i].value = "";
+		}
+		await this.setState(s);
+	};
+
+	updateFormMode = async (mode) => {
+		let s = {...this.state};
+		s.form.mode = mode;
+		await this.setState(s);
+	};
+
+	updateFormMessage = async (status, message) => {
+		let s = {...this.state};
+		s.form.messages = {status: status, message: message};
+		await this.setState(s);
 	};
 
 	render() {
@@ -84,7 +114,8 @@ class ServiceContact extends React.Component {
 						<p>Please feel free to send us a message below, we'd love to hear from you. If this is urgent please call one of our locations so that a
 							team member can help you directly.</p>
 						<VerticalSpacer height={20}/>
-						<Form inputs={this.state.form.inputs} mode={this.state.mode} messages={this.state.messages} updateValue={this.updateInputValue}
+						<Form inputs={this.state.form.inputs} mode={this.state.form.mode} messages={this.state.form.messages}
+						      updateValue={this.updateInputValue}
 						      submit={this.handleSubmit}/>
 					</Block>
 				</div>

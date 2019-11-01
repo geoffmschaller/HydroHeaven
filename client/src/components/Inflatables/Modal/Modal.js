@@ -9,16 +9,16 @@ class Modal extends React.Component {
 		return (
 			<div className={modalClass}>
 				<div className={styles.frame}>
-					<div className={styles.closeBar} onClick={() => this.props.close(false)}><i className="fas fa-times" /></div>
+					<div className={styles.closeBar} onClick={() => this.props.close(false)}><i className="fas fa-times"/></div>
 					<div className={styles.title}>{this.props.title}</div>
-					<div className="breaker" />
+					<div className="breaker"/>
 					{
 						this.props.children
 					}
-					<div className="breaker" />
-					<button type="button" className={styles.submit} onClick={() => this.props.submit()}><i className="fas fa-check" /></button>
-					<button type="button" className={styles.close} onClick={() => this.props.close(false)}><i className="fas fa-times" /></button>
-					<div className="clear" />
+					<div className="breaker"/>
+					<button type="button" className={styles.submit} onClick={() => this.props.submit()}><i className="fas fa-check"/></button>
+					<button type="button" className={styles.close} onClick={() => this.props.close(false)}><i className="fas fa-times"/></button>
+					<div className="clear"/>
 				</div>
 			</div>
 		);

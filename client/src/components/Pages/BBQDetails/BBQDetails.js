@@ -31,15 +31,12 @@ class BBQDetails extends React.Component {
 	}
 
 	getSelectedBBQ = (id) => {
-		let bbq = BBQData.filter(b => {
-			return b.id === id;
-		});
-		if (bbq.length > 0) {
-			this.setState({selectedBBQ: bbq[0]});
-			window.scrollTo(0, this.scrollRef.current.offsetTop);
-		} else {
+		let bbq = BBQData.filter(b => b.id === id)[0];
+		if (!bbq) {
 			this.props.history.push("/bbq-islands");
 		}
+		this.setState({selectedBBQ: bbq});
+		window.scrollTo(0, this.scrollRef.current.offsetTop);
 	};
 
 

@@ -29,6 +29,8 @@
       margin-bottom: 35px;
       color: #808b96;
       font-size: 20px; }
+    .modal .frame p {
+      color: #808b96; }
     .modal .frame input {
       width: 100%;
       padding: 10px;

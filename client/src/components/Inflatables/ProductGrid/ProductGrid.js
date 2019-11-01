@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import styles from './ProductGrid.module.css';
-import { getBrandFromId, getNameFromId } from '../../../utils/StringHelpers';
+import {getBrandFromId, getNameFromId} from '../../../utils/StringHelpers';
 
 class ProductGrid extends React.Component {
 	render() {
@@ -21,7 +21,7 @@ class ProductGrid extends React.Component {
 					!this.props.click
 						? prods.map((prod, index) => (
 							<div className={styles.bbq} key={index}>
-								<img src={prod.image} alt="" />
+								<img src={prod.image} alt=""/>
 								<div className={styles.title}>{getNameFromId(prod.id)}</div>
 								<div className={styles.brand}>
 									By
@@ -31,12 +31,12 @@ class ProductGrid extends React.Component {
 								<Link to={this.props.link + prod.id}>
 									<button type="button">View Details</button>
 								</Link>
-								<div className="clear" />
+								<div className="clear"/>
 							</div>
 						))
 						: prods.map((prod, index) => (
 							<div className={styles.bbq} key={index}>
-								<img src={prod.image} alt="" />
+								<img src={prod.image} alt=""/>
 								<div className={styles.title}>{getNameFromId(prod.id)}</div>
 								<div className={styles.brand}>
 									By
@@ -46,7 +46,7 @@ class ProductGrid extends React.Component {
 								<Link to={this.props.link + prod.id} onClick={() => this.props.click(prod.id)}>
 									<button type="button">View Details</button>
 								</Link>
-								<div className="clear" />
+								<div className="clear"/>
 							</div>
 						))
 				}
@@ -62,7 +62,7 @@ ProductGrid.propTypes = {
 	})).isRequired,
 	link: PropTypes.string.isRequired,
 	count: PropTypes.number.isRequired,
-	click: PropTypes.func.isRequired,
+	click: PropTypes.func
 };
 
 export default ProductGrid;
