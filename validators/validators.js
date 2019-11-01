@@ -1,11 +1,32 @@
 const escapeTool = require('validator');
-const NON_NUMERIC_TEXT_INPUT = 'text_input';
-const EMAIL_INPUT = 'email_input';
-const PHONE_INPUT = 'phone_input';
+const InputTypes = require('../types/inputs');
 
-const nonNumericTextInput = (input) => !(input === null || input === '' || typeof input !== 'string');
+const validateInputs = (unsafeInputs) => {
+	const errors = [];
+	let separator = 'are';
+	Object.keys(unsafeInputs).map((key, index) => {
+		let inp = unsafeInputs[key];
+		if (inp.type === InputTypes.NON_NUMERIC_TEXT_INPUT && !validateText(inp.value)) errors.push(inp.name.toString());
+		if (inp.type === InputTypes.EMAIL_INPUT && !validateEmail(inp.value)) errors.push(inp.name);
+	});
+	if (errors.length > 0) {
+		if (errors.length === 1) separator = 'is';
+		return `Valid ${errors.join(', ')} ${separator} required`;
+	}
+	return 200;
+};
 
-const emailValidation = (input) => {
+const cleanInputs = (unsafeInputs) => {
+	const safeInputs = {};
+	Object.keys(unsafeInputs).map((key, index) => {
+		safeInputs[key] = escapeTool.escape(unsafeInputs[key].toString().replace(/([\\<>()`/])/g, " ").trim());
+	});
+	return safeInputs;
+};
+
+const validateText = (input) => !(input === null || input === '' || typeof input !== 'string');
+
+const validateEmail = (input) => {
 	if (input === null || input === '' || typeof input !== 'string' || input.indexOf('@') < 0 || input.indexOf('.') < 0) return false;
 	const split = input.split('@');
 	if (split.length !== 2) return false;
@@ -15,35 +36,4 @@ const emailValidation = (input) => {
 	return !(domain[0] === null || domain[0] === '' || typeof domain[0] !== 'string');
 };
 
-const phoneValidation = (input) => {
-	return !(input === null || input === '' || input.length < 10);
-};
-
-const validate = (input, type) => {
-	if (type === NON_NUMERIC_TEXT_INPUT) return nonNumericTextInput(input);
-	if (type === PHONE_INPUT) return phoneValidation(input);
-	return emailValidation(input);
-};
-
-const ValidateInputs = (unsafeInputs) => {
-	const errors = [];
-	let separator = 'are';
-	if (!validate(unsafeInputs.name, NON_NUMERIC_TEXT_INPUT)) errors.push('Name');
-	if (!validate(unsafeInputs.email, EMAIL_INPUT)) errors.push('Email');
-	if (!validate(unsafeInputs.message, NON_NUMERIC_TEXT_INPUT)) errors.push('Message');
-	if (errors.length > 0) {
-		if (errors.length === 1) separator = 'is';
-		return `Valid ${errors.join(', ')} ${separator} required`;
-	}
-	return 200;
-};
-
-const CleanInputs = (unsafeInputs) => {
-	const safeInputs = {};
-	Object.keys(unsafeInputs).map((key, index) => {
-		safeInputs[key] = escapeTool.escape(unsafeInputs[key].toString().replace(/([\\<>()`/])/g, " "));
-	});
-	return safeInputs;
-};
-
-module.exports = {ValidateInputs, CleanInputs};
+module.exports = {validateInputs, cleanInputs};

@@ -1,33 +1,39 @@
-let validator = require('../utils/Validators');
-let inputTypes = require('../utils/InputTypes');
+const Validators = require('../validators/validators');
+const ImportTypes = require('../types/inputs');
 
-test("Test Input Validator", () => {
+it("User Input Validator", () => {
 
-	/*
-		NON NUMERIC TEXT VALIDATIONS
-	 */
-	expect(validator("Geoff", inputTypes.NON_NUMERIC_TEXT_INPUT)).toBeTruthy();
-	expect(validator("James", inputTypes.NON_NUMERIC_TEXT_INPUT)).toBeTruthy();
-	expect(validator("", inputTypes.NON_NUMERIC_TEXT_INPUT)).toBeFalsy();
-	expect(validator(null, inputTypes.NON_NUMERIC_TEXT_INPUT)).toBeFalsy();
-	expect(validator(123, inputTypes.NON_NUMERIC_TEXT_INPUT)).toBeFalsy();
+	expect(Validators.validateInputs({name: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "Geoff", name: "name"}})).toBe(200);
+	expect(Validators.validateInputs({name: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: null, name: "name"}})).toBe("Valid name is required");
+	expect(Validators.validateInputs({name: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "", name: "name"}})).toBe("Valid name is required");
 
-	/*
-		EMAIL VALIDATIONS
-	 */
-	expect(validator("Geoff", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator(null, inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator(123, inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("Geoff@", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("Geoff.", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("@.", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator(".", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("@", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("Geoff@Geoff", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("Geoff.Geoff", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("@Geoff.com", inputTypes.EMAIL_INPUT)).toBeFalsy();
-	expect(validator("geoff@geoff.com", inputTypes.EMAIL_INPUT)).toBeTruthy();
-	expect(validator("carl@carl.com", inputTypes.EMAIL_INPUT)).toBeTruthy();
+	expect(Validators.validateInputs({email: {type: ImportTypes.EMAIL_INPUT, value: "Geoff@Geoff.com", name: "email"}})).toBe(200);
+	expect(Validators.validateInputs({email: {type: ImportTypes.EMAIL_INPUT, value: "Geoff@Geoff", name: "email"}})).toBe("Valid email is required");
+	expect(Validators.validateInputs({email: {type: ImportTypes.EMAIL_INPUT, value: "Geoff", name: "email"}})).toBe("Valid email is required");
+	expect(Validators.validateInputs({email: {type: ImportTypes.EMAIL_INPUT, value: "@", name: "email"}})).toBe("Valid email is required");
+	expect(Validators.validateInputs({email: {type: ImportTypes.EMAIL_INPUT, value: "@.", name: "email"}})).toBe("Valid email is required");
+	expect(Validators.validateInputs({email: {type: ImportTypes.EMAIL_INPUT, value: ".", name: "email"}})).toBe("Valid email is required");
+	expect(Validators.validateInputs({email: {type: ImportTypes.EMAIL_INPUT, value: "", name: "email"}})).toBe("Valid email is required");
+	expect(Validators.validateInputs({email: {type: ImportTypes.EMAIL_INPUT, value: null, name: "email"}})).toBe("Valid email is required");
+
+	expect(Validators.validateInputs({message: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "Geoff", name: "message"}})).toBe(200);
+	expect(Validators.validateInputs({message: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: null, name: "message"}})).toBe("Valid message is required");
+	expect(Validators.validateInputs({message: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "", name: "message"}})).toBe("Valid message is required");
+
+	expect(Validators.validateInputs({
+		message: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: null, name: "message"},
+		name: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: null, name: "name"},
+		email: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: null, name: "email"}
+	})).toBe("Valid message, name, email are required");
+	expect(Validators.validateInputs({
+		message: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: null, name: "message"},
+		name: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "Geoff", name: "name"},
+		email: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "geoff@geoff.com", name: "email"}
+	})).toBe("Valid message is required");
+	expect(Validators.validateInputs({
+		message: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "Message", name: "message"},
+		name: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "Geoff", name: "name"},
+		email: {type: ImportTypes.NON_NUMERIC_TEXT_INPUT, value: "geoff@geoff.com", name: "email"}
+	})).toBe(200);
 
 });
