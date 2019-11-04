@@ -10,7 +10,7 @@ require('dotenv').config();
 
 router.post('/send-contact', async (req, res) => {
 
-	// VALIDATE AND CLEAN INPUTS
+	// RAW INPUTS
 	const unsafeInputs = {
 		name: {
 			type: InputTypes.NON_NUMERIC_TEXT_INPUT,

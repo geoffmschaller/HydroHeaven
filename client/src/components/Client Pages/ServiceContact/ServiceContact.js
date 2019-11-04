@@ -15,7 +15,6 @@ import {FORM_READY, FORM_SUBMITTING} from "../../../utils/FormModes";
 import {ERROR, NONE, SUCCESS} from "../../../data/ActionResults";
 import {SendContactForm} from "../../../api/contactAPICalls";
 import {LINE_INPUT, MULTI_LINE_INPUT} from "../../../utils/InputTypes";
-import {EMAIL_VALIDATION, TEXT_VALIDATION} from "../../../utils/ValidationTypes";
 
 class ServiceContact extends React.Component {
 
@@ -31,22 +30,19 @@ class ServiceContact extends React.Component {
 					name: "Name",
 					type: LINE_INPUT,
 					required: true,
-					value: "",
-					validator: TEXT_VALIDATION
+					value: ""
 				},
 				{
 					name: "Email",
 					type: LINE_INPUT,
 					required: true,
-					value: "",
-					validator: EMAIL_VALIDATION
+					value: ""
 				},
 				{
 					name: "Message",
 					type: MULTI_LINE_INPUT,
 					required: true,
-					value: "",
-					validator: TEXT_VALIDATION
+					value: ""
 				}
 			]
 		}
@@ -111,10 +107,12 @@ class ServiceContact extends React.Component {
 					</Block>
 					<Block float={FLOAT_RIGHT} width={60}>
 						<SectionTitle title={"Service & Contact"}/>
-						<p>Please feel free to send us a message below, we'd love to hear from you. If this is urgent please call one of our locations so that a
+						<p>Please feel free to send us a message below, we'd love to hear from you. If this is urgent
+							please call one of our locations so that a
 							team member can help you directly.</p>
 						<VerticalSpacer height={20}/>
-						<Form inputs={this.state.form.inputs} mode={this.state.form.mode} messages={this.state.form.messages}
+						<Form inputs={this.state.form.inputs} mode={this.state.form.mode}
+						      messages={this.state.form.messages}
 						      updateValue={this.updateInputValue}
 						      submit={this.handleSubmit}/>
 					</Block>

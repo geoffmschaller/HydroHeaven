@@ -3,14 +3,15 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const ContactRouter = require('./controllers/contactController');
+const ContactController = require('./controllers/contactController');
+const AuthController = require('./controllers/authController');
 
 require('dotenv').config();
 require('pug');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(express.static('./client/build'));
+app.use(express.static('./Client/build'));
 
 mongoose.connect(
 	process.env.MONGO_DB_URL,
@@ -21,9 +22,10 @@ mongoose.connect(
 ).then();
 
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, './client/build/index.html'));
+	res.sendFile(path.resolve(__dirname, './Client/build/index.html'));
 });
 
-app.use('/api/contact', ContactRouter);
+app.use('/api/contact', ContactController);
+app.use('/api/auth', AuthController);
 
 app.listen(5000);

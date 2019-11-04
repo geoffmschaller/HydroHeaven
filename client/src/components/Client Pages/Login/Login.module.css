@@ -1,0 +1,22 @@
+.login {
+  width: 100%;
+}
+.login .banner {
+  width: 100%;
+  height: 100vh;
+  margin-left: -10px;
+  background-position: center;
+}
+.login .form {
+  width: 100%;
+  padding: 0 200px;
+  margin-top: 35%;
+}
+.login .form .title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #808B96;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=Login.module.css.map */
