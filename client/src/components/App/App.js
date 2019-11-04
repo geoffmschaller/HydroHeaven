@@ -10,9 +10,24 @@ import ServiceContact from '../Client Pages/ServiceContact/ServiceContact';
 import BBQDisplay from '../Client Pages/BBQDisplay/BBQDisplay';
 import BBQDetails from '../Client Pages/BBQDetails/BBQDetails';
 import Login from "../Client Pages/Login/Login";
+import {connect} from "react-redux";
 
 class App extends React.Component {
+
+	componentDidMount() {
+		console.log(this.props.auth);
+	}
+
 	render() {
+
+		const restrictedPages = [
+			{
+				link: "/dashboard",
+				component: () => <h1>DASHBOARD</h1>
+			}
+		];
+
+
 		return (
 			<div className="App">
 				<BrowserRouter>
@@ -25,6 +40,12 @@ class App extends React.Component {
 						<Route exact path="/bbq-islands" component={BBQDisplay}/>
 						<Route exact path="/bbq-islands/:id" component={BBQDetails}/>
 						<Route exact path="/login" component={Login}/>
+						{
+							this.props.auth !== null
+								? restrictedPages.map((page, index) => {
+									return <Route key={index} exact path={page.link} component={page.component}/>
+								}) : null
+						}
 						<Route path="/" component={IndexPage}/>
 					</Switch>
 				</BrowserRouter>
@@ -33,4 +54,10 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		auth: state.user
+	}
+};
+
+export default connect(mapStateToProps)(App);

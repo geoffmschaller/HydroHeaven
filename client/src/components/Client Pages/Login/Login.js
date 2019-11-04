@@ -8,6 +8,8 @@ import Block from "../../Inflatables/Block/Block";
 import {FLOAT_LEFT, FLOAT_RIGHT} from "../../../utils/FloatTypes";
 import BannerImage from '../../../static/images/headers/spa_display_header.png';
 import {LoginAttempt} from "../../../api/auth";
+import {SET_USER} from "../../../reducers/auth";
+import {connect} from 'react-redux';
 
 class Login extends React.Component {
 
@@ -54,6 +56,8 @@ class Login extends React.Component {
 			await this.updateFormMessage(SUCCESS, result.data.message);
 			await this.resetInputValues();
 			localStorage.setItem("HH_Auth_Token", result.data.payload.token);
+			this.props.onLoginSuccessful(result.data.payload);
+			this.props.history.push("/dashboard");
 			return;
 		}
 		await this.updateFormMode(FORM_READY);
@@ -100,4 +104,10 @@ class Login extends React.Component {
 
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+	return {
+		onLoginSuccessful: (payload) => dispatch({type: SET_USER, payload: payload})
+	}
+};
+
+export default connect(null, mapDispatchToProps)(Login);
