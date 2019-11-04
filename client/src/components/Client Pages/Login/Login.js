@@ -53,6 +53,7 @@ class Login extends React.Component {
 			await this.updateFormMode(FORM_READY);
 			await this.updateFormMessage(SUCCESS, result.data.message);
 			await this.resetInputValues();
+			localStorage.setItem("HH_Auth_Token", result.data.payload.token);
 			return;
 		}
 		await this.updateFormMode(FORM_READY);
