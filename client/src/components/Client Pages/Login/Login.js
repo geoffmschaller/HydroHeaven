@@ -56,7 +56,7 @@ class Login extends React.Component {
 			await this.updateFormMessage(SUCCESS, result.data.message);
 			await this.resetInputValues();
 			localStorage.setItem("HH_Auth_Token", result.data.payload.token);
-			this.props.onLoginSuccessful(result.data.payload);
+			this.props.onLoginSuccessful(result.data.payload.user);
 			this.props.history.push("/dashboard");
 			return;
 		}

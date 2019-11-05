@@ -30,11 +30,11 @@ const AuthorizationErrorResponse = (res) => {
 	});
 };
 
-const SuccessfulResponse = (res, message, data = {}) => {
+const SuccessfulResponse = (res, message, payload = {}) => {
 	return res.json({
 		status: 200,
 		message: message,
-		payload: data
+		payload: payload
 	});
 };
 

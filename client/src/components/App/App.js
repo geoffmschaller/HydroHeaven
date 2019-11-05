@@ -11,19 +11,25 @@ import BBQDisplay from '../Client Pages/BBQDisplay/BBQDisplay';
 import BBQDetails from '../Client Pages/BBQDetails/BBQDetails';
 import Login from "../Client Pages/Login/Login";
 import {connect} from "react-redux";
+import Dashboard from "../Dashboard Pages/Dashboard/Dashboard";
+import {VerifyAuthToken} from "../../api/auth";
+import {SET_USER} from "../../reducers/auth";
 
 class App extends React.Component {
 
-	componentDidMount() {
-		console.log(this.props.auth);
-	}
+	componentWillMount = async () => {
+		let token = localStorage.getItem("HH_Auth_Token");
+		if (!token) return;
+		const verificationCheck = await VerifyAuthToken(token);
+		if (verificationCheck.data.status === 200) this.props.onTokenVerified(verificationCheck.data.payload);
+	};
 
 	render() {
 
 		const restrictedPages = [
 			{
 				link: "/dashboard",
-				component: () => <h1>DASHBOARD</h1>
+				component: Dashboard
 			}
 		];
 
@@ -54,10 +60,16 @@ class App extends React.Component {
 	}
 }
 
+const mapDispatchToProps = dispatch => {
+	return {
+		onTokenVerified: (payload) => dispatch({type: SET_USER, payload: payload})
+	}
+};
+
 const mapStateToProps = state => {
 	return {
 		auth: state.user
 	}
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

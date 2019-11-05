@@ -33,4 +33,16 @@ const LogUserIn = async (safeInputs) => {
 	return user;
 };
 
-module.exports = {LogUserIn, CreateUser};
+const VerifyUser = async (unencryptedToken) => {
+	let emailResult;
+	try {
+		emailResult = UserModel.findById(unencryptedToken.user._id);
+	} catch (e) {
+		console.log(e);
+		return 500;
+	}
+
+	return emailResult;
+};
+
+module.exports = {LogUserIn, CreateUser, VerifyUser};

@@ -31,12 +31,28 @@ router.post('/login', async (req, res) => {
 	const loginAttemptResult = await DB.LogUserIn(safeInputs);
 	if (loginAttemptResult === 500) return APIResponses.AuthorizationErrorResponse(res);
 	loginAttemptResult.password = null;
-	console.log(loginAttemptResult);
 
 	// GENERATE JWT
 	const token = await jwt.sign({user: loginAttemptResult}, process.env.JWT_SECRET_KEY);
 
 	return APIResponses.SuccessfulResponse(res, "Logged In!!", {token: token, user: loginAttemptResult});
+
+});
+
+router.post('/verify-token', async (req, res) => {
+
+	// RAW INPUTS
+	const token = req.body.token;
+
+	// VERIFY TOKEN
+	let tokenVerificationResult;
+	try {
+		tokenVerificationResult = await jwt.verify(token, process.env.JWT_SECRET_KEY);
+	} catch (e) {
+		return APIResponses.ValidationErrorResponse(res, "Invalid Token");
+	}
+	if (tokenVerificationResult === null) return APIResponses.ValidationErrorResponse(res, "Invalid Token");
+	return APIResponses.SuccessfulResponse(res, "Success!", tokenVerificationResult.user);
 
 });
 
