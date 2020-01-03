@@ -1,17 +1,15 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import IndexPage from '../Client Pages/IndexPage/IndexPage';
-import SpaDisplay from '../Client Pages/SpaDisplay/SpaDisplay';
-import SpaDetails from '../Client Pages/SpaDetails/SpaDetails';
-import SwimSpaDisplay from '../Client Pages/SwimSpaDisplay/SwimSpaDisplay';
-import SwimSpaDetails from '../Client Pages/SwimSpaDetails/SwimSpaDetails';
-import ServiceContact from '../Client Pages/ServiceContact/ServiceContact';
-import BBQDisplay from '../Client Pages/BBQDisplay/BBQDisplay';
-import BBQDetails from '../Client Pages/BBQDetails/BBQDetails';
-import Login from "../Client Pages/Login/Login";
+import IndexPage from '../Pages/IndexPage/IndexPage';
+import SpaDisplay from '../Pages/SpaDisplay/SpaDisplay';
+import SpaDetails from '../Pages/SpaDetails/SpaDetails';
+import SwimSpaDisplay from '../Pages/SwimSpaDisplay/SwimSpaDisplay';
+import SwimSpaDetails from '../Pages/SwimSpaDetails/SwimSpaDetails';
+import ServiceContact from '../Pages/ServiceContact/ServiceContact';
+import BBQDisplay from '../Pages/BBQDisplay/BBQDisplay';
+import BBQDetails from '../Pages/BBQDetails/BBQDetails';
 import {connect} from "react-redux";
-import Dashboard from "../Dashboard Pages/Dashboard/Dashboard";
 import {VerifyAuthToken} from "../../api/auth";
 import {SET_USER} from "../../reducers/auth";
 
@@ -25,15 +23,6 @@ class App extends React.Component {
 	};
 
 	render() {
-
-		const restrictedPages = [
-			{
-				link: "/dashboard",
-				component: Dashboard
-			}
-		];
-
-
 		return (
 			<div className="App">
 				<BrowserRouter>
@@ -45,13 +34,6 @@ class App extends React.Component {
 						<Route exact path="/service-contact" component={ServiceContact}/>
 						<Route exact path="/bbq-islands" component={BBQDisplay}/>
 						<Route exact path="/bbq-islands/:id" component={BBQDetails}/>
-						<Route exact path="/login" component={Login}/>
-						{
-							this.props.auth !== null
-								? restrictedPages.map((page, index) => {
-									return <Route key={index} exact path={page.link} component={page.component}/>
-								}) : null
-						}
 						<Route path="/" component={IndexPage}/>
 					</Switch>
 				</BrowserRouter>

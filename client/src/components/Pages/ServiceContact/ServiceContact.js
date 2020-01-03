@@ -125,20 +125,8 @@ class ServiceContact extends React.Component {
 						      messages={this.state.form.messages}
 						      updateValue={this.updateInputValue}
 						      submit={this.handleSubmit}/>
-						<VerticalSpacer height={15}/>
-						<SectionTitle title={"Live Chat"}/>
-						<p>Please feel free to send us a message below, we'd love to hear from you. If this is urgent
-							please call one of our locations so that a
-							team member can help you directly.</p>
-						<button className={styles.liveChat} onClick={() => this.updateLiveChatMode(true)}><i
-							className="fal fa-comments-alt"/> Start Live Chat
-						</button>
 					</Block>
 				</div>
-				<Modal title={"Live Chat"} submit={null} close={() => this.updateLiveChatMode(false)}
-				       mode={this.state.liveChat.mode}>
-					<p>THIS IS THE LIVE CHAT</p>
-				</Modal>
 				<div className="clear"/>
 				<VerticalSpacer height={150}/>
 				<Footer/>
