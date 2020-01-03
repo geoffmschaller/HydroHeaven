@@ -17,3 +17,17 @@
     .serviceRestrictor .service .serviceHolder .day {
       font-size: 13px;
       margin-bottom: 5px; }
+
+.liveChat {
+  padding: 10px;
+  color: white;
+  background-color: #5499c7;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  float: right; }
+  .liveChat i {
+    margin-right: 10px; }
+  .liveChat:hover {
+    background-color: #7ab0d4; }
