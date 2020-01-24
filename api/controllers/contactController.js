@@ -10,9 +10,6 @@ require('dotenv').config();
 
 router.post('/send-contact', async (req, res) => {
 
-
-	res.set("Access-Control-Allow-Origin", "https://hydroheavenspas.com");
-
 	// RAW INPUTS
 	const unsafeInputs = {
 		name: {
@@ -38,7 +35,7 @@ router.post('/send-contact', async (req, res) => {
 	const safeInputs = Validator.cleanInputs(unsafeInputs);
 
 	// DEV CUT OFF
-	if (process.env.NODE_ENV === 'DEVELOPMENT') return APIResponses.SuccessfulResponse(res, "Thank You! We have received your message!");
+	if (req.body.local) return APIResponses.SuccessfulResponse(res, "Thank You! We have received your message!");
 
 	// INSERT INTO DB
 	const dbInsertResult = await DB.InsertNewContact(safeInputs);
