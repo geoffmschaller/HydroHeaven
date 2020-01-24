@@ -78,6 +78,6 @@
       color: white;
       background-color: #85c1e9; }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .bbqDetails .iconBar .item {
     width: 50%; } }

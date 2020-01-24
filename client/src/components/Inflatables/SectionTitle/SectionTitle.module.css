@@ -28,6 +28,6 @@
   .sectionTitle .border_dark {
     background-color: transparent; }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .sectionTitle .title {
     width: 90%; } }

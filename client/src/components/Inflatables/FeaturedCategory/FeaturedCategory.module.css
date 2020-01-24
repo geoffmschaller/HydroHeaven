@@ -6,7 +6,7 @@
   background: -webkit-radial-gradient(circle, #297db5 0%, #154360 100%);
   background: -o-radial-gradient(circle, #297db5 0%, #154360 100%);
   background: radial-gradient(circle, #297db5 0%, #154360 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#297db5",endColorstr="#154360",GradientType=1); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#297db5", endColorstr="#154360", GradientType=1); }
   .featured .category {
     width: 33%;
     float: left;
@@ -34,7 +34,7 @@
     width: 100%;
     border: 3px solid #7fb3d5; }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .featured {
     display: block; }
     .featured .category {

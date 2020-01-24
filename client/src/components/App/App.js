@@ -9,18 +9,8 @@ import SwimSpaDetails from '../Pages/SwimSpaDetails/SwimSpaDetails';
 import ServiceContact from '../Pages/ServiceContact/ServiceContact';
 import BBQDisplay from '../Pages/BBQDisplay/BBQDisplay';
 import BBQDetails from '../Pages/BBQDetails/BBQDetails';
-import {connect} from "react-redux";
-import {VerifyAuthToken} from "../../api/auth";
-import {SET_USER} from "../../reducers/auth";
 
 class App extends React.Component {
-
-	componentWillMount = async () => {
-		let token = localStorage.getItem("HH_Auth_Token");
-		if (!token) return;
-		const verificationCheck = await VerifyAuthToken(token);
-		if (verificationCheck.data.status === 200) this.props.onTokenVerified(verificationCheck.data.payload);
-	};
 
 	render() {
 		return (
@@ -42,16 +32,4 @@ class App extends React.Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => {
-	return {
-		onTokenVerified: (payload) => dispatch({type: SET_USER, payload: payload})
-	}
-};
-
-const mapStateToProps = state => {
-	return {
-		auth: state.user
-	}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
