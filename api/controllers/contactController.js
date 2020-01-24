@@ -10,21 +10,24 @@ require('dotenv').config();
 
 router.post('/send-contact', async (req, res) => {
 
+
+	res.set("Access-Control-Allow-Origin", "https://hydroheavenspas.com");
+
 	// RAW INPUTS
 	const unsafeInputs = {
 		name: {
 			type: InputTypes.NON_NUMERIC_TEXT_INPUT,
-			value: req.body.values[0].value,
+			value: req.body.name,
 			name: "name"
 		},
 		email: {
 			type: InputTypes.EMAIL_INPUT,
-			value: req.body.values[1].value,
+			value: req.body.email,
 			name: "email"
 		},
 		message: {
 			type: InputTypes.NON_NUMERIC_TEXT_INPUT,
-			value: req.body.values[2].value,
+			value: req.body.message,
 			name: "message"
 		}
 	};

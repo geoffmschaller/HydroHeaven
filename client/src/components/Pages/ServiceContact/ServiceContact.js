@@ -15,7 +15,6 @@ import {FORM_READY, FORM_SUBMITTING} from "../../../utils/FormModes";
 import {ERROR, NONE, SUCCESS} from "../../../data/ActionResults";
 import {SendContactForm} from "../../../api/contactAPICalls";
 import {LINE_INPUT, MULTI_LINE_INPUT} from "../../../utils/InputTypes";
-import Modal from "../../Inflatables/Modal/Modal";
 
 class ServiceContact extends React.Component {
 
@@ -60,7 +59,7 @@ class ServiceContact extends React.Component {
 
 	handleSubmit = async () => {
 		await this.updateFormMode(FORM_SUBMITTING);
-		let result = await SendContactForm(this.state.form.inputs);
+		let result = await SendContactForm(this.state.form.inputs[0].value, this.state.form.inputs[1].value, this.state.form.inputs[2].value);
 		if (result.status === 500) {
 			await this.updateFormMode(FORM_READY);
 			await this.updateFormMessage(ERROR, "Network Error. Please try again.");
@@ -93,12 +92,6 @@ class ServiceContact extends React.Component {
 	updateFormMessage = async (status, message) => {
 		let s = {...this.state};
 		s.form.messages = {status: status, message: message};
-		await this.setState(s);
-	};
-
-	updateLiveChatMode = async (mode) => {
-		let s = {...this.state};
-		s.liveChat.mode = mode;
 		await this.setState(s);
 	};
 
