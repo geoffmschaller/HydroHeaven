@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Validator = require('../validators/validators');
+const Sanitizer = require('../sanitizers/sanitizers');
 const Mailer = require('../mailer/mailer');
 const DB = require('../db/contacts');
 const APIResponses = require('../responses/responses');
@@ -32,7 +33,7 @@ router.post('/send-contact', async (req, res) => {
 	// CLEAN AND VALIDATE INPUTS
 	const validationResults = Validator.validateInputs(unsafeInputs);
 	if (validationResults !== 200) return APIResponses.ValidationErrorResponse(res, validationResults);
-	const safeInputs = Validator.cleanInputs(unsafeInputs);
+	const safeInputs = Sanitizer.cleanInputs(unsafeInputs);
 
 	// DEV CUT OFF
 	if (req.body.local) return APIResponses.SuccessfulResponse(res, "Thank You! We have received your message!");

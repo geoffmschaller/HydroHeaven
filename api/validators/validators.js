@@ -1,4 +1,3 @@
-const escapeTool = require('validator');
 const InputTypes = require('../types/inputs');
 
 const validateInputs = (unsafeInputs) => {
@@ -16,14 +15,6 @@ const validateInputs = (unsafeInputs) => {
 	return 200;
 };
 
-const cleanInputs = (unsafeInputs) => {
-	const safeInputs = {};
-	Object.keys(unsafeInputs).map((key, index) => {
-		safeInputs[key] = escapeTool.escape(unsafeInputs[key].value.toString().replace(/([\\<>()`/])/g, " ").trim());
-	});
-	return safeInputs;
-};
-
 const validateText = (input) => !(input === null || input === '' || typeof input !== 'string');
 
 const validateEmail = (input) => {
@@ -36,4 +27,4 @@ const validateEmail = (input) => {
 	return !(domain[0] === null || domain[0] === '' || typeof domain[0] !== 'string');
 };
 
-module.exports = {validateInputs, cleanInputs};
+module.exports = {validateInputs};
