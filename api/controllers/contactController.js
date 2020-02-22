@@ -3,9 +3,9 @@ const router = express.Router();
 const Validator = require('../validators/validators');
 const Sanitizer = require('../sanitizers/sanitizers');
 const Mailer = require('../mailer/mailer');
-const DB = require('../db/contacts');
 const APIResponses = require('../responses/responses');
 const InputTypes = require('../types/inputs');
+const sqlite3 = require('sqlite3').verbose();
 
 require('dotenv').config();
 
@@ -35,12 +35,20 @@ router.post('/send-contact', async (req, res) => {
 	if (validationResults !== 200) return APIResponses.ValidationErrorResponse(res, validationResults);
 	const safeInputs = Sanitizer.cleanInputs(unsafeInputs);
 
+	// INSERT INTO DB
+	let db;
+	try {
+		db = await new sqlite3.Database('./db/contacts.db');
+		let sql = 'INSERT INTO contacts(name, email, message, date) VALUES(?, ?, ?, ?)';
+		await db.run(sql, [`${safeInputs.name}`, `${safeInputs.email}`, `${safeInputs.message}`, `${new Date()}`]);
+		db.close();
+	} catch (e) {
+		console.log(e);
+		return APIResponses.DatabaseErrorResponse(res);
+	}
+
 	// DEV CUT OFF
 	if (req.body.local) return APIResponses.SuccessfulResponse(res, "Thank You! We have received your message!");
-
-	// INSERT INTO DB
-	const dbInsertResult = await DB.InsertNewContact(safeInputs);
-	if (dbInsertResult === 500) return APIResponses.DatabaseErrorResponse(res);
 
 	// SEND CONFIRMATION EMAILS
 	const sendHouseEmailResult = await Mailer.SendHouseContact(safeInputs);

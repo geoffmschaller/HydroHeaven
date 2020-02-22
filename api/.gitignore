@@ -87,5 +87,8 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# DB
+db/*
+
 .idea/**
 .vscode/settings.json

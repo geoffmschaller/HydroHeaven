@@ -10,11 +10,12 @@
     "express": "^4.17.1",
     "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.3",
+    "mongoose": "^5.9.2",
     "nodemailer": "^6.3.0",
     "nodemailer-mailgun-transport": "^1.4.0",
     "nodemon": "^1.19.4",
     "pug": "^2.0.4",
+    "sqlite3": "^4.1.1",
     "validator": "^11.1.0"
   },
   "devDependencies": {},
