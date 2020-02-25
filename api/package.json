@@ -18,12 +18,14 @@
     "sqlite": "^3.0.3",
     "validator": "^11.1.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "../node_modules/.bin/jest --testPathPattern=tests --watchAll",
+    "test": "./node_modules/.bin/jest --testPathPattern=tests --watchAll",
     "start": "nodemon main.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3"
+  }
 }

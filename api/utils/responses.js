@@ -1,47 +1,21 @@
-const ValidationErrorResponse = (res, message) => {
-	return res.json({
-		status: 500,
-		message: message,
-		payload: null
-	});
-};
+class APIResponse {
 
-const NetworkErrorResponse = (res) => {
-	return res.json({
-		status: 500,
-		message: "Network Error: Please try again.",
-		payload: null
-	});
-};
+	static Error = (res, message = "", payload = []) => {
+		return res.json({
+			status: 500,
+			message: message,
+			payload: payload
+		})
+	};
 
-const DatabaseErrorResponse = (res) => {
-	return res.json({
-		status: 500,
-		message: "Database Error: Please try again.",
-		payload: null
-	});
-};
+	static Success = (res, message = "", payload = []) => {
+		return res.json({
+			status: 200,
+			message: message,
+			payload: payload
+		})
+	};
 
-const AuthorizationErrorResponse = (res) => {
-	return res.json({
-		status: 500,
-		message: "Invalid Credentials. Please try again.",
-		payload: null
-	});
-};
+}
 
-const SuccessfulResponse = (res, message, payload = {}) => {
-	return res.json({
-		status: 200,
-		message: message,
-		payload: payload
-	});
-};
-
-module.exports = {
-	ValidationErrorResponse,
-	NetworkErrorResponse,
-	DatabaseErrorResponse,
-	SuccessfulResponse,
-	AuthorizationErrorResponse
-};
+module.exports = APIResponse;

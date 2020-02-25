@@ -19,23 +19,22 @@ router.post('/send-contact', async (req, res) => {
 	const nameValidation = Validator.validateText(submittedName);
 	const emailValidation = Validator.validateEmail(submittedEmail);
 	const messageValidation = Validator.validateText(submittedMessage);
-	if (!nameValidation || !emailValidation || !messageValidation) return APIResponses.ValidationErrorResponse(res, "Valid Name, Email, and Message" +
-		" are Required.");
+	if (!nameValidation || !emailValidation || !messageValidation) return APIResponses.Error(res, "Valid Name, Email, and Message are Required.");
 
 	// CREATE CONTACT MODEL & SAVE TO DB
 	const contact = new Contact(submittedName, submittedEmail, submittedMessage);
 	const saveContactResult = await contact.save();
-	if (saveContactResult !== 200) return APIResponses.DatabaseErrorResponse(res);
+	if (saveContactResult !== 200) return APIResponses.Error(res, "An error occured. Please try again.");
 
 	// DEV CUT OFF
-	if (req.body.local) return APIResponses.SuccessfulResponse(res, "Thank You! We have received your message!");
+	if (req.body.local) return APIResponses.Success(res, "Thank You! We have received your message!");
 
 	// SEND CONFIRMATION EMAILS
 	const sendHouseEmailResult = await Mailer.SendHouseContact(contact);
 	const sendClientEmailResult = await Mailer.SendClientContact(contact);
-	if (sendHouseEmailResult === 500 || sendClientEmailResult === 500) return APIResponses.NetworkErrorResponse(res, "Oops! Something went wrong. Don't worry, we are working on it!");
+	if (sendHouseEmailResult === 500 || sendClientEmailResult === 500) return APIResponses.Error(res, "An error occured. Please try again.");
 
-	return APIResponses.SuccessfulResponse(res, "Thank You! We have received your message!");
+	return APIResponses.Success(res, "Thank You! We have received your message!");
 
 });
 
