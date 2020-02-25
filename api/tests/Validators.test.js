@@ -1,5 +1,5 @@
-const Validators = require('../validators/validators');
-const ImportTypes = require('../types/inputs');
+const Validators = require('../utils/validator');
+const ImportTypes = require('../utils/constants');
 
 it("User Input Validator", () => {
 
