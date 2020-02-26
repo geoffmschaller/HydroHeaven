@@ -12,11 +12,11 @@ class Contact {
 	save = async () => {
 		try {
 			const db = await sqlite.open(path.resolve('../api/db/contacts.db'));
-			await db.run('INSERT INTO contacts VALUES(?,?,?,?)', [this.name, this.email, this.message, `${new Date()}`]);
+			const result = await db.run('INSERT INTO contacts VALUES(?,?,?,?)', [this.name, this.email, this.message, `${new Date()}`]);
 			await db.close();
-			return 200;
+			return result;
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	}
 }

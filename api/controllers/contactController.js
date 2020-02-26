@@ -20,7 +20,7 @@ router.post('/send-contact', async (req, res) => {
 
 	// CREATE CONTACT MODEL & SAVE TO DB
 	const contact = new Contact(submittedName, submittedEmail, submittedMessage);
-	if (await contact.save() !== 200) return APIResponses.Error(res, "DB Error unable to save contact -- /send-contact controller.", "An error" +
+	if (!await contact.save()) return APIResponses.Error(res, "DB Error unable to save contact -- /send-contact controller.", "An error" +
 		" occured. Please try again.");
 
 	// DEV CUT OFF

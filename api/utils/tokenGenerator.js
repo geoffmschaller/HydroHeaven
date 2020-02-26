@@ -7,7 +7,7 @@ class TokenGenerator {
 		try {
 			return await jwt.sign({email: email, tokenType: TOKEN_TYPES.AUTH}, process.env.JWT_KEY);
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 
@@ -15,7 +15,7 @@ class TokenGenerator {
 		try {
 			return await jwt.sign({email: email, tokenType: TOKEN_TYPES.RESET_PASSWORD}, process.env.JWT_KEY);
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 
@@ -23,7 +23,7 @@ class TokenGenerator {
 		try {
 			return await jwt.verify(token, process.env.JWT_KEY);
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 
@@ -31,7 +31,7 @@ class TokenGenerator {
 		try {
 			return await jwt.verify(token, process.env.JWT_KEY);
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 

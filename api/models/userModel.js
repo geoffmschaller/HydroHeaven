@@ -7,11 +7,11 @@ class User {
 		try {
 			const db = await sqlite.open(path.resolve('../api/db/users.db'));
 			const retrievedUser = await db.get('SELECT * FROM users WHERE email=? AND password=?', [email, password]);
-			if (!retrievedUser) return 500;
+			if (!retrievedUser) return false;
 			await db.close();
 			return retrievedUser;
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 
@@ -19,11 +19,23 @@ class User {
 		try {
 			const db = await sqlite.open(path.resolve('../api/db/users.db'));
 			const retrievedUser = await db.get('SELECT * FROM users WHERE email=?', [email]);
-			if (!retrievedUser) return 500;
+			if (!retrievedUser) return false;
 			await db.close();
 			return retrievedUser;
 		} catch (e) {
-			return 500;
+			return false;
+		}
+	};
+
+	static getPassword = async (email) => {
+		try {
+			const db = await sqlite.open(path.resolve('../api/db/users.db'));
+			const retrievedUser = await db.get('SELECT * FROM users WHERE email=?', [email]);
+			if (!retrievedUser) return false;
+			await db.close();
+			return retrievedUser.password;
+		} catch (e) {
+			return false;
 		}
 	};
 
@@ -31,11 +43,11 @@ class User {
 		try {
 			const db = await sqlite.open(path.resolve('../api/db/users.db'));
 			const result = await db.run('UPDATE users SET password=? WHERE email=?', [password, email]);
-			if (!result) return 500;
+			if (!result) return false;
 			await db.close();
 			return result;
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 
@@ -43,11 +55,11 @@ class User {
 		try {
 			const db = await sqlite.open(path.resolve('../api/db/users.db'));
 			const result = await db.run('UPDATE users SET resetToken=? WHERE email=?', [token, email]);
-			if (!result) return 500;
+			if (!result) return false;
 			await db.close();
 			return result;
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 
@@ -55,11 +67,11 @@ class User {
 		try {
 			const db = await sqlite.open(path.resolve('../api/db/users.db'));
 			const result = await db.get('SELECT * FROM users WHERE email=? AND resetToken=?', [email, token]);
-			if (!result) return 500;
+			if (!result) return false;
 			await db.close();
 			return result;
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 
@@ -67,11 +79,11 @@ class User {
 		try {
 			const db = await sqlite.open(path.resolve('../api/db/users.db'));
 			const result = await db.run('UPDATE users SET resetToken=? WHERE email=?', [null, email]);
-			if (!result) return 500;
+			if (!result) return false;
 			await db.close();
 			return result;
 		} catch (e) {
-			return 500;
+			return false;
 		}
 	};
 }

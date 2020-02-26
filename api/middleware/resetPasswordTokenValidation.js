@@ -8,7 +8,7 @@ const ResetTokenValidator = async (req, res, next) => {
 
 		// VALIDATES GIVEN TOKEN
 		const decodedToken = await TokenGenerator.validateResetToken(req.body.token);
-		if (decodedToken === 500) return APIResponse.Error(res, "Invalid reset token supplied -- /ResetTokenValidator Middleware. ", "Invalid" +
+		if (!decodedToken) return APIResponse.Error(res, "Invalid reset token supplied -- /ResetTokenValidator Middleware. ", "Invalid" +
 			" Credentials.");
 
 		// ADD DECODED TOKEN TO REQUEST
