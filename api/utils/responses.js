@@ -1,14 +1,14 @@
 class APIResponse {
 
-	static Error = (res, message = "", payload = []) => {
+	static Error = (res, devMessage = "", prodMessage = "", payload = {}) => {
 		return res.json({
 			status: 500,
-			message: message,
+			message: process.env === 'production' ? prodMessage : devMessage,
 			payload: payload
 		})
 	};
 
-	static Success = (res, message = "", payload = []) => {
+	static Success = (res, message = "", payload = {}) => {
 		return res.json({
 			status: 200,
 			message: message,

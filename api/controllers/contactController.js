@@ -16,15 +16,12 @@ router.post('/send-contact', async (req, res) => {
 	const submittedMessage = Sanitizer.sanitizeInput(req.body.message);
 
 	// VALIDATE INPUTS
-	const nameValidation = Validator.validateText(submittedName);
-	const emailValidation = Validator.validateEmail(submittedEmail);
-	const messageValidation = Validator.validateText(submittedMessage);
-	if (!nameValidation || !emailValidation || !messageValidation) return APIResponses.Error(res, "Valid Name, Email, and Message are Required.");
+	if (!Validator.validateText(submittedName) || !Validator.validateEmail(submittedEmail) || !Validator.validateText(submittedMessage)) return APIResponses.Error(res, "Invalid name, email or message supplied -- /send-contact controller.", "Valid Name, Email, and Message are Required.");
 
 	// CREATE CONTACT MODEL & SAVE TO DB
 	const contact = new Contact(submittedName, submittedEmail, submittedMessage);
-	const saveContactResult = await contact.save();
-	if (saveContactResult !== 200) return APIResponses.Error(res, "An error occured. Please try again.");
+	if (await contact.save() !== 200) return APIResponses.Error(res, "DB Error unable to save contact -- /send-contact controller.", "An error" +
+		" occured. Please try again.");
 
 	// DEV CUT OFF
 	if (req.body.local) return APIResponses.Success(res, "Thank You! We have received your message!");
@@ -32,7 +29,9 @@ router.post('/send-contact', async (req, res) => {
 	// SEND CONFIRMATION EMAILS
 	const sendHouseEmailResult = await Mailer.SendHouseContact(contact);
 	const sendClientEmailResult = await Mailer.SendClientContact(contact);
-	if (sendHouseEmailResult === 500 || sendClientEmailResult === 500) return APIResponses.Error(res, "An error occured. Please try again.");
+	if (sendHouseEmailResult === 500 || sendClientEmailResult === 500) return APIResponses.Error(res, "Email Error unable to send confirmation" +
+		" emails -- /send-contact controller.", "An error occured. Please try" +
+		" again.");
 
 	return APIResponses.Success(res, "Thank You! We have received your message!");
 
