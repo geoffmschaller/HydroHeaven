@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const TOKEN_TYPES = require('../utils/constants');
 
+require('dotenv').config();
+
 class TokenGenerator {
 
 	static generateAuthToken = async (email) => {
