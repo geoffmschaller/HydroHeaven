@@ -4,7 +4,6 @@ const Sanitizer = require('../utils/sanitizer');
 const Validator = require('../utils/validator');
 const APIResponse = require('../utils/responses');
 const User = require('../models/userModel');
-const ResetTokenValidator = require('../middleware/resetPasswordTokenValidation');
 const TokenGenerator = require('../utils/tokenGenerator');
 const Encryptor = require('../utils/encryptor');
 
@@ -12,8 +11,8 @@ const Encryptor = require('../utils/encryptor');
 router.post('/login', async (req, res) => {
 
 	// SANITIZE INPUTS
-	const submittedEmail = Sanitizer.sanitizeInput(req.body.email);
-	const submittedPassword = Sanitizer.sanitizeInput(req.body.password);
+	const submittedEmail = Sanitizer.sanitizeText(req.body.email);
+	const submittedPassword = Sanitizer.sanitizeText(req.body.password);
 
 	// VALIDATE INPUTS
 	if (!Validator.validateEmail(submittedEmail) || !Validator.validateText(submittedPassword)) APIResponse.Error(res, "Invalid Username or" +
@@ -39,48 +38,53 @@ router.post('/login', async (req, res) => {
 router.post('/reset-token', async (req, res) => {
 
 	// GET SUBMITTED EMAIL
-	const submittedEmail = Sanitizer.sanitizeInput(req.body.email);
+	const submittedEmail = Sanitizer.sanitizeText(req.body.email);
 
 	// VALIDATE INPUT
 	if (!Validator.validateEmail(submittedEmail)) return APIResponse.Error(res, "Invalid email supplied -- /reset-token controller.", "Invalid" +
 		" Credentials.");
 
 	// CHECK IF EMAIL EXSISTS
-	let emailCheck = await User.emailExists(submittedEmail);
-	if (!emailCheck) return APIResponse.Error(res, "Invalid email supplied -- /reset-token controller.", "Invalid Credentials.");
+	let validEmailCheck = await User.emailExists(submittedEmail);
+	if (!validEmailCheck) return APIResponse.Error(res, "Invalid email supplied -- /reset-token controller.", "Invalid Credentials.");
 
 	// GENERATE RESET TOKEN
-	const token = await TokenGenerator.generateResetToken(submittedEmail);
-	if (!token) return APIResponse.Error(res, "Error generating the reset token -- /reset-token controller", "Invalid Credentials");
+	const generatedToken = await TokenGenerator.generateResetToken(submittedEmail);
+	if (!generatedToken) return APIResponse.Error(res, "Error generating the reset token -- /reset-token controller", "Invalid Credentials");
 
 	// SET RESET TOKEN
-	const tokenResult = await User.setResetToken(submittedEmail, token);
-	if (!tokenResult) return APIResponse.Error(res, "Error setting reset token to user in DB -- /reset-token controller.", "Invalid" +
+	const setTokenResult = await User.setResetToken(submittedEmail, generatedToken);
+	if (!setTokenResult) return APIResponse.Error(res, "Error setting reset token to user in DB -- /reset-token controller.", "Invalid" +
 		" Credentials");
 
 	/*
 		SEND EMAIL WITH RESET TOKEN
 	 */
 
-	return APIResponse.Success(res, "Successfully generated reset token.", {token: token});
+	return APIResponse.Success(res, "Successfully generated reset token.", {token: generatedToken});
 
 });
 
 
-router.post('/reset-password', ResetTokenValidator, async (req, res) => {
+router.post('/reset-password', async (req, res) => {
 
 	// GET SUBMITTED CREDENTIALS
-	const submittedEmail = Sanitizer.sanitizeInput(req.body.email);
-	const submittedPassword = Sanitizer.sanitizeInput(req.body.password);
-	const submittedToken = Sanitizer.sanitizeInput(req.body.token);
-	const tokenEmail = Sanitizer.sanitizeInput(req.body.decodedToken.email);
+	const submittedEmail = Sanitizer.sanitizeText(req.body.email);
+	const submittedPassword = Sanitizer.sanitizeText(req.body.password);
+	const submittedToken = Sanitizer.sanitizeText(req.body.token);
 
-	// VALIDATE INPUTS
-	if (!Validator.validateEmail(submittedEmail) || !Validator.validateText(submittedPassword) || !Validator.validateEmail(tokenEmail)) return APIResponse.Error(res, "Invalid email, password or token -- /reset-password controller.", "Error: Valid Email and Password are Required.");
-	if (submittedEmail !== tokenEmail) return APIResponse.Error(res, "Token email does not match the submitted email -- /reset-password", "Invalid" +
+	// VALIDATE AND RETRIEVE EMAIL FROM RESET TOKEN
+	const decodedToken = await TokenGenerator.validateResetToken(req.body.token);
+	if (!decodedToken) return APIResponse.Error(res, "Invalid reset token supplied -- /ResetTokenValidator Middleware. ", "Invalid" +
+		" Credentials.");
+	const extractedEmailFromToken = Sanitizer.sanitizeText(decodedToken.email);
+
+	// VALIDATE INPUTS AND COMPARE SUBMITTED EMAIL WITH TOKEN EMAIL
+	if (!Validator.validateEmail(submittedEmail) || !Validator.validateText(submittedPassword) || !Validator.validateEmail(extractedEmailFromToken)) return APIResponse.Error(res, "Invalid email, password or token -- /reset-password controller.", "Error: Valid Email and Password are Required.");
+	if (submittedEmail !== extractedEmailFromToken) return APIResponse.Error(res, "Token email does not match the submitted email -- /reset-password", "Invalid" +
 		" Credentials");
 
-	// CHECK TOKEN VALIDITY
+	// CHECK TOKEN VALIDITY AGAINST STORED TOKEN
 	if (!await User.checkResetToken(submittedEmail, submittedToken)) return APIResponse.Error(res, "Reset token supplied does not match the" +
 		" token generated for that user -- /reset-password controller.", "Invalid Credentials");
 
@@ -103,6 +107,8 @@ router.post('/reset-password', ResetTokenValidator, async (req, res) => {
 
 router.post('/dev-get-temp-tokens', async (req, res) => {
 	try {
+		if (process.env === 'production') return APIResponse.Error(res, "Token generation error -- /dev-get-temp-tokens controller.", "Something" +
+			" went wrong.");
 		const authToken = await TokenGenerator.generateAuthToken(req.body.email);
 		const resetToken = await TokenGenerator.generateResetToken(req.body.email);
 		const brokenAuthToken = await TokenGenerator.generateAuthToken("fake@email.com");

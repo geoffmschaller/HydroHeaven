@@ -11,9 +11,9 @@ require('dotenv').config();
 router.post('/send-contact', async (req, res) => {
 
 	// SANITIZE INPUTS
-	const submittedName = Sanitizer.sanitizeInput(req.body.name);
-	const submittedEmail = Sanitizer.sanitizeInput(req.body.email);
-	const submittedMessage = Sanitizer.sanitizeInput(req.body.message);
+	const submittedName = Sanitizer.sanitizeText(req.body.name);
+	const submittedEmail = Sanitizer.sanitizeText(req.body.email);
+	const submittedMessage = Sanitizer.sanitizeText(req.body.message);
 
 	// VALIDATE INPUTS
 	if (!Validator.validateText(submittedName) || !Validator.validateEmail(submittedEmail) || !Validator.validateText(submittedMessage)) return APIResponses.Error(res, "Invalid name, email or message supplied -- /send-contact controller.", "Valid Name, Email, and Message are Required.");

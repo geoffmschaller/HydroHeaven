@@ -2,13 +2,12 @@ const escapeTool = require('validator');
 
 class Sanitizer {
 
-	static sanitizeInput = (input) => {
+	static sanitizeText = (text) => {
 		try {
-			return escapeTool.escape(input.toString().replace(/([\\<>()|&`/])/g, " ").trim());
+			return escapeTool.escape(text.toString().replace(/([\\<>()|&`/])/g, "").trim());
 		} catch (e) {
 			return "";
 		}
-
 	};
 
 }
