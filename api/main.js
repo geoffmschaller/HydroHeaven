@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const ContactController = require('./controllers/contactController');
 const LoginController = require('./controllers/loginController');
 const ResetPasswordController = require('./controllers/resetPasswordController');
+const LogoutController = require('./controllers/logoutController');
 
 require('dotenv').config();
 require('pug');
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 
 app.use('/contact', ContactController);
 app.use('/login', LoginController);
+app.use('/logout', LogoutController);
 app.use('/auth', ResetPasswordController);
 
 app.listen(5000);

@@ -7,7 +7,7 @@ const User = require('../models/userModel');
 const TokenGenerator = require('../utils/tokenGenerator');
 const Encryptor = require('../utils/encryptor');
 const Log = require('../models/logModel');
-const {LogErrors, SystemErrors} = require('../utils/constants');
+const {LogErrors, SystemErrors, DBErrors} = require('../utils/constants');
 
 
 router.post('/', async (req, res) => {
@@ -34,11 +34,16 @@ router.post('/', async (req, res) => {
 		return APIResponse.Error(res, "Invalid Password Submitted", "Invalid Credentials.");
 	}
 
-	// GENERATE LOGIN TOKEN
+	// GENERATE LOGIN TOKEN AND SAVE
 	const token = await TokenGenerator.generateAuthToken(submittedEmail);
 	if (!token) {
 		await Log.event(SystemErrors.SYSTEM_TOKEN_GENERATOR_ERROR, `Token Generation Error on Login`, submittedEmail);
 		return APIResponse.Error(res, "Could not generate login token", "Invalid Credentials.");
+	}
+	const savedTokenResult = await User.setField(submittedEmail, 'loginToken', token);
+	if (!savedTokenResult) {
+		await Log.event(DBErrors.DB_SET_AUTH_TOKEN_ERROR, "Could not save Auth token", submittedEmail);
+		return APIResponse.Error(res, "Could not save Auth Token", "Invalid Credentials");
 	}
 
 	return APIResponse.Success(res, "Successful Login Attempt.", {user: token});

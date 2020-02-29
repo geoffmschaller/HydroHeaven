@@ -36,7 +36,8 @@ const DBErrors = {
 	DB_SET_CONTACT_ERROR: 'db_set_contact_error',
 	DB_SET_RESET_TOKEN_ERROR: 'db_set_reset_token_error',
 	DB_SET_NEW_PASSWORD_ERROR: 'db_set_new_password_error',
-	DB_INVALIDATE_RESET_TOKEN_ERROR: 'db_invalidate_reset_token_error'
+	DB_INVALIDATE_RESET_TOKEN_ERROR: 'db_invalidate_reset_token_error',
+	DB_SET_AUTH_TOKEN_ERROR: 'db_set_auth_token_error'
 };
 
 
