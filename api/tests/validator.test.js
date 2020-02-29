@@ -1,24 +1,59 @@
 const Validator = require('../utils/validator');
 
-it("User Input Validator", () => {
+describe("Validator Class", () => {
 
-	// VALIDATE PLAIN TEXT
-	expect(Validator.validateText("Geoff")).toBeTruthy();
-	expect(Validator.validateText("Test Input")).toBeTruthy();
-	expect(Validator.validateText("")).toBeFalsy();
-	expect(Validator.validateText(null)).toBeFalsy();
-	expect(Validator.validateText("@!<>")).toBeTruthy();
+	test("Valid Text", () => {
+		expect(Validator.validateText("Geoff")).toBeTruthy();
+		expect(Validator.validateText("Test Input")).toBeTruthy();
+	});
 
-	// VALIDATE EMAIL ADDRESSES
-	expect(Validator.validateEmail("email@email.com")).toBeTruthy();
-	expect(Validator.validateEmail("email2@email2.com")).toBeTruthy();
-	expect(Validator.validateEmail("")).toBeFalsy();
-	expect(Validator.validateEmail(null)).toBeFalsy();
-	expect(Validator.validateEmail("g@g")).toBeFalsy();
-	expect(Validator.validateEmail("g.g.com")).toBeFalsy();
-	expect(Validator.validateEmail("g.com")).toBeFalsy();
-	expect(Validator.validateEmail(".")).toBeFalsy();
-	expect(Validator.validateEmail("@")).toBeFalsy();
-	expect(Validator.validateEmail("@.")).toBeFalsy();
+	test("Empty Text", () => {
+		expect(Validator.validateText("")).toBeFalsy();
+	});
+
+	test("Null Text", () => {
+		expect(Validator.validateText(null)).toBeFalsy();
+	});
+
+	test("Symbol Text", () => {
+		expect(Validator.validateText("@!<>")).toBeTruthy();
+	});
+
+	test("Valid Email", () => {
+		expect(Validator.validateEmail("email@email.com")).toBeTruthy();
+		expect(Validator.validateEmail("email2@email2.com")).toBeTruthy();
+	});
+
+	test("Empty Email", () => {
+		expect(Validator.validateEmail("")).toBeFalsy();
+	});
+
+	test("Null Email", () => {
+		expect(Validator.validateEmail(null)).toBeFalsy();
+	});
+
+	test("Missing .", () => {
+		expect(Validator.validateEmail("g@g")).toBeFalsy();
+	});
+
+	test("Missing . for @", () => {
+		expect(Validator.validateEmail("g.g.com")).toBeFalsy();
+	});
+
+	test("Missing @", () => {
+		expect(Validator.validateEmail("g.com")).toBeFalsy();
+	});
+
+	test("Only .", () => {
+		expect(Validator.validateEmail(".")).toBeFalsy();
+	});
+
+	test("Only @", () => {
+		expect(Validator.validateEmail("@")).toBeFalsy();
+	});
+
+	test("Only @.", () => {
+		expect(Validator.validateEmail("@.")).toBeFalsy();
+	});
 
 });

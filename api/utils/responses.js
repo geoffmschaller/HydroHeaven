@@ -1,9 +1,11 @@
+const {EnvironmentTypes} = require('../utils/constants');
+
 class APIResponse {
 
 	static Error = (res, devMessage = "", prodMessage = "", payload = {}) => {
 		return res.json({
 			status: 500,
-			message: process.env === 'production' ? prodMessage : devMessage,
+			message: process.env === EnvironmentTypes.PRODUCTION ? prodMessage : devMessage,
 			payload: payload
 		})
 	};

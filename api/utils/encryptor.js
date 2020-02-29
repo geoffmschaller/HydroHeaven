@@ -2,9 +2,9 @@ const bcrypt = require('bcrypt');
 
 class Encryptor {
 
-	static encrypt = async (input) => {
+	static encrypt = async (password) => {
 		try {
-			return await bcrypt.hashSync(input, 8);
+			return password === "" ? false : await bcrypt.hashSync(password, 8);
 		} catch (e) {
 			return false;
 		}

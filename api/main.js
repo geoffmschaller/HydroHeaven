@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const ContactController = require('./controllers/contactController');
-const AuthController = require('./controllers/authController');
+const LoginController = require('./controllers/loginController');
+const ResetPasswordController = require('./controllers/resetPasswordController');
 
 require('dotenv').config();
 require('pug');
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/contact', ContactController);
-app.use('/auth', AuthController);
+app.use('/login', LoginController);
+app.use('/auth', ResetPasswordController);
 
 app.listen(5000);

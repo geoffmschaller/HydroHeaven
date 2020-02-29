@@ -32,11 +32,10 @@ class Mailer {
 			},
 		};
 		try {
-			await nodemailerMailgun.sendMail(clientPayload);
+			return await nodemailerMailgun.sendMail(clientPayload);
 		} catch (e) {
-			return 500;
+			return false;
 		}
-		return 200;
 	};
 
 	static SendHouseContact = async (contact) => {
@@ -56,11 +55,10 @@ class Mailer {
 			},
 		};
 		try {
-			await nodemailerMailgun.sendMail(housePayload);
+			return await nodemailerMailgun.sendMail(housePayload);
 		} catch (e) {
-			return 500;
+			return false;
 		}
-		return 200;
 	};
 
 

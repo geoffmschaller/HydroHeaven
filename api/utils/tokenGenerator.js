@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const TOKEN_TYPES = require('../utils/constants');
+const {TokenTypes} = require('../utils/constants');
 
 require('dotenv').config();
 
@@ -7,7 +7,7 @@ class TokenGenerator {
 
 	static generateAuthToken = async (email) => {
 		try {
-			return await jwt.sign({email: email, tokenType: TOKEN_TYPES.AUTH}, process.env.JWT_KEY);
+			return await jwt.sign({email: email, tokenType: TokenTypes.AUTH}, process.env.JWT_KEY);
 		} catch (e) {
 			return false;
 		}
@@ -15,7 +15,7 @@ class TokenGenerator {
 
 	static generateResetToken = async (email) => {
 		try {
-			return await jwt.sign({email: email, tokenType: TOKEN_TYPES.RESET_PASSWORD}, process.env.JWT_KEY);
+			return await jwt.sign({email: email, tokenType: TokenTypes.RESET_PASSWORD}, process.env.JWT_KEY);
 		} catch (e) {
 			return false;
 		}
