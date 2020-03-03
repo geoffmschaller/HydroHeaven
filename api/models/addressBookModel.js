@@ -1,13 +1,14 @@
 const path = require('path');
 const sqlite = require('sqlite');
+const DBConnection = require('../utils/dbConnection');
 
 class AddressBook {
 
 	static all = async () => {
 		try {
-			const db = await sqlite.open(path.resolve('../api/db/addressBook.db'));
+			const db = await DBConnection.connect('addressBook');
 			const retrievedAddresses = await db.all('SELECT * FROM addresses');
-			await db.close();
+			await DBConnection.close(db);
 			if (!retrievedAddresses) return false;
 			return retrievedAddresses;
 		} catch (e) {
@@ -17,9 +18,9 @@ class AddressBook {
 
 	static find = async (id) => {
 		try {
-			const db = await sqlite.open(path.resolve('../api/db/addressBook.db'));
+			const db = await DBConnection.connect('addressBook');
 			const retrievedAddresses = await db.get('SELECT * FROM addresses WHERE id=?', [id]);
-			await db.close();
+			await DBConnection.close(db);
 			if (!retrievedAddresses) return false;
 			return retrievedAddresses;
 		} catch (e) {
@@ -29,9 +30,9 @@ class AddressBook {
 
 	static add = async (id, fname, lname, email, phone, address) => {
 		try {
-			const db = await sqlite.open(path.resolve('../api/db/addressBook.db'));
-			const savedAddress = await db.run('INSERT INTO addresses VALUES(?,?,?,?,?,?)', [id, fname, lname, email, phone, address]);
-			await db.close();
+			const db = await DBConnection.connect('addressBook');
+			const savedAddress = await db.run('INSERT INTO addressBook VALUES(?,?,?,?,?,?)', [id, fname, lname, email, phone, address]);
+			await DBConnection.close(db);
 			return savedAddress;
 		} catch (e) {
 			return false;
@@ -53,13 +54,10 @@ class AddressBook {
 		query += 'WHERE id=?';
 		vals.push(id);
 
-		console.log(query);
-		console.log(vals);
-
 		try {
-			const db = await sqlite.open(path.resolve('../api/db/addressBook.db'));
+			const db = await DBConnection.connect('addressBook');
 			const savedAddress = await db.run(query, vals);
-			await db.close();
+			await DBConnection.close(db);
 			return savedAddress;
 		} catch (e) {
 			return false;

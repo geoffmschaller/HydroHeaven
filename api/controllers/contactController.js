@@ -21,8 +21,8 @@ router.post('/send-contact', async (req, res) => {
 	if (!Validator.validateText(submittedName) || !Validator.validateEmail(submittedEmail) || !Validator.validateText(submittedMessage)) return APIResponses.Error(res, "Invalid name, email or message supplied -- /send-contact controller.", "Valid Name, Email, and Message are Required.");
 
 	// CREATE CONTACT MODEL & SAVE TO DB
-	const contact = new Contact(submittedName, submittedEmail, submittedMessage);
-	if (!await contact.save()) {
+	const contact = Contact.save(submittedName, submittedEmail, submittedMessage);
+	if (!await contact) {
 		await Log.event(DBErrors.DB_SET_CONTACT_ERROR, `${submittedName}: ${submittedMessage}`, submittedEmail);
 		return APIResponses.Error(res, "DB Error unable to save contact -- /send-contact controller.", "An error occured. Please try again.");
 	}

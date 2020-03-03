@@ -1,21 +1,15 @@
-const path = require('path');
-const sqlite = require('sqlite');
+const DBConnection = require('../utils/dbConnection');
 
 class Contact {
 
-	constructor(name, email, message) {
-		this.name = name;
-		this.email = email;
-		this.message = message;
-	}
-
-	save = async () => {
+	static save = async (name, email, message) => {
 		try {
-			const db = await sqlite.open(path.resolve('../api/db/contacts.db'));
-			const result = await db.run('INSERT INTO contacts VALUES(?,?,?,?)', [this.name, this.email, this.message, `${new Date()}`]);
-			await db.close();
+			const db = await DBConnection.connect('contacts');
+			const result = await db.run('INSERT INTO contacts VALUES(?,?,?,?)', [name, email, message, `${new Date()}`]);
+			await DBConnection.close(db);
 			return result;
 		} catch (e) {
+			console.log(e);
 			return false;
 		}
 	}

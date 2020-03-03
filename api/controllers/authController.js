@@ -8,6 +8,55 @@ const TokenGenerator = require('../utils/tokenGenerator');
 const Encryptor = require('../utils/encryptor');
 const Log = require('../models/logModel');
 const {LogErrors, DBErrors, SystemErrors} = require('../utils/constants');
+const IDGenerator = require('../utils/idGenerator');
+
+
+router.post('/create-user', async (req, res) => {
+
+	// GET SUBMITTED INFO
+	const submittedEmail = Sanitizer.sanitizeText(req.body.email);
+	const submittedPassword = Sanitizer.sanitizeText(req.body.password);
+	const submittedDisplayName = Sanitizer.sanitizeText(req.body.displayName);
+
+	// VALIDATE INPUT
+	if (
+		!Validator.validateEmail(submittedEmail) ||
+		!Validator.validateText(submittedPassword) ||
+		!Validator.validateText(submittedDisplayName)
+	) return APIResponse.Error(res, "Valid Email, Password, and Display Name are required", "Valid Email, Password, and Display Name are required");
+
+	// CHECK FOR EXSISTING EMAIL
+	const exsistingEmail = await User.getWhere('email', submittedEmail);
+	if (exsistingEmail) return APIResponse.Error(res, "Email already exists", "Email already exists");
+
+	// GENERATE UNIQUE USER ID
+	let unique = false;
+	let generatedId = "";
+	while (!unique) {
+		generatedId = await IDGenerator.generateUserId(25);
+		if (!await User.getWhere('id', generatedId)) {
+			unique = true;
+		}
+	}
+
+	// ENCRYPT SUBMITTED PASSWORD
+	const encryptedPassword = await Encryptor.encrypt(submittedPassword);
+	if (!encryptedPassword) {
+		await Log.event(SystemErrors.SYSTEM_ENCRYPTOR_ERROR, "Failed to encrypt password while creating user.", submittedEmail);
+		return APIResponse.Error(res, "System Error. Can't encrypt password", "Error. Please try again.");
+	}
+
+	// SAVE USER
+	const savedUser = await User.create(generatedId, submittedEmail, encryptedPassword, submittedDisplayName);
+	if (!savedUser) {
+		await Log.event(DBErrors.DB_SET_NEW_USER_ERROR, "Could not save new user to DB.", submittedEmail);
+		return APIResponse.Error(res, "System Error. Could not save new user to DB.", "Error. Please try again.");
+	}
+
+
+	return APIResponse.Success(res, "Successfully added user.");
+
+});
 
 
 router.post('/reset-token', async (req, res) => {

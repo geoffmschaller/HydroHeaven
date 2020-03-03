@@ -37,7 +37,18 @@ const DBErrors = {
 	DB_SET_RESET_TOKEN_ERROR: 'db_set_reset_token_error',
 	DB_SET_NEW_PASSWORD_ERROR: 'db_set_new_password_error',
 	DB_INVALIDATE_RESET_TOKEN_ERROR: 'db_invalidate_reset_token_error',
-	DB_SET_AUTH_TOKEN_ERROR: 'db_set_auth_token_error'
+	DB_SET_AUTH_TOKEN_ERROR: 'db_set_auth_token_error',
+	DB_SET_NEW_USER_ERROR: 'db_set_new_user_error'
+};
+
+const IDRules = {
+	NUMERIC: 'numeric',
+	LOWER: 'lower',
+	UPPER: 'upper',
+	NUMERIC_LOWER: 'numeric_lower',
+	NUMERIC_UPPER: 'numeric_upper',
+	NUMERIC_UPPER_LOWER: 'numeric_upper_lower',
+	ALPHA: 'alpha',
 };
 
 
@@ -48,5 +59,6 @@ module.exports = {
 	SystemErrors,
 	DBErrors,
 	EnvironmentTypes,
-	MailerErrors
+	MailerErrors,
+	IDRules
 };

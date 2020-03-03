@@ -4,7 +4,6 @@ const AddressBook = require('../models/addressBookModel');
 const Sanitizer = require('../utils/sanitizer');
 const Validator = require('../utils/validator');
 const APIResponse = require('../utils/responses');
-const User = require('../models/userModel');
 const IDGenerator = require('../utils/idGenerator');
 
 router.get('/', async (req, res) => {
@@ -36,7 +35,6 @@ router.post('/', async (req, res) => {
 	let unique = false;
 	let generatedId;
 	while (!unique) {
-		console.log("RUNNING");
 		generatedId = await IDGenerator.generateAddressBookId(20);
 		const addressBookEntry = await AddressBook.find(generatedId);
 		if (!addressBookEntry) {

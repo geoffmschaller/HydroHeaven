@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const IDGenerator = require('../utils/idGenerator');
+const User = require('../models/userModel');
 
 router.post('/', async (req, res) => {
 
-	return res.json({result: await IDGenerator.generateUserId(20)});
+	return res.json({result: "true"});
 
 });
 
