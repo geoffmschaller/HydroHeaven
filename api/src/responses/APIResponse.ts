@@ -12,15 +12,15 @@ class APIResponse {
 		this.status = status;
 		this.message = message;
 		this.payload = payload;
+		this.send();
 	}
 
 	send = (): Response => {
-		return this.response.send({
-			status: this.status,
+		return this.response.status(this.status).json({
 			time: new Timer().dateTime(),
 			message: this.message,
-			payload: this.payload,
-		})
+			payload: this.payload
+		});
 	}
 
 }
