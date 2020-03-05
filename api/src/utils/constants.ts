@@ -1,8 +1,17 @@
-enum DBMessages {
+export enum DBMessages {
 	SUCCESS,
 	CONNECTION_FAILURE,
 	CREATE_ERROR,
-	UPDATE_ERROR
+	UPDATE_ERROR,
+	NO_ITEM_WITH_ID,
 }
 
-export default DBMessages;
+export enum IDGeneratorRules {
+	NUMERIC_LOWER_UPPER,
+	NUMERIC_LOWER,
+	NUMERIC_UPPER,
+	NUMERIC,
+	LOWER,
+	UPPER,
+	LOWER_UPPER
+}

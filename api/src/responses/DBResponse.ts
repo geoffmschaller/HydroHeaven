@@ -1,11 +1,11 @@
-import Constants from "../utils/constants";
+import {DBMessages} from "../utils/constants";
 
 class DBResponse {
 
-	status: Constants;
+	status: DBMessages;
 	payload?: any;
 
-	constructor(status: Constants, payload?: any) {
+	constructor(status: DBMessages, payload?: any) {
 		this.status = status;
 		this.payload = payload;
 	}

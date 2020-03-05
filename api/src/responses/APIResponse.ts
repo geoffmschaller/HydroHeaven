@@ -17,7 +17,8 @@ class APIResponse {
 
 	send = (): Response => {
 		return this.response.status(this.status).json({
-			time: new Timer().dateTime(),
+			status: this.status,
+			time: Timer.dateTime(),
 			message: this.message,
 			payload: this.payload
 		});

@@ -1,31 +1,25 @@
-import Validator from "./Validator";
 import TextValidator from "./TextValidator";
 
-class EmailValidator extends Validator {
+class EmailValidator {
 
-	constructor(input: string) {
-		super(input);
-		this.validate();
-	}
+	static validate = (input: string): boolean => {
 
-	public validate = (): boolean => {
-
-		const cleaned: string = this.testInput.trim().replace(/ /, "").toString().toLowerCase();
+		const cleaned: string = input.trim().replace(/ /, "").toString().toLowerCase();
 
 		const userSplit: string[] = cleaned.split("@");
 		if (userSplit.length != 2) return false;
 		const user = userSplit[0];
-		const userResult = new TextValidator(user).validate();
+		const userResult = TextValidator.validate(user);
 		if (!userResult) return false;
 
 		const companySplit = userSplit[1].split(".");
 		if (companySplit.length < 2) return false;
 		const company = companySplit[0];
-		const companyResult = new TextValidator(company).validate();
+		const companyResult = TextValidator.validate(company);
 		if (!companyResult) return false;
 
 		const domain = companySplit[1];
-		const domainResult = new TextValidator(domain).validate();
+		const domainResult = TextValidator.validate(domain);
 		if (!domainResult) return false;
 
 		return true;

@@ -1,19 +1,33 @@
-import DBAdapter from "./DBAdapter";
 import ContactModel from "../models/ContactModel";
-import Timer from "../utils/timer";
 import DBResponse from "../responses/DBResponse";
-import DBMessages from '../utils/constants';
+import {DBMessages} from '../utils/constants';
+import sqlite from 'sqlite';
+import path from "path";
 
-class ContactAdapter extends DBAdapter {
+class ContactAdapter {
 
-	save = async (contact: ContactModel): Promise<DBResponse> => {
-		contact.date = new Timer().dateTime();
-		contact.id = "151617";
-
+	static find = async (id: string): Promise<DBResponse> => {
 		try {
-			await this.connect();
-			if (!this.connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
-			const saveResult = await this.connection.run("INSERT INTO contacts(id, name, email, message, date) VALUES(?,?,?,?,?)", [contact.id, contact.name, contact.email, contact.message, contact.date]);
+			const connection = await sqlite.open(path.resolve('../api/src/db/davelopment.sqlite'));
+			if (!connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
+			const findResult = await connection.run("SELECT * FROM contacts WHERE id=?", [id]);
+			console.log(await findResult);
+			await connection.close();
+			if (!findResult)
+				return new DBResponse(DBMessages.CREATE_ERROR);
+			else
+				return new DBResponse(DBMessages.SUCCESS, {contact: findResult});
+		} catch (e) {
+			return new DBResponse(DBMessages.CREATE_ERROR);
+		}
+	};
+
+	static save = async (contact: ContactModel): Promise<DBResponse> => {
+		try {
+			const connection = await sqlite.open(path.resolve('../api/src/db/development.sqlite'));
+			if (!connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
+			const saveResult = await connection.run("INSERT INTO contacts(id, name, email, message, date) VALUES(?,?,?,?,?)", [contact.id, contact.name, contact.email, contact.message, contact.date]);
+			await connection.close();
 			if (!saveResult)
 				return new DBResponse(DBMessages.CREATE_ERROR);
 			else
@@ -24,14 +38,13 @@ class ContactAdapter extends DBAdapter {
 
 	};
 
-	update = async (contact: ContactModel): Promise<DBResponse> => {
-		contact.modified = new Timer().dateTime();
-		contact.user = "Geoff Schaller";
+	static update = async (contact: ContactModel): Promise<DBResponse> => {
 		if (!contact.id) return new DBResponse(DBMessages.UPDATE_ERROR);
 		try {
-			await this.connect();
-			if (!this.connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
-			const updateResult = await this.connection.run("UPDATE contacts SET name=?, email=?, message=?, modified=?, user=? WHERE id=?", [contact.name, contact.email, contact.message, contact.modified, contact.user, contact.id]);
+			const connection = await sqlite.open(path.resolve('../api/src/db/development.sqlite'));
+			if (!connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
+			const updateResult = await connection.run("UPDATE contacts SET name=?, email=?, message=?, modified=?, user=? WHERE id=?", [contact.name, contact.email, contact.message, contact.modified, contact.user, contact.id]);
+			await connection.close();
 			if (!updateResult || !updateResult['changes'])
 				return new DBResponse(DBMessages.UPDATE_ERROR);
 			else

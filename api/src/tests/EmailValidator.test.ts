@@ -3,49 +3,49 @@ import EmailValidator from "../validators/EmailValidator";
 describe("Email Validator Suite", () => {
 
 	test("Valid Email", () => {
-		expect(new EmailValidator("test@test.com").validate()).toBeTruthy();
-		expect(new EmailValidator("test2@test2.com").validate()).toBeTruthy();
-		expect(new EmailValidator("test2@test2.test2.com").validate()).toBeTruthy();
+		expect(EmailValidator.validate("test@test.com")).toBeTruthy();
+		expect(EmailValidator.validate("test2@test2.com")).toBeTruthy();
+		expect(EmailValidator.validate("test2@test2.test2.com")).toBeTruthy();
 	});
 
 	test("Empty Test", () => {
-		expect(new EmailValidator("").validate()).toBeFalsy();
+		expect(EmailValidator.validate("")).toBeFalsy();
 	});
 
 	test("Trim Test", () => {
-		expect(new EmailValidator("     ").validate()).toBeFalsy();
+		expect(EmailValidator.validate("     ")).toBeFalsy();
 	});
 
 	test("No @ or .", () => {
-		expect(new EmailValidator("test").validate()).toBeFalsy();
+		expect(EmailValidator.validate("test")).toBeFalsy();
 	});
 
 	test("No @", () => {
-		expect(new EmailValidator("test.").validate()).toBeFalsy();
+		expect(EmailValidator.validate("test.")).toBeFalsy();
 	});
 
 	test("No .", () => {
-		expect(new EmailValidator("test@").validate()).toBeFalsy();
+		expect(EmailValidator.validate("test@")).toBeFalsy();
 	});
 
 	test("Multiple @", () => {
-		expect(new EmailValidator("test@test@test.com").validate()).toBeFalsy();
+		expect(EmailValidator.validate("test@test@test.com")).toBeFalsy();
 	});
 
 	test("No user", () => {
-		expect(new EmailValidator("@test.com").validate()).toBeFalsy();
+		expect(EmailValidator.validate("@test.com")).toBeFalsy();
 	});
 
 	test("No company", () => {
-		expect(new EmailValidator("test@.com").validate()).toBeFalsy();
+		expect(EmailValidator.validate("test@.com")).toBeFalsy();
 	});
 
 	test("No domain", () => {
-		expect(new EmailValidator("test@test.").validate()).toBeFalsy();
+		expect(EmailValidator.validate("test@test.")).toBeFalsy();
 	});
 
 	test("No user, company or domain", () => {
-		expect(new EmailValidator("@.").validate()).toBeFalsy();
+		expect(EmailValidator.validate("@.")).toBeFalsy();
 	});
 
 });
