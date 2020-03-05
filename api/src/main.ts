@@ -1,8 +1,8 @@
 import express, {Application, Response, Request, NextFunction} from 'express';
 import bodyParser from "body-parser";
+import ContactRouter from "./controllers/contactController";
 
 const app: Application = express();
-const contactController = require('./controllers/contactController');
 
 require('dotenv').config();
 require('pug');
@@ -20,6 +20,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 	next();
 });
 
-app.use("/contact", contactController);
+app.use("/contact", ContactRouter);
 
 app.listen(5000);

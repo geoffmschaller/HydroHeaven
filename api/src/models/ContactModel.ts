@@ -4,14 +4,14 @@ class ContactModel {
 	email: string;
 	message: string;
 	date?: string;
-	id?: string;
-	modified?: string;
-	user?: string;
+	id?: number;
 
-	constructor(name: string, email: string, message: string) {
+	constructor(name: string, email: string, message: string, id?: number, date?: string) {
 		this.name = name;
 		this.email = email;
 		this.message = message;
+		this.date = date;
+		this.id = id;
 	}
 
 }
