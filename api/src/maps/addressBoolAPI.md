@@ -47,8 +47,8 @@ Creates a new address in the address book. Requires Auth Token.
         "token": "[AUTH TOKEN]",
         "firstName": "[TEXT]",
         "lastName": "[TEXT]",
+        "phone": "[TEXT]",
         "email": "[TEXT *]",
-        "phone": "[TEXT *]",
         "address": "[TEXT *]"
     }
 

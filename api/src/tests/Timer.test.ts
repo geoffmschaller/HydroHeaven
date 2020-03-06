@@ -1,4 +1,4 @@
-import Timer from "../utils/timer";
+import Timer from "../utils/Timer";
 
 describe("Timer Suite", () => {
 
