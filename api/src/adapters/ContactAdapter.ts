@@ -1,25 +1,41 @@
 import ContactModel from "../models/ContactModel";
 import DBResponse from "../responses/DBResponse";
-import {DBMessages} from '../utils/constants';
+import {DBMessages} from '../utils/Constants';
 import sqlite from 'sqlite';
 import path from "path";
 
 class ContactAdapter {
 
-	static find = async (id?: number): Promise<DBResponse> => {
+	static find = async (id: number): Promise<DBResponse> => {
 		try {
 			const connection = await sqlite.open(path.resolve('../api/src/db/development.sqlite'));
 			if (!connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
 			const findResult = await connection.get("SELECT * FROM contacts WHERE id=?", [id]);
 			await connection.close();
 			if (!findResult)
-				return new DBResponse(DBMessages.CREATE_ERROR);
+				return new DBResponse(DBMessages.GET_ERROR);
 			else {
 				const foundContact = new ContactModel(findResult.name, findResult.email, findResult.message, findResult.id, findResult.date);
 				return new DBResponse(DBMessages.SUCCESS, foundContact);
 			}
 		} catch (e) {
 			return new DBResponse(DBMessages.CREATE_ERROR);
+		}
+	};
+
+	static all = async (): Promise<DBResponse> => {
+		try {
+			const connection = await sqlite.open(path.resolve('../api/src/db/development.sqlite'));
+			if (!connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
+			const allResult = await connection.all("SELECT * FROM contacts");
+			await connection.close();
+			if (!allResult)
+				return new DBResponse(DBMessages.GET_ERROR);
+			else {
+				return new DBResponse(DBMessages.SUCCESS, {contacts: allResult});
+			}
+		} catch (e) {
+			return new DBResponse(DBMessages.GET_ERROR);
 		}
 	};
 

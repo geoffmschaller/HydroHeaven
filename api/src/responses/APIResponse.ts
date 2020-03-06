@@ -1,5 +1,5 @@
 import {Response} from 'express';
-import Timer from "../utils/timer";
+import Timer from "../utils/Timer";
 
 class APIResponse {
 

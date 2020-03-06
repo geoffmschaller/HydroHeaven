@@ -1,4 +1,4 @@
-import {DBMessages} from "../utils/constants";
+import {DBMessages} from "../utils/Constants";
 
 class DBResponse {
 

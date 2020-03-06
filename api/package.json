@@ -26,7 +26,7 @@
   },
   "scripts": {
     "test": "jest --testPathPattern=tests --watchAll",
-    "start": "nodemon src/main.ts",
+    "start": "nodemon src/Main.ts",
     "build": "tsc -p ."
   },
   "keywords": [],

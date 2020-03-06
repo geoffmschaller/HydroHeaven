@@ -36,7 +36,7 @@ Returns all of the stored contacts. Requires Auth Token.
 
 ---
 
-**POST /contact/view/{id}**
+**POST /contact/view**
 
 Returns contact information by id. Requires Auth Token.
 
@@ -76,7 +76,7 @@ Returns contact information by id. Requires Auth Token.
 
 ---
 
-**POST /contact/update/{id}**
+**POST /contact/update**
 
 Marks the contact as complete. Requires Auth Token.
 
@@ -86,6 +86,9 @@ Marks the contact as complete. Requires Auth Token.
     {
         "token": "[AUTH TOKEN]",
         "id": "[TEXT]",
+        "name": "[TEXT]",
+        "email": "[EMAIL]",
+        "message": "[TEXT]",
     }
 
     -- Success --
@@ -131,7 +134,15 @@ Saves contact from FE, sending information to house and confirmation email to cl
     -- Success --
     "status": 200,
     "message": "Thank You! We have received your message!",
-    "payload": {}
+    "payload": {
+        contact: {
+            name: "[TEXT]",
+            email: "[TEXT]",
+            message: "[TEXT]";
+            id: "[INT]",
+            date: "[TEXT]"
+        }
+    }
 
     -- Invalid Input Error --
     "status": 500,

@@ -1,6 +1,7 @@
 import express, {Application, Response, Request, NextFunction} from 'express';
 import bodyParser from "body-parser";
-import ContactRouter from "./controllers/contactController";
+import ContactRouter from "./controllers/ContactController";
+import AddressBookRouter from "./controllers/AddressBookController";
 
 const app: Application = express();
 
@@ -21,5 +22,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use("/contact", ContactRouter);
+app.use("/address-book", AddressBookRouter);
 
 app.listen(5000);
