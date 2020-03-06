@@ -2,7 +2,6 @@ import express, {Request, Response} from 'express';
 import Sanitizer from "../utils/Sanitizer";
 import TextValidator from "../validators/TextValidator";
 import EmailValidator from "../validators/EmailValidator";
-import ContactAdapter from "../adapters/ContactAdapter";
 import {DBMessages} from "../utils/Constants";
 import APIResponse from "../responses/APIResponse";
 import ContactModel from "../models/ContactModel";
@@ -10,6 +9,7 @@ import Timer from "../utils/Timer";
 import DBResponse from "../responses/DBResponse";
 import AuthTokenCheck from "../middleware/AuthTokenCheck";
 import NumberValidator from "../validators/NumberValidator";
+import DBAdapter from "../adapters/DBAdapter";
 
 const ContactRouter = express.Router();
 
@@ -29,7 +29,9 @@ ContactRouter.post("/new", async (req: Request, res: Response) => {
 
 	// BUILD CONTACT & SAVE
 	let generatedContact: ContactModel = new ContactModel(submittedName, submittedEmail, submittedMessage, undefined, Timer.dateTime());
-	const createResult: DBResponse = await ContactAdapter.save(generatedContact);
+	const createResult: DBResponse = await DBAdapter.save('contacts', generatedContact);
+	if (createResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
+	if (createResult.status === DBMessages.CREATE_ERROR) return APIResponse.error(res, "Could not save contact. Please try again.");
 	if (createResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
 	generatedContact = createResult.payload;
 
@@ -45,7 +47,9 @@ ContactRouter.post("/new", async (req: Request, res: Response) => {
 ContactRouter.post("/all", AuthTokenCheck, async (req: Request, res: Response) => {
 
 	// GET ALL CONTACTS
-	const contactsResult: DBResponse = await ContactAdapter.all();
+	const contactsResult: DBResponse = await DBAdapter.all('contacts');
+	if (contactsResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
+	if (contactsResult.status === DBMessages.GET_ERROR) return APIResponse.error(res, "Could not find contacts. Please try again.");
 	if (contactsResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
 
 	return APIResponse.success(res, "Thank you! We have recieved your message!", {contact: contactsResult.payload});
@@ -63,7 +67,9 @@ ContactRouter.post("/view", AuthTokenCheck, async (req: Request, res: Response) 
 	) return APIResponse.error(res, "Invalid Contact ID");
 
 	// GET ALL CONTACTS
-	const contactsResult: DBResponse = await ContactAdapter.find(parseInt(submittedID));
+	const contactsResult: DBResponse = await DBAdapter.find('contacts', parseInt(submittedID));
+	if (contactsResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
+	if (contactsResult.status === DBMessages.NO_RESULTS_FOR_ID) return APIResponse.error(res, "Invalid contact id.");
 	if (contactsResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
 
 	return APIResponse.success(res, "Thank you! We have recieved your message!", {contact: contactsResult.payload});
@@ -88,7 +94,9 @@ ContactRouter.post("/update", AuthTokenCheck, async (req: Request, res: Response
 
 	// GENERATE CONTACT AND UPDATE
 	const generatedContact = new ContactModel(submittedName, submittedEmail, submittedMessage, parseInt(submittedID));
-	const updateResult: DBResponse = await ContactAdapter.update(generatedContact);
+	const updateResult: DBResponse = await DBAdapter.update('contacts', generatedContact);
+	if (updateResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
+	if (updateResult.status === DBMessages.UPDATE_ERROR) return APIResponse.error(res, "Could not update contact. Please try again.");
 	if (updateResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
 
 	return APIResponse.success(res, "Thank you! We have recieved your message!", {contact: updateResult.payload});

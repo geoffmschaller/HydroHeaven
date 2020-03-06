@@ -83,7 +83,7 @@ Creates a new address in the address book. Requires Auth Token.
 
 ---
 
-**POST /address-book/view/{id}**
+**POST /address-book/view/**
 
 Returns an address book entry by ID. Requires Auth Token.
 
