@@ -1,12 +1,11 @@
-const NumberValidator = (num: string | number): boolean => {
+const NumberValidator = (num: string | number, max?: number | null, min?: number): boolean => {
 
-	try {
-		const converted = typeof num === 'string' ? parseInt(num) : num;
-		return !isNaN(converted);
-	} catch (e) {
-		return false;
-	}
+	const converted = typeof num === 'string' ? parseInt(num) : num;
 
+	if (max && converted > max) return false;
+	if (min && converted < min) return false;
+
+	return !isNaN(converted);
 
 };
 

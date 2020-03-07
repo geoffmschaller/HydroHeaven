@@ -1,5 +1,6 @@
 import {DBMessages} from "../utils/Constants";
 
+
 class DBResponse {
 
 	status: DBMessages;

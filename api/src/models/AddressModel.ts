@@ -4,7 +4,7 @@ class AddressBookModel extends DBModel {
 
 	firstName: string;
 	lastName: string;
-	phone: number;
+	phone: string;
 	id?: number;
 	email?: string;
 	address?: string;
@@ -14,7 +14,7 @@ class AddressBookModel extends DBModel {
 	public getValues = () => [this.firstName, this.lastName, this.phone, this.email, this.address];
 
 
-	constructor(firstName: string, lastName: string, phone: number, id?: number, email?: string, address?: string, date?: string) {
+	constructor(firstName: string, lastName: string, phone: string, id?: number, email?: string, address?: string, date?: string) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

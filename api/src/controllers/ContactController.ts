@@ -12,6 +12,7 @@ import NumberValidator from "../validators/NumberValidator";
 import DBAdapter from "../adapters/DBAdapter";
 
 const ContactRouter = express.Router();
+const routerDBTable = 'contacts';
 
 ContactRouter.post("/new", async (req: Request, res: Response) => {
 
@@ -22,18 +23,18 @@ ContactRouter.post("/new", async (req: Request, res: Response) => {
 
 	// VALIDATE DATA
 	if (
-		!TextValidator(submittedName) ||
+		!TextValidator(submittedName, 50) ||
 		!EmailValidator(submittedEmail) ||
-		!TextValidator(submittedMessage)
-	) return APIResponse.error(res, "Valid name, email, and message are required.");
+		!TextValidator(submittedMessage, 500)
+	) return APIResponse.error(res, "Valid name (max length 50 chars), email, and message (max length 500 chars) are required.");
 
 	// BUILD CONTACT & SAVE
 	let generatedContact: ContactModel = new ContactModel(submittedName, submittedEmail, submittedMessage, undefined, Timer.dateTime());
-	const createResult: DBResponse = await DBAdapter.save('contacts', generatedContact);
-	if (createResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
-	if (createResult.status === DBMessages.CREATE_ERROR) return APIResponse.error(res, "Could not save contact. Please try again.");
-	if (createResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
-	generatedContact = createResult.payload;
+	const queryResult: DBResponse = await new DBAdapter().save(routerDBTable, generatedContact);
+	if (queryResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
+	if (queryResult.status === DBMessages.SAVE_ERROR) return APIResponse.error(res, "Could not save contact. Please try again.");
+	if (queryResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
+	generatedContact = queryResult.payload;
 
 	/*
 		SEND CONTACT EMAILS
@@ -47,12 +48,15 @@ ContactRouter.post("/new", async (req: Request, res: Response) => {
 ContactRouter.post("/all", AuthTokenCheck, async (req: Request, res: Response) => {
 
 	// GET ALL CONTACTS
-	const contactsResult: DBResponse = await DBAdapter.all('contacts');
-	if (contactsResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
-	if (contactsResult.status === DBMessages.GET_ERROR) return APIResponse.error(res, "Could not find contacts. Please try again.");
-	if (contactsResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
-
-	return APIResponse.success(res, "Thank you! We have recieved your message!", {contact: contactsResult.payload});
+	const queryResult: DBResponse = await new DBAdapter().all(routerDBTable);
+	switch (queryResult.status) {
+		case DBMessages.CONNECTION_FAILURE:
+			return APIResponse.error(res, "DB connection error. Please try again.");
+		case DBMessages.SUCCESS:
+			return APIResponse.success(res, "Contacts found.", {contact: queryResult.payload});
+		default:
+			return APIResponse.error(res, "An error occured. Please try again.");
+	}
 
 });
 
@@ -63,16 +67,21 @@ ContactRouter.post("/view", AuthTokenCheck, async (req: Request, res: Response) 
 
 	// VALIDATE DATA
 	if (
-		!NumberValidator(submittedID)
+		!NumberValidator(submittedID, null, 0)
 	) return APIResponse.error(res, "Invalid Contact ID");
 
 	// GET ALL CONTACTS
-	const contactsResult: DBResponse = await DBAdapter.find('contacts', parseInt(submittedID));
-	if (contactsResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
-	if (contactsResult.status === DBMessages.NO_RESULTS_FOR_ID) return APIResponse.error(res, "Invalid contact id.");
-	if (contactsResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
-
-	return APIResponse.success(res, "Thank you! We have recieved your message!", {contact: contactsResult.payload});
+	const queryResult: DBResponse = await new DBAdapter().find(routerDBTable, parseInt(submittedID));
+	switch (queryResult.status) {
+		case DBMessages.CONNECTION_FAILURE:
+			return APIResponse.error(res, "DB connection error. Please try again.");
+		case DBMessages.NO_RESULTS_FOR_ID:
+			return APIResponse.error(res, "Invalid contact id.");
+		case DBMessages.SUCCESS:
+			return APIResponse.success(res, "Successfully added new address.", {addresses: queryResult.payload});
+		default:
+			return APIResponse.error(res, "An error occured. Please try again.");
+	}
 
 });
 
@@ -86,20 +95,24 @@ ContactRouter.post("/update", AuthTokenCheck, async (req: Request, res: Response
 
 	// VALIDATE DATA
 	if (
-		!NumberValidator(submittedID) ||
-		!TextValidator(submittedName) ||
+		!NumberValidator(submittedID, null, 0) ||
+		!TextValidator(submittedName, 50) ||
 		!EmailValidator(submittedEmail) ||
-		!TextValidator(submittedMessage)
-	) return APIResponse.error(res, "Valid name, email, message and id are required.");
+		!TextValidator(submittedMessage, 500)
+	)
+		return APIResponse.error(res, "Valid name (max length 50 chars), email, message (max length 500 chars), and id are required.");
 
 	// GENERATE CONTACT AND UPDATE
 	const generatedContact = new ContactModel(submittedName, submittedEmail, submittedMessage, parseInt(submittedID));
-	const updateResult: DBResponse = await DBAdapter.update('contacts', generatedContact);
-	if (updateResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
-	if (updateResult.status === DBMessages.UPDATE_ERROR) return APIResponse.error(res, "Could not update contact. Please try again.");
-	if (updateResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
-
-	return APIResponse.success(res, "Thank you! We have recieved your message!", {contact: updateResult.payload});
+	const queryResult: DBResponse = await new DBAdapter().update(routerDBTable, generatedContact);
+	switch (queryResult.status) {
+		case DBMessages.CONNECTION_FAILURE:
+			return APIResponse.error(res, "DB connection error. Please try again.");
+		case DBMessages.SUCCESS:
+			return APIResponse.success(res, "Successfully added new address.", {addresses: queryResult.payload});
+		default:
+			return APIResponse.error(res, "An error occured. Please try again.");
+	}
 
 });
 
