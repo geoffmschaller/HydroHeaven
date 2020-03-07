@@ -19,7 +19,6 @@ class DBAdapter {
 	};
 
 	private handleError = (error: any): DBResponse => {
-		console.log(error);
 		if (error['errno'] === 1) return new DBResponse(DBMessages.CONNECTION_FAILURE);
 		if (error['errno'] === 19) return new DBResponse(DBMessages.NON_UNIQUE);
 		return new DBResponse(DBMessages.SAVE_ERROR);

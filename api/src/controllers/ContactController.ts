@@ -22,11 +22,9 @@ ContactRouter.post("/new", async (req: Request, res: Response) => {
 	const submittedMessage: string = Sanitizer(req.body.message);
 
 	// VALIDATE DATA
-	if (
-		!TextValidator(submittedName, 50) ||
-		!EmailValidator(submittedEmail) ||
-		!TextValidator(submittedMessage, 500)
-	) return APIResponse.error(res, "Valid name (max length 50 chars), email, and message (max length 500 chars) are required.");
+	if (!TextValidator(submittedName, 50)) return APIResponse.error(res, "Valid name required. Max length 50.");
+	if (!EmailValidator(submittedEmail)) return APIResponse.error(res, "Valid email required.");
+	if (!TextValidator(submittedMessage, 500)) return APIResponse.error(res, "Valid message required. Max length 500");
 
 	// BUILD CONTACT & SAVE
 	let generatedContact: ContactModel = new ContactModel(submittedName, submittedEmail, submittedMessage, undefined, Timer.dateTime());
@@ -66,9 +64,7 @@ ContactRouter.post("/view", AuthTokenCheck, async (req: Request, res: Response) 
 	const submittedID: string = Sanitizer(req.body.id);
 
 	// VALIDATE DATA
-	if (
-		!NumberValidator(submittedID, null, 0)
-	) return APIResponse.error(res, "Invalid Contact ID");
+	if (!NumberValidator(submittedID, null, 0)) return APIResponse.error(res, "Invalid Contact ID");
 
 	// GET ALL CONTACTS
 	const queryResult: DBResponse = await new DBAdapter().find(routerDBTable, parseInt(submittedID));
@@ -94,13 +90,10 @@ ContactRouter.post("/update", AuthTokenCheck, async (req: Request, res: Response
 	const submittedMessage: string = Sanitizer(req.body.message);
 
 	// VALIDATE DATA
-	if (
-		!NumberValidator(submittedID, null, 0) ||
-		!TextValidator(submittedName, 50) ||
-		!EmailValidator(submittedEmail) ||
-		!TextValidator(submittedMessage, 500)
-	)
-		return APIResponse.error(res, "Valid name (max length 50 chars), email, message (max length 500 chars), and id are required.");
+	if (!NumberValidator(submittedID, null, 0)) return APIResponse.error(res, "Invalid ID supplied");
+	if (!TextValidator(submittedName, 50)) return APIResponse.error(res, "Valid first name required. Max length 50.");
+	if (!EmailValidator(submittedEmail)) return APIResponse.error(res, "Valid email required.");
+	if (!TextValidator(submittedMessage, 500)) return APIResponse.error(res, "Valid message required. Max length 500");
 
 	// GENERATE CONTACT AND UPDATE
 	const generatedContact = new ContactModel(submittedName, submittedEmail, submittedMessage, parseInt(submittedID));
@@ -108,6 +101,8 @@ ContactRouter.post("/update", AuthTokenCheck, async (req: Request, res: Response
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
+		case DBMessages.NO_RESULTS_FOR_ID:
+			return APIResponse.error(res, "Invalid ID");
 		case DBMessages.SUCCESS:
 			return APIResponse.success(res, "Successfully added new address.", {addresses: queryResult.payload});
 		default:
