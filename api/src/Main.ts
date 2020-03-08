@@ -24,4 +24,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use("/contact", ContactRouter);
 app.use("/address-book", AddressBookRouter);
 
-app.listen(5000);
+if (process.env.NODE_ENV != 'test') app.listen(5000);
+
+export default app;

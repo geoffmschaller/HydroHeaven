@@ -24,12 +24,12 @@ AddressBookRouter.post("/new", AuthTokenCheck, async (req: Request, res: Respons
 	// VALIDATE DATA
 	if (!TextValidator(submittedFirstName, 50)) return APIResponse.error(res, "Valid first name is required. Max length 50.");
 	if (!TextValidator(submittedLastName, 50)) return APIResponse.error(res, "Valid last name is required. Max length 50.");
-	if (!NumberValidator(submittedPhoneNumber, null, 1000000000)) return APIResponse.error(res, "Valid phone number is required. Format: *** *** ****.");
+	if (!NumberValidator(submittedPhoneNumber, 9999999999, 1000000000)) return APIResponse.error(res, "Valid phone number is required. Format: *** *** ****.");
 	if (submittedEmail && !EmailValidator(submittedEmail)) return APIResponse.error(res, "Valid email required.");
 	if (submittedAddress && !TextValidator(submittedAddress, 100)) return APIResponse.error(res, "Valid address is required. Max length 100.");
 
 	// GENERATE ADDRESS AND SAVE
-	let generatedAddressBook: AddressBookModel = new AddressBookModel(submittedFirstName, submittedLastName, submittedPhoneNumber);
+	let generatedAddressBook: AddressBookModel = new AddressBookModel(submittedFirstName, submittedLastName, submittedPhoneNumber, 123, submittedEmail, submittedAddress, "");
 	const queryResult = await new DBAdapter().save(routerDBTable, generatedAddressBook);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
@@ -62,13 +62,13 @@ AddressBookRouter.post("/all", AuthTokenCheck, async (req: Request, res: Respons
 AddressBookRouter.post("/view", AuthTokenCheck, async (req: Request, res: Response) => {
 
 	// GET SUBMITTED DATA
-	const submittedID = Sanitizer(req.body.id);
+	const submittedID: number = req.body.id;
 
 	// VALIDATE DATA
 	if (!NumberValidator(submittedID, null, 0)) return APIResponse.error(res, "Invalid ID supplied");
 
 	// GENERATE ADDRESS AND SAVE
-	const queryResult = await new DBAdapter().find(routerDBTable, parseInt(submittedID));
+	const queryResult = await new DBAdapter().find(routerDBTable, submittedID);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
@@ -85,7 +85,7 @@ AddressBookRouter.post("/view", AuthTokenCheck, async (req: Request, res: Respon
 AddressBookRouter.post("/update", async (req: Request, res: Response) => {
 
 	// GET SUBMITTED DATA
-	const submittedID: string = Sanitizer(req.body.id);
+	const submittedID: number = req.body.id;
 	const submittedFirstName: string = Sanitizer(req.body.firstName);
 	const submittedLastName: string = Sanitizer(req.body.lastName);
 	const submittedPhoneNumber: string = Sanitizer(req.body.phone, ["\\."], true);
@@ -97,12 +97,12 @@ AddressBookRouter.post("/update", async (req: Request, res: Response) => {
 	if (!NumberValidator(submittedID, null, 0)) return APIResponse.error(res, "Valid ID required.");
 	if (!TextValidator(submittedFirstName, 50)) return APIResponse.error(res, "Valid first name is required. Max length 50.");
 	if (!TextValidator(submittedLastName, 50)) return APIResponse.error(res, "Valid last name is required. Max length 50.");
-	if (!NumberValidator(submittedPhoneNumber, null, 1000000000)) return APIResponse.error(res, "Valid phone number is required. Format: *** *** ****.");
+	if (!NumberValidator(submittedPhoneNumber, 9999999999, 1000000000)) return APIResponse.error(res, "Valid phone number is required. Format: *** *** ****.");
 	if (submittedEmail && !EmailValidator(submittedEmail)) return APIResponse.error(res, "Valid email required.");
 	if (submittedAddress && !TextValidator(submittedAddress, 100)) return APIResponse.error(res, "Valid address is required. Max length 100.");
 
 	// GENERATE ADDRESS AND SAVE
-	let generatedAddressBook: AddressBookModel = new AddressBookModel(submittedFirstName, submittedLastName, submittedPhoneNumber, parseInt(submittedID), submittedEmail, submittedAddress);
+	let generatedAddressBook: AddressBookModel = new AddressBookModel(submittedFirstName, submittedLastName, submittedPhoneNumber, submittedID, submittedEmail, submittedAddress);
 	const queryResult = await new DBAdapter().update(routerDBTable, generatedAddressBook);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
@@ -112,7 +112,7 @@ AddressBookRouter.post("/update", async (req: Request, res: Response) => {
 		case DBMessages.NO_RESULTS_FOR_ID:
 			return APIResponse.error(res, "Invalid ID");
 		case DBMessages.SUCCESS:
-			return APIResponse.success(res, "Successfully added new address.", {addresses: queryResult.payload});
+			return APIResponse.success(res, "Successfully added new address.", {address: queryResult.payload});
 		default:
 			return APIResponse.error(res, "An error occured. Please try again.");
 	}

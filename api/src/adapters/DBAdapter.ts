@@ -19,6 +19,7 @@ class DBAdapter {
 	};
 
 	private handleError = (error: any): DBResponse => {
+		console.log(error);
 		if (error['errno'] === 1) return new DBResponse(DBMessages.CONNECTION_FAILURE);
 		if (error['errno'] === 19) return new DBResponse(DBMessages.NON_UNIQUE);
 		return new DBResponse(DBMessages.SAVE_ERROR);
@@ -71,9 +72,11 @@ class DBAdapter {
 		for (let i = 0; i < model.getValues().length; i++) {
 			vals += i < model.getValues().length - 1 ? "?," : "?";
 		}
+		let date = Timer.dateTime();
 		try {
-			queryResult = await this.connection.run(`INSERT INTO ${table} (${model.getColumms()}, date) VALUES(${vals}, ?)`, [...model.getValues(), Timer.dateTime()]);
+			queryResult = await this.connection.run(`INSERT INTO ${table} (${model.getColumms()}, date) VALUES(${vals}, ?)`, [...model.getValues(), date]);
 			model.id = await queryResult['lastID'];
+			model.date = date;
 		} catch (e) {
 			return this.handleError(e);
 		}
@@ -95,6 +98,7 @@ class DBAdapter {
 		const setStatement: string = model.getColumms().split(", ").join("=?, ") + "=? ";
 		try {
 			queryResult = await this.connection.run(`UPDATE ${table} SET ${setStatement}  WHERE id=?`, [...model.getValues(), model.id]);
+			if (queryResult['changes'] === 0) return new DBResponse(DBMessages.NO_RESULTS_FOR_ID);
 		} catch (e) {
 			return this.handleError(e);
 		}
