@@ -51,7 +51,7 @@ ContactRouter.post("/all", AuthTokenCheck, async (req: Request, res: Response) =
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
 		case DBMessages.SUCCESS:
-			return APIResponse.success(res, "Contacts found.", {contact: queryResult.payload});
+			return APIResponse.success(res, "Contacts found.", {contacts: queryResult.payload});
 		default:
 			return APIResponse.error(res, "An error occured. Please try again.");
 	}
@@ -61,20 +61,20 @@ ContactRouter.post("/all", AuthTokenCheck, async (req: Request, res: Response) =
 ContactRouter.post("/view", AuthTokenCheck, async (req: Request, res: Response) => {
 
 	// GET SUBMITTED DATA
-	const submittedID: string = Sanitizer(req.body.id);
+	const submittedID: number = req.body.id;
 
 	// VALIDATE DATA
 	if (!NumberValidator(submittedID, null, 0)) return APIResponse.error(res, "Invalid Contact ID");
 
 	// GET ALL CONTACTS
-	const queryResult: DBResponse = await new DBAdapter().find(routerDBTable, parseInt(submittedID));
+	const queryResult: DBResponse = await new DBAdapter().find(routerDBTable, submittedID);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
 		case DBMessages.NO_RESULTS_FOR_ID:
 			return APIResponse.error(res, "Invalid contact id.");
 		case DBMessages.SUCCESS:
-			return APIResponse.success(res, "Successfully added new address.", {addresses: queryResult.payload});
+			return APIResponse.success(res, "Successfully added new address.", {contact: queryResult.payload});
 		default:
 			return APIResponse.error(res, "An error occured. Please try again.");
 	}
@@ -84,7 +84,7 @@ ContactRouter.post("/view", AuthTokenCheck, async (req: Request, res: Response) 
 ContactRouter.post("/update", AuthTokenCheck, async (req: Request, res: Response) => {
 
 	// GET SUBMITTED DATA
-	const submittedID: string = Sanitizer(req.body.id);
+	const submittedID: number = req.body.id;
 	const submittedName: string = Sanitizer(req.body.name);
 	const submittedEmail: string = Sanitizer(req.body.email);
 	const submittedMessage: string = Sanitizer(req.body.message);
@@ -96,7 +96,7 @@ ContactRouter.post("/update", AuthTokenCheck, async (req: Request, res: Response
 	if (!TextValidator(submittedMessage, 500)) return APIResponse.error(res, "Valid message required. Max length 500");
 
 	// GENERATE CONTACT AND UPDATE
-	const generatedContact = new ContactModel(submittedName, submittedEmail, submittedMessage, parseInt(submittedID));
+	const generatedContact = new ContactModel(submittedName, submittedEmail, submittedMessage, submittedID);
 	const queryResult: DBResponse = await new DBAdapter().update(routerDBTable, generatedContact);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
@@ -104,7 +104,7 @@ ContactRouter.post("/update", AuthTokenCheck, async (req: Request, res: Response
 		case DBMessages.NO_RESULTS_FOR_ID:
 			return APIResponse.error(res, "Invalid ID");
 		case DBMessages.SUCCESS:
-			return APIResponse.success(res, "Successfully added new address.", {addresses: queryResult.payload});
+			return APIResponse.success(res, "Successfully added new address.", {contact: queryResult.payload});
 		default:
 			return APIResponse.error(res, "An error occured. Please try again.");
 	}

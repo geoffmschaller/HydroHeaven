@@ -56,6 +56,8 @@ describe('Address Book Update Suite', () => {
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
 		expect(parsedResponse.payload.address.firstName).toBe(entryToAdd.firstName);
+		expect(parsedResponse.payload.address.date).not.toBeNull();
+		expect(parsedResponse.payload.address.id).not.toBeNull();
 		done();
 	});
 
@@ -73,6 +75,8 @@ describe('Address Book Update Suite', () => {
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
 		expect(parsedResponse.payload.address.lastName).toBe(entryToAdd.lastName);
+		expect(parsedResponse.payload.address.date).not.toBeNull();
+		expect(parsedResponse.payload.address.id).not.toBeNull();
 		done();
 	});
 
@@ -90,6 +94,8 @@ describe('Address Book Update Suite', () => {
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
 		expect(parsedResponse.payload.address.phone).toBe(entryToAdd.phone);
+		expect(parsedResponse.payload.address.date).not.toBeNull();
+		expect(parsedResponse.payload.address.id).not.toBeNull();
 		done();
 	});
 
@@ -123,6 +129,8 @@ describe('Address Book Update Suite', () => {
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
 		expect(parsedResponse.payload.address.email).toBe(entryToAdd.email);
+		expect(parsedResponse.payload.address.date).not.toBeNull();
+		expect(parsedResponse.payload.address.id).not.toBeNull();
 		done();
 	});
 
@@ -140,6 +148,8 @@ describe('Address Book Update Suite', () => {
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
 		expect(parsedResponse.payload.address.address).toBe(entryToAdd.address);
+		expect(parsedResponse.payload.address.date).not.toBeNull();
+		expect(parsedResponse.payload.address.id).not.toBeNull();
 		done();
 	});
 

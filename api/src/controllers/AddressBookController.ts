@@ -37,7 +37,7 @@ AddressBookRouter.post("/new", AuthTokenCheck, async (req: Request, res: Respons
 		case DBMessages.NON_UNIQUE:
 			return APIResponse.error(res, "Phone number must be unique");
 		case DBMessages.SUCCESS:
-			return APIResponse.success(res, "Successfully added new address.", {addresses: queryResult.payload});
+			return APIResponse.success(res, "Successfully added new address.", {address: queryResult.payload});
 		default:
 			return APIResponse.error(res, "An error occured. Please try again.");
 	}
@@ -75,7 +75,7 @@ AddressBookRouter.post("/view", AuthTokenCheck, async (req: Request, res: Respon
 		case DBMessages.NO_RESULTS_FOR_ID:
 			return APIResponse.error(res, "No results for that ID.");
 		case DBMessages.SUCCESS:
-			return APIResponse.success(res, "Found address.", {addresses: queryResult.payload});
+			return APIResponse.success(res, "Found address.", {address: queryResult.payload});
 		default:
 			return APIResponse.error(res, "An error occured. Please try again.");
 	}

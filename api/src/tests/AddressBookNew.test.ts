@@ -72,11 +72,14 @@ describe('Address Book New Suite', () => {
 		const response = await request.post("/address-book/new").send(entryToAdd);
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
-		expect(parsedResponse.payload.addresses.firstName).toStrictEqual(entryToAdd.firstName);
-		expect(parsedResponse.payload.addresses.lastName).toStrictEqual(entryToAdd.lastName);
-		expect(parsedResponse.payload.addresses.phone).toStrictEqual(entryToAdd.phone);
-		expect(parsedResponse.payload.addresses.email).toStrictEqual(entryToAdd.email);
-		expect(parsedResponse.payload.addresses.address).toStrictEqual(entryToAdd.address);
+		expect(parsedResponse.payload.address.firstName).toStrictEqual(entryToAdd.firstName);
+		expect(parsedResponse.payload.address.lastName).toStrictEqual(entryToAdd.lastName);
+		expect(parsedResponse.payload.address.phone).toStrictEqual(entryToAdd.phone);
+		expect(parsedResponse.payload.address.email).toStrictEqual(entryToAdd.email);
+		expect(parsedResponse.payload.address.address).toStrictEqual(entryToAdd.address);
+		expect(parsedResponse.payload.address.date).not.toBeNull();
+		expect(parsedResponse.payload.address.id).not.toBeNull();
+		generatedID = parsedResponse.payload.address.id;
 		done();
 	});
 

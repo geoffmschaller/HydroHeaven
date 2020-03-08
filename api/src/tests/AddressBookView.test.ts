@@ -59,6 +59,8 @@ describe('Address Book View Suite', () => {
 		const response = await request.post("/address-book/view").send({id: generatedID.toString()});
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
+		expect(parsedResponse.payload.address.date).not.toBeNull();
+		expect(parsedResponse.payload.address.id).not.toBeNull();
 		done();
 	});
 
@@ -66,6 +68,8 @@ describe('Address Book View Suite', () => {
 		const response = await request.post("/address-book/view").send({id: generatedID});
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
+		expect(parsedResponse.payload.address.date).not.toBeNull();
+		expect(parsedResponse.payload.address.id).not.toBeNull();
 		done();
 	});
 
