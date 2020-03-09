@@ -153,10 +153,4 @@ describe('Address Book Update Suite', () => {
 		done();
 	});
 
-	afterAll(async (done) => {
-		const connection = await sqlite.open(path.resolve('../api/src/db/development.sqlite'));
-		await connection.get(`DELETE FROM addressBook WHERE id=?`, [generatedID]);
-		done();
-	});
-
 });

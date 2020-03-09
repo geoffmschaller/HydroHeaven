@@ -8,13 +8,10 @@
     "@types/jest": "^25.1.3",
     "@types/node": "^13.7.7",
     "@types/supertest": "^2.0.8",
-    "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jest": "^25.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.2",
     "nodemailer": "^6.3.0",
     "nodemailer-mailgun-transport": "^1.4.0",
     "nodemon": "^1.19.4",
@@ -23,14 +20,15 @@
     "supertest": "^4.0.2",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.6.2",
-    "typescript": "^3.8.3",
-    "validator": "^11.1.0"
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "test": "jest --testPathPattern=tests --watchAll  --runInBand --detectOpenHandles",
     "start": "nodemon src/Main.ts",
     "production": "node dist/Main.js",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "migrate": "rm db/development.sqlite && rm db/testing.sqlite && node scripts/migrateDev.js",
+    "migrate-prod": "node scripts/migrateProd.js"
   },
   "keywords": [],
   "author": "",

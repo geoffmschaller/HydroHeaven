@@ -77,9 +77,4 @@ describe('Contact View Suite', () => {
 		done();
 	});
 
-	afterAll(async () => {
-		const connection = await sqlite.open(path.resolve('../api/src/db/development.sqlite'));
-		await connection.get(`DELETE FROM contacts WHERE id=?`, [generatedID]);
-	});
-
 });

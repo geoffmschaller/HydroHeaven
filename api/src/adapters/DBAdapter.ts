@@ -5,13 +5,26 @@ import path from "path";
 import DBModel from "../models/DBModel";
 import Timer from "../utils/Timer";
 
+require('dotenv').config();
+
 class DBAdapter {
 
 	connection?: sqlite.Database;
 
 	private connect = async (): Promise<boolean> => {
+		let dbName = "";
+		switch (process.env.NODE_ENV) {
+			case 'production':
+				dbName = 'production';
+				break;
+			case 'test':
+				dbName = 'testing';
+				break;
+			default:
+				dbName = 'development';
+		}
 		try {
-			this.connection = await sqlite.open(path.resolve('../api/src/db/development.sqlite'));
+			this.connection = await sqlite.open(path.resolve(`../api/db/${dbName}.sqlite`));
 			return true;
 		} catch (e) {
 			return false;
@@ -34,11 +47,11 @@ class DBAdapter {
 		let queryResult;
 		try {
 			queryResult = await this.connection.get(`SELECT * FROM ${table} WHERE id=?`, [id]);
+			await this.connection.close();
 		} catch (e) {
 			return this.handleError(e);
 		}
 
-		await this.connection.close();
 		return queryResult ? new DBResponse(DBMessages.SUCCESS, queryResult) : new DBResponse(DBMessages.NO_RESULTS_FOR_ID);
 	};
 
@@ -52,6 +65,7 @@ class DBAdapter {
 		let queryResult;
 		try {
 			queryResult = await this.connection.all(`SELECT * FROM ${table}`);
+			await this.connection.close();
 		} catch (e) {
 			return this.handleError(e);
 		}
@@ -77,12 +91,12 @@ class DBAdapter {
 			queryResult = await this.connection.run(`INSERT INTO ${table} (${model.getColumms()}, date) VALUES(${vals}, ?)`, [...model.getValues(), date]);
 			model.id = await queryResult['lastID'];
 			model.date = date;
+			await this.connection.close();
 		} catch (e) {
 			return this.handleError(e);
 		}
 
 		// CLOSE AND EVALUATE
-		await this.connection.close();
 		return queryResult ? new DBResponse(DBMessages.SUCCESS, model) : new DBResponse(DBMessages.SAVE_ERROR)
 
 	};
@@ -98,13 +112,13 @@ class DBAdapter {
 		const setStatement: string = model.getColumms().split(", ").join("=?, ") + "=? ";
 		try {
 			queryResult = await this.connection.run(`UPDATE ${table} SET ${setStatement}  WHERE id=?`, [...model.getValues(), model.id]);
+			await this.connection.close();
 			if (queryResult['changes'] === 0) return new DBResponse(DBMessages.NO_RESULTS_FOR_ID);
 		} catch (e) {
 			return this.handleError(e);
 		}
 
 		// CLOSE AND EVALUATE
-		await this.connection.close();
 		return queryResult ? new DBResponse(DBMessages.SUCCESS, model) : new DBResponse(DBMessages.SAVE_ERROR)
 
 	};

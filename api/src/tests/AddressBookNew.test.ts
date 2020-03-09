@@ -83,9 +83,4 @@ describe('Address Book New Suite', () => {
 		done();
 	});
 
-	afterAll(async () => {
-		const connection = await sqlite.open(path.resolve('../api/src/db/development.sqlite'));
-		await connection.get(`DELETE FROM addressBook WHERE id=?`, [generatedID]);
-	});
-
 });
