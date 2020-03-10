@@ -1,20 +1,35 @@
-const Sanitizer = (input: string, extraChars?: string[], removeSpaces?: boolean): string => {
+const Sanitizer = (input: string, extraChars?: string[], ignoreChars?: string[], removeSpaces?: boolean): string => {
 
-	try {
-		let standardSanitize: string = input.replace(/<script>|<\/script>|&lt;|&lt|&gt;|&gt|&amp;|&amp|[<>\/\\"'\-#`!%;$()=+{}\[\]]/gi, "");
-		if (extraChars) {
-			for (let i = 0; i < extraChars.length; i++) {
-				standardSanitize = standardSanitize.replace(new RegExp(extraChars[i], "gm"), "");
-			}
+	let standardSanitize: string[] = [
+		"<script>", "</script>", "&lt", "&gt", "&amp", "[", "]", "<", ">", "/", "\\", "{", "}",
+	];
+
+	if (extraChars) standardSanitize = standardSanitize.concat(extraChars);
+
+	standardSanitize = [...new Set(standardSanitize)];
+
+	if (ignoreChars) {
+		for (let i = 0; i < ignoreChars.length; i++) {
+			let key = standardSanitize.indexOf(ignoreChars[i]);
+			if (key !== -1) standardSanitize.splice(key, 1);
 		}
-		if (removeSpaces) {
-			standardSanitize = standardSanitize.replace(/ /g, "");
-		}
-		return standardSanitize;
-	} catch (e) {
-		return "";
 	}
 
+	if (removeSpaces) {
+		standardSanitize.push(" ");
+	}
+
+	standardSanitize = [...new Set(standardSanitize)];
+
+	try {
+		for (let i = 0; i < standardSanitize.length; i++) {
+			input = input.replace(new RegExp('\\' + standardSanitize[i], "gm"), "");
+		}
+		return input;
+	} catch (e) {
+		console.log(e);
+		return "";
+	}
 
 };
 

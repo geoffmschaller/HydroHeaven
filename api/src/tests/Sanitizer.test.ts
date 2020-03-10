@@ -16,27 +16,7 @@ describe("Sanitizer Suite", () => {
 		expect(Sanitizer("\\\\\\\\")).toBe("");
 	});
 
-	test("Quote Test", () => {
-		expect(Sanitizer("\"")).toBe("");
-		expect(Sanitizer("\'")).toBe("");
-		expect(Sanitizer("\`")).toBe("");
-	});
-
-	test("Comment Test", () => {
-		expect(Sanitizer("-")).toBe("");
-		expect(Sanitizer("--")).toBe("");
-		expect(Sanitizer("#")).toBe("");
-		expect(Sanitizer("--#")).toBe("");
-	});
-
 	test("Unwanted Characters Test", () => {
-		expect(Sanitizer("$")).toBe("");
-		expect(Sanitizer("!")).toBe("");
-		expect(Sanitizer("%")).toBe("");
-		expect(Sanitizer("(")).toBe("");
-		expect(Sanitizer(")")).toBe("");
-		expect(Sanitizer("=")).toBe("");
-		expect(Sanitizer("+")).toBe("");
 		expect(Sanitizer("{")).toBe("");
 		expect(Sanitizer("}")).toBe("");
 		expect(Sanitizer("[")).toBe("");
@@ -44,11 +24,11 @@ describe("Sanitizer Suite", () => {
 	});
 
 	test("Encoded Test", () => {
-		expect(Sanitizer("&amp;")).toBe("");
+		expect(Sanitizer("&amp;")).toBe(";");
 		expect(Sanitizer("&amp")).toBe("");
-		expect(Sanitizer("&gt;")).toBe("");
+		expect(Sanitizer("&gt;")).toBe(";");
 		expect(Sanitizer("&gt")).toBe("");
-		expect(Sanitizer("&lt;")).toBe("");
+		expect(Sanitizer("&lt;")).toBe(";");
 		expect(Sanitizer("&lt")).toBe("");
 	});
 
@@ -60,9 +40,17 @@ describe("Sanitizer Suite", () => {
 	});
 
 	test("Extra Chars Test", () => {
-		expect(Sanitizer("(123) 456 - 7890", [" "])).toBe("1234567890");
 		expect(Sanitizer("test@test.com", ["@"])).toBe("testtest.com");
-		expect(Sanitizer("123.456.7890", ["\\."])).toBe("1234567890");
+		expect(Sanitizer("123.456.7890", ["."])).toBe("1234567890");
+	});
+
+	test("Ignored Chars Test", () => {
+		expect(Sanitizer("test@test.com", undefined, ["@"])).toBe("test@test.com");
+		expect(Sanitizer("123.456.7890", undefined, ["."])).toBe("123.456.7890");
+	});
+
+	test("Ignored Chars Test", () => {
+		expect(Sanitizer("a", ["a"])).toBe("");
 	});
 
 });

@@ -25,7 +25,7 @@ class AddressBookAdapter extends DBAdapter {
 		let queryResult: sqlite.Statement;
 		try {
 			model.date = Timer.dateTime();
-			queryResult = await this.connection.run(`INSERT INTO ${this.tableName} (firstName, lastName, phone, email, address, date) VALUES(?,?,?,?,?,?)`, [model.firstName, model.lastName, model.phone, model.email, model.address, model.date]);
+			queryResult = await this.connection.run(`INSERT INTO ${this.tableName} (firstName, lastName, phone, email, address) VALUES(?,?,?,?,?)`, [model.firstName, model.lastName, model.phone, model.email, model.address]);
 			model.id = await queryResult['lastID'];
 			await this.connection.close();
 		} catch (e) {

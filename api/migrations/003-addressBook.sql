@@ -6,7 +6,7 @@ create table addressBook (
 	phone INTEGER NOT NULL,
 	email TEXT,
 	address TEXT,
-	date TEXT NOT NULL
+	date datetime default current_timestamp
 );
 
 -- Down
