@@ -10,10 +10,6 @@ class AddressBookModel extends DBModel {
 	address?: string;
 	date?: string;
 
-	public getColumms = () => "firstName, lastName, phone, email, address";
-	public getValues = () => [this.firstName, this.lastName, this.phone, this.email, this.address];
-
-
 	constructor(firstName: string, lastName: string, phone: string, id?: number, email?: string, address?: string, date?: string) {
 		super();
 		this.firstName = firstName;

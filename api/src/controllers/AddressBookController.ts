@@ -5,12 +5,12 @@ import TextValidator from "../validators/TextValidator";
 import NumberValidator from "../validators/NumberValidator";
 import APIResponse from "../responses/APIResponse";
 import EmailValidator from "../validators/EmailValidator";
-import AddressBookModel from "../models/AddressModel";
+import AddressBookModel from "../models/AddressBookModel";
 import {DBMessages} from "../utils/Constants";
-import DBAdapter from "../adapters/DBAdapter";
+import AddressBookAdapter from "../adapters/AddressBookAdapter";
+import DBResponse from "../responses/DBResponse";
 
 const AddressBookRouter = express.Router();
-const routerDBTable = 'addressBook';
 
 AddressBookRouter.post("/new", AuthTokenCheck, async (req: Request, res: Response) => {
 
@@ -30,7 +30,7 @@ AddressBookRouter.post("/new", AuthTokenCheck, async (req: Request, res: Respons
 
 	// GENERATE ADDRESS AND SAVE
 	let generatedAddressBook: AddressBookModel = new AddressBookModel(submittedFirstName, submittedLastName, submittedPhoneNumber, 123, submittedEmail, submittedAddress, "");
-	const queryResult = await new DBAdapter().save(routerDBTable, generatedAddressBook);
+	const queryResult: DBResponse = await new AddressBookAdapter().save(generatedAddressBook);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
@@ -47,7 +47,7 @@ AddressBookRouter.post("/new", AuthTokenCheck, async (req: Request, res: Respons
 AddressBookRouter.post("/all", AuthTokenCheck, async (req: Request, res: Response) => {
 
 	// GENERATE ADDRESS AND SAVE
-	const queryResult = await new DBAdapter().all(routerDBTable);
+	const queryResult: DBResponse = await new AddressBookAdapter().all();
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
@@ -68,7 +68,7 @@ AddressBookRouter.post("/view", AuthTokenCheck, async (req: Request, res: Respon
 	if (!NumberValidator(submittedID, null, 0)) return APIResponse.error(res, "Invalid ID supplied");
 
 	// GENERATE ADDRESS AND SAVE
-	const queryResult = await new DBAdapter().find(routerDBTable, submittedID);
+	const queryResult: DBResponse = await new AddressBookAdapter().find(submittedID);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
@@ -103,7 +103,7 @@ AddressBookRouter.post("/update", async (req: Request, res: Response) => {
 
 	// GENERATE ADDRESS AND SAVE
 	let generatedAddressBook: AddressBookModel = new AddressBookModel(submittedFirstName, submittedLastName, submittedPhoneNumber, submittedID, submittedEmail, submittedAddress);
-	const queryResult = await new DBAdapter().update(routerDBTable, generatedAddressBook);
+	const queryResult: DBResponse = await new AddressBookAdapter().update(generatedAddressBook);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");

@@ -2,7 +2,7 @@ import supertest from 'supertest';
 import app from "../Main";
 import sqlite from "sqlite";
 import path from "path";
-import AddressBookModel from "../models/AddressModel";
+import AddressBookModel from "../models/AddressBookModel";
 
 const request = supertest.agent(app);
 

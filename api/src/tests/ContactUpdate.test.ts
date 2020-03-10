@@ -3,8 +3,9 @@ import app from "../Main";
 import sqlite from "sqlite";
 import path from "path";
 import DBAdapter from "../adapters/DBAdapter";
-import AddressBookModel from "../models/AddressModel";
+import AddressBookModel from "../models/AddressBookModel";
 import ContactModel from "../models/ContactModel";
+import ContactAdapter from "../adapters/ContactAdapter";
 
 const request = supertest.agent(app);
 
@@ -19,7 +20,7 @@ describe('Address Book Update Suite', () => {
 	let generatedID: number = 0;
 
 	beforeAll(async (done) => {
-		const result = await new DBAdapter().save('contacts', entryToAdd);
+		const result = await new ContactAdapter().save(entryToAdd);
 		generatedID = await result.payload.id;
 		done();
 	});

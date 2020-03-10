@@ -5,14 +5,12 @@ import EmailValidator from "../validators/EmailValidator";
 import {DBMessages} from "../utils/Constants";
 import APIResponse from "../responses/APIResponse";
 import ContactModel from "../models/ContactModel";
-import Timer from "../utils/Timer";
 import DBResponse from "../responses/DBResponse";
 import AuthTokenCheck from "../middleware/AuthTokenCheck";
 import NumberValidator from "../validators/NumberValidator";
-import DBAdapter from "../adapters/DBAdapter";
+import ContactAdapter from "../adapters/ContactAdapter";
 
 const ContactRouter = express.Router();
-const routerDBTable = 'contacts';
 
 ContactRouter.post("/new", async (req: Request, res: Response) => {
 
@@ -27,8 +25,8 @@ ContactRouter.post("/new", async (req: Request, res: Response) => {
 	if (!TextValidator(submittedMessage, 500)) return APIResponse.error(res, "Valid message required. Max length 500");
 
 	// BUILD CONTACT & SAVE
-	let generatedContact: ContactModel = new ContactModel(submittedName, submittedEmail, submittedMessage, undefined, Timer.dateTime());
-	const queryResult: DBResponse = await new DBAdapter().save(routerDBTable, generatedContact);
+	let generatedContact: ContactModel = new ContactModel(submittedName, submittedEmail, submittedMessage);
+	const queryResult: DBResponse = await new ContactAdapter().save(generatedContact);
 	if (queryResult.status === DBMessages.CONNECTION_FAILURE) return APIResponse.error(res, "DB connection error. Please try again.");
 	if (queryResult.status === DBMessages.SAVE_ERROR) return APIResponse.error(res, "Could not save contact. Please try again.");
 	if (queryResult.status !== DBMessages.SUCCESS) return APIResponse.error(res, "An error occured. Please try again.");
@@ -46,7 +44,7 @@ ContactRouter.post("/new", async (req: Request, res: Response) => {
 ContactRouter.post("/all", AuthTokenCheck, async (req: Request, res: Response) => {
 
 	// GET ALL CONTACTS
-	const queryResult: DBResponse = await new DBAdapter().all(routerDBTable);
+	const queryResult: DBResponse = await new ContactAdapter().all();
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
@@ -67,7 +65,7 @@ ContactRouter.post("/view", AuthTokenCheck, async (req: Request, res: Response) 
 	if (!NumberValidator(submittedID, null, 0)) return APIResponse.error(res, "Invalid Contact ID");
 
 	// GET ALL CONTACTS
-	const queryResult: DBResponse = await new DBAdapter().find(routerDBTable, submittedID);
+	const queryResult: DBResponse = await new ContactAdapter().find(submittedID);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");
@@ -97,7 +95,7 @@ ContactRouter.post("/update", AuthTokenCheck, async (req: Request, res: Response
 
 	// GENERATE CONTACT AND UPDATE
 	const generatedContact = new ContactModel(submittedName, submittedEmail, submittedMessage, submittedID);
-	const queryResult: DBResponse = await new DBAdapter().update(routerDBTable, generatedContact);
+	const queryResult: DBResponse = await new ContactAdapter().update(generatedContact);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");

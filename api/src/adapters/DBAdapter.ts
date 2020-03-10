@@ -3,15 +3,15 @@ import {DBMessages} from '../utils/Constants';
 import sqlite from 'sqlite';
 import path from "path";
 import DBModel from "../models/DBModel";
-import Timer from "../utils/Timer";
 
 require('dotenv').config();
 
 class DBAdapter {
 
 	connection?: sqlite.Database;
+	tableName?: string;
 
-	private connect = async (): Promise<boolean> => {
+	protected connect = async (): Promise<boolean> => {
 		let dbName = "";
 		switch (process.env.NODE_ENV) {
 			case 'production':
@@ -31,14 +31,14 @@ class DBAdapter {
 		}
 	};
 
-	private handleError = (error: any): DBResponse => {
+	protected handleError = (error: any): DBResponse => {
 		console.log(error);
 		if (error['errno'] === 1) return new DBResponse(DBMessages.CONNECTION_FAILURE);
 		if (error['errno'] === 19) return new DBResponse(DBMessages.NON_UNIQUE);
 		return new DBResponse(DBMessages.SAVE_ERROR);
 	};
 
-	find = async (table: string, id: number): Promise<DBResponse> => {
+	find = async (id: number): Promise<DBResponse> => {
 
 		// CONNECT
 		await this.connect();
@@ -46,7 +46,7 @@ class DBAdapter {
 
 		let queryResult;
 		try {
-			queryResult = await this.connection.get(`SELECT * FROM ${table} WHERE id=?`, [id]);
+			queryResult = await this.connection.get(`SELECT * FROM ${this.tableName} WHERE id=?`, [id]);
 			await this.connection.close();
 		} catch (e) {
 			return this.handleError(e);
@@ -55,7 +55,7 @@ class DBAdapter {
 		return queryResult ? new DBResponse(DBMessages.SUCCESS, queryResult) : new DBResponse(DBMessages.NO_RESULTS_FOR_ID);
 	};
 
-	all = async (table: string): Promise<DBResponse> => {
+	all = async (): Promise<DBResponse> => {
 
 		// CONNECT
 		await this.connect();
@@ -64,7 +64,7 @@ class DBAdapter {
 		// RUN QUERY
 		let queryResult;
 		try {
-			queryResult = await this.connection.all(`SELECT * FROM ${table}`);
+			queryResult = await this.connection.all(`SELECT * FROM ${this.tableName}`);
 			await this.connection.close();
 		} catch (e) {
 			return this.handleError(e);
@@ -74,52 +74,27 @@ class DBAdapter {
 
 	};
 
-	save = async (table: string, model: DBModel): Promise<DBResponse> => {
+	where = async (params: object, limit?: number): Promise<DBResponse> => {
 
 		// CONNECT
 		await this.connect();
 		if (!this.connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
 
+		// GET KEYS AND VARS
+		let keys: string = Object.keys(params).join("=? AND ") + "=? ";
+		let values: any[] = Object.values(params);
+
 		// RUN QUERY
 		let queryResult;
-		let vals: string = "";
-		for (let i = 0; i < model.getValues().length; i++) {
-			vals += i < model.getValues().length - 1 ? "?," : "?";
-		}
-		let date = Timer.dateTime();
 		try {
-			queryResult = await this.connection.run(`INSERT INTO ${table} (${model.getColumms()}, date) VALUES(${vals}, ?)`, [...model.getValues(), date]);
-			model.id = await queryResult['lastID'];
-			model.date = date;
+			queryResult = await this.connection.all(`SELECT * FROM ${this.tableName} WHERE ${keys}`, values);
 			await this.connection.close();
+			if (queryResult && queryResult.length === 0) return new DBResponse(DBMessages.NO_RESULTS_FOR_PARAMS);
 		} catch (e) {
 			return this.handleError(e);
 		}
 
-		// CLOSE AND EVALUATE
-		return queryResult ? new DBResponse(DBMessages.SUCCESS, model) : new DBResponse(DBMessages.SAVE_ERROR)
-
-	};
-
-	update = async (table: string, model: DBModel): Promise<DBResponse> => {
-
-		// CONNECT
-		await this.connect();
-		if (!this.connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
-
-		// RUN QUERY
-		let queryResult;
-		const setStatement: string = model.getColumms().split(", ").join("=?, ") + "=? ";
-		try {
-			queryResult = await this.connection.run(`UPDATE ${table} SET ${setStatement}  WHERE id=?`, [...model.getValues(), model.id]);
-			await this.connection.close();
-			if (queryResult['changes'] === 0) return new DBResponse(DBMessages.NO_RESULTS_FOR_ID);
-		} catch (e) {
-			return this.handleError(e);
-		}
-
-		// CLOSE AND EVALUATE
-		return queryResult ? new DBResponse(DBMessages.SUCCESS, model) : new DBResponse(DBMessages.SAVE_ERROR)
+		return queryResult ? new DBResponse(DBMessages.SUCCESS, queryResult) : new DBResponse(DBMessages.NO_RESULTS_FOR_PARAMS);
 
 	};
 

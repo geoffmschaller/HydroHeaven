@@ -4,6 +4,7 @@ import sqlite from "sqlite";
 import path from "path";
 import DBAdapter from "../adapters/DBAdapter";
 import ContactModel from "../models/ContactModel";
+import ContactAdapter from "../adapters/ContactAdapter";
 
 const request = supertest.agent(app);
 
@@ -18,7 +19,7 @@ describe('Contact View Suite', () => {
 	let generatedID: number = 0;
 
 	beforeAll(async (done) => {
-		const result = await new DBAdapter().save('contacts', entryToAdd);
+		const result = await new ContactAdapter().save(entryToAdd);
 		generatedID = await result.payload.id;
 		done();
 	});

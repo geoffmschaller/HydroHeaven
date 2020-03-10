@@ -8,9 +8,6 @@ class ContactModel extends DBModel {
 	date?: string;
 	id?: number;
 
-	public getColumms = () => "name, email, message";
-	public getValues = () => [this.name, this.email, this.message];
-
 	constructor(name: string, email: string, message: string, id?: number, date?: string) {
 		super();
 		this.name = name;
