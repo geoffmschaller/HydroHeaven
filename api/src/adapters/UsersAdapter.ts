@@ -1,21 +1,22 @@
 import DBResponse from "../responses/DBResponse";
 import {DBMessages} from '../utils/Constants';
-import Timer from "../utils/Timer";
 import DBAdapter from "./DBAdapter";
-import AddressBookModel from "../models/AddressBookModel";
 import sqlite from 'sqlite';
+import UserModel from "../models/UserModel";
+
+const bcrypt = require('bcrypt');
 
 require('dotenv').config();
 
-class AddressBookAdapter extends DBAdapter {
+class UsersAdapter extends DBAdapter {
 
 
 	constructor() {
 		super();
-		this.tableName = "addressBook";
+		this.tableName = "users";
 	}
 
-	save = async (model: AddressBookModel): Promise<DBResponse> => {
+	save = async (model: UserModel, password: string): Promise<DBResponse> => {
 
 		// CONNECT
 		await this.connect();
@@ -24,7 +25,9 @@ class AddressBookAdapter extends DBAdapter {
 		// RUN QUERY
 		let queryResult: sqlite.Statement;
 		try {
-			queryResult = await this.connection.run(`INSERT INTO ${this.tableName} (firstName, lastName, phone, email, address) VALUES(?,?,?,?,?)`, [model.firstName, model.lastName, model.phone, model.email, model.address]);
+
+			const hash = await bcrypt.hash(password, 10);
+			queryResult = await this.connection.run(`INSERT INTO ${this.tableName} (email, firstName, lastName, password, authToken, resetToken) VALUES(?,?,?,?,?,?)`, [model.email, model.firstName, model.lastName, hash, model.authToken, model.resetToken]);
 			model.id = await queryResult['lastID'];
 			await this.connection.close();
 		} catch (e) {
@@ -36,7 +39,7 @@ class AddressBookAdapter extends DBAdapter {
 
 	};
 
-	update = async (model: AddressBookModel): Promise<DBResponse> => {
+	update = async (model: UserModel): Promise<DBResponse> => {
 
 		// CONNECT
 		await this.connect();
@@ -45,9 +48,8 @@ class AddressBookAdapter extends DBAdapter {
 		// RUN QUERY
 		let queryResult: sqlite.Statement;
 		try {
-			queryResult = await this.connection.run(`UPDATE ${this.tableName} SET firstName=?, lastName=?, phone=?, email=?, address=? WHERE id=?`, [model.firstName, model.lastName, model.phone, model.email, model.address, model.id]);
+			queryResult = await this.connection.run(`UPDATE users SET email=?, firstName=?, lastName=? WHERE id=?`, [model.email, model.firstName, model.lastName, model.id]);
 			await this.connection.close();
-			if (!queryResult['changes']) return new DBResponse(DBMessages.NO_RESULTS_FOR_ID);
 		} catch (e) {
 			return this.handleError(e);
 		}
@@ -59,4 +61,4 @@ class AddressBookAdapter extends DBAdapter {
 
 }
 
-export default AddressBookAdapter;
+export default UsersAdapter;

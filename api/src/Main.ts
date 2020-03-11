@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import ContactRouter from "./controllers/ContactController";
 import AddressBookRouter from "./controllers/AddressBookController";
 import AnalyticsController from "./controllers/AnalyticsController";
+import UsersController from "./controllers/UsersController";
 
 const app: Application = express();
 
@@ -25,6 +26,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use("/contact", ContactRouter);
 app.use("/address-book", AddressBookRouter);
 app.use("/analytics", AnalyticsController);
+app.use("/users", UsersController);
 
 if (process.env.NODE_ENV != 'test') app.listen(5000);
 

@@ -18,8 +18,8 @@ describe('Analytics Page View Count Suite', () => {
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(200);
 		for (let i = 0; i < parsedResponse.payload.length; i++) {
-			if (parsedResponse.payload[i].page === entryToSend.page) {
-				expect(parsedResponse.payload[i].count).toBeGreaterThan(0);
+			if (parsedResponse.payload.views[i].page === entryToSend.page) {
+				expect(parsedResponse.payload.views[i].count).toBeGreaterThan(0);
 			}
 		}
 		done();

@@ -24,7 +24,6 @@ class ContactAdapter extends DBAdapter {
 		// RUN QUERY
 		let queryResult: sqlite.Statement;
 		try {
-			model.date = Timer.dateTime();
 			queryResult = await this.connection.run(`INSERT INTO ${this.tableName} (name, email, message) VALUES(?,?,?)`, [model.name, model.email, model.message]);
 			model.id = await queryResult['lastID'];
 			await this.connection.close();

@@ -3,7 +3,7 @@ import {DBMessages} from '../utils/Constants';
 import Timer from "../utils/Timer";
 import DBAdapter from "./DBAdapter";
 import sqlite from 'sqlite';
-import PageView from "../models/PageView";
+import PageViewModel from "../models/PageViewModel";
 
 require('dotenv').config();
 
@@ -15,7 +15,7 @@ class PageViewAdapter extends DBAdapter {
 		this.tableName = "pageViews";
 	}
 
-	save = async (model: PageView): Promise<DBResponse> => {
+	save = async (model: PageViewModel): Promise<DBResponse> => {
 
 		// CONNECT
 		await this.connect();
@@ -24,7 +24,6 @@ class PageViewAdapter extends DBAdapter {
 		// RUN QUERY
 		let queryResult: sqlite.Statement;
 		try {
-			model.date = Timer.dateTime();
 			queryResult = await this.connection.run(`INSERT INTO ${this.tableName} (page) VALUES(?)`, [model.page]);
 			model.id = await queryResult['lastID'];
 			await this.connection.close();
@@ -55,7 +54,7 @@ class PageViewAdapter extends DBAdapter {
 		// RUN QUERY
 		let queryResult;
 		try {
-			queryResult = await this.connection.all(`SELECT page, COUNT(*) AS count FROM ${this.tableName} ${statement} GROUP BY page`);
+			queryResult = await this.connection.all(`SELECT page, COUNT(*) AS count FROM ${this.tableName} ${statement} GROUP BY page ORDER BY count DESC`);
 			await this.connection.close();
 		} catch (e) {
 			return this.handleError(e);

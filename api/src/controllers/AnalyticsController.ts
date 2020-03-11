@@ -3,7 +3,7 @@ import Sanitizer from "../utils/Sanitizer";
 import TextValidator from "../validators/TextValidator";
 import APIResponse from "../responses/APIResponse";
 import {DBMessages} from "../utils/Constants";
-import PageView from "../models/PageView";
+import PageViewModel from "../models/PageViewModel";
 import PageViewAdapter from "../adapters/PageViewAdapter";
 import NumberValidator from "../validators/NumberValidator";
 
@@ -17,7 +17,7 @@ AnalyticsController.post("/page-view/new", async (req: Request, res: Response) =
 	if (!TextValidator(submittedPage)) return APIResponse.error(res, "No page submitted.");
 
 	// GENERATE AND SAVE
-	const view = new PageView(submittedPage);
+	const view = new PageViewModel(submittedPage);
 	const saveResult = await new PageViewAdapter().save(view);
 
 	switch (saveResult.status) {
@@ -53,7 +53,7 @@ AnalyticsController.post("/page-view/count", async (req: Request, res: Response)
 		case DBMessages.SAVE_ERROR:
 			return APIResponse.error(res, "DB Error: Could not save");
 		case DBMessages.SUCCESS:
-			return APIResponse.success(res, "Successfully connected", groupedResult.payload);
+			return APIResponse.success(res, "Successfully connected", {views: groupedResult.payload});
 		default:
 			return APIResponse.error(res, "Generic Error");
 	}

@@ -1,6 +1,6 @@
 import DBModel from "./DBModel";
 
-class PageView extends DBModel {
+class PageViewModel extends DBModel {
 
 	page: string;
 	id?: number;
@@ -15,4 +15,4 @@ class PageView extends DBModel {
 
 }
 
-export default PageView;
+export default PageViewModel;

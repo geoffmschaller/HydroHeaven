@@ -17,7 +17,7 @@ AddressBookRouter.post("/new", AuthTokenCheck, async (req: Request, res: Respons
 	// GET SUBMITTED DATA
 	const submittedFirstName: string = Sanitizer(req.body.firstName);
 	const submittedLastName: string = Sanitizer(req.body.lastName);
-	const submittedPhoneNumber: string = Sanitizer(req.body.phone, ["."], undefined, true);
+	const submittedPhoneNumber: string = Sanitizer(req.body.phone, [".", "(", ")", "-"], undefined, true);
 	let submittedEmail: string | undefined = req.body.email ? Sanitizer(req.body.email) : undefined;
 	let submittedAddress: string | undefined = req.body.address ? Sanitizer(req.body.address) : undefined;
 
