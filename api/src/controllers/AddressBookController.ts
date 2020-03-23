@@ -9,6 +9,7 @@ import AddressBookModel from "../models/AddressBookModel";
 import {DBMessages} from "../utils/Constants";
 import AddressBookAdapter from "../adapters/AddressBookAdapter";
 import DBResponse from "../responses/DBResponse";
+import UsersAdapter from "../adapters/UsersAdapter";
 
 const AddressBookRouter = express.Router();
 
@@ -101,9 +102,13 @@ AddressBookRouter.post("/update", async (req: Request, res: Response) => {
 	if (submittedEmail && !EmailValidator(submittedEmail)) return APIResponse.error(res, "Valid email required.");
 	if (submittedAddress && !TextValidator(submittedAddress, 100)) return APIResponse.error(res, "Valid address is required. Max length 100.");
 
+	// RETRIEVE ALL ENTRIES
+	const foundId: DBResponse = await new AddressBookAdapter().find(submittedID);
+	if (foundId.status === DBMessages.NO_RESULTS_FOR_ID) return APIResponse.error(res, "No entry by ID");
+
 	// GENERATE ADDRESS AND SAVE
-	let generatedAddressBook: AddressBookModel = new AddressBookModel(submittedFirstName, submittedLastName, submittedPhoneNumber, submittedID, submittedEmail, submittedAddress);
-	const queryResult: DBResponse = await new AddressBookAdapter().update(generatedAddressBook);
+	let generatedAddressBook: AddressBookModel = new AddressBookModel(submittedFirstName, submittedLastName, foundId.payload.phone, submittedID, submittedEmail, submittedAddress);
+	const queryResult: DBResponse = await new AddressBookAdapter().update(generatedAddressBook, submittedPhoneNumber);
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
 			return APIResponse.error(res, "DB connection error. Please try again.");

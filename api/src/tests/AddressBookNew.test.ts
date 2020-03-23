@@ -1,23 +1,19 @@
 import supertest from 'supertest';
 import app from "../Main";
-import sqlite from "sqlite";
-import path from "path";
 import AddressBookModel from "../models/AddressBookModel";
 
 const request = supertest.agent(app);
 
 describe('Address Book New Suite', () => {
 
-	let entryToAdd = new AddressBookModel(
-		"Geoff",
-		"Schaller",
-		"4329843258"
-	);
+	const phone = "4329843258";
+
+	let entryToAdd = new AddressBookModel("Geoff", "Schaller", phone);
 
 	beforeEach(() => {
 		entryToAdd.firstName = "Geoff";
 		entryToAdd.lastName = "Schaller";
-		entryToAdd.phone = "1681478238";
+		entryToAdd.phone = phone;
 		entryToAdd.email = "";
 		entryToAdd.address = "";
 		entryToAdd.id = generatedID;
@@ -44,6 +40,14 @@ describe('Address Book New Suite', () => {
 
 	test('Missing Phone Number', async (done) => {
 		entryToAdd.phone = "";
+		const response = await request.post("/address-book/new").send(entryToAdd);
+		const parsedResponse = JSON.parse(response.text);
+		expect(parsedResponse.status).toBe(500);
+		done();
+	});
+
+	test('Non Numeric Phone Number', async (done) => {
+		entryToAdd.phone = "hello";
 		const response = await request.post("/address-book/new").send(entryToAdd);
 		const parsedResponse = JSON.parse(response.text);
 		expect(parsedResponse.status).toBe(500);

@@ -36,18 +36,26 @@ class AddressBookAdapter extends DBAdapter {
 
 	};
 
-	update = async (model: AddressBookModel): Promise<DBResponse> => {
+	update = async (model: AddressBookModel, phone: string): Promise<DBResponse> => {
 
 		// CONNECT
 		await this.connect();
 		if (!this.connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
 
+		let vals = [model.firstName, model.lastName, model.id];
+		let stmt = "";
+		if (model.phone !== phone) {
+			vals = [phone, model.firstName, model.lastName, model.id];
+			stmt = " phone=?, ";
+		}
+
 		// RUN QUERY
 		let queryResult: sqlite.Statement;
 		try {
-			queryResult = await this.connection.run(`UPDATE ${this.tableName} SET firstName=?, lastName=?, phone=?, email=?, address=? WHERE id=?`, [model.firstName, model.lastName, model.phone, model.email, model.address, model.id]);
+			queryResult = await this.connection.run(`UPDATE ${this.tableName} SET ${stmt} firstName=?, lastName=?, email=?, address=? WHERE id=?`, vals);
 			await this.connection.close();
 			if (!queryResult['changes']) return new DBResponse(DBMessages.NO_RESULTS_FOR_ID);
+			model.phone = phone;
 		} catch (e) {
 			return this.handleError(e);
 		}

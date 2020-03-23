@@ -1,27 +1,26 @@
 import supertest from 'supertest';
 import app from "../Main";
+import ContactModel from "../models/ContactModel";
 import sqlite from "sqlite";
 import path from "path";
-import AddressBookModel from "../models/AddressBookModel";
-import ContactModel from "../models/ContactModel";
 
 const request = supertest.agent(app);
 
 describe('Contact New Suite', () => {
 
-	let generatedID: number = 0;
-
-	const entryToAdd = new ContactModel(
-		"Geoff Schaller",
-		"geoff@geoff.com",
-		"Test Message"
-	);
+	const email = `email@${Math.floor((Math.random() * 1000) + 1)}test.com`;
+	const entryToAdd = new ContactModel("Geoff Schaller", email, "Test Message");
 
 	beforeEach((done) => {
 		entryToAdd.name = "Geoff Schaller";
-		entryToAdd.email = "geoff@geoff.com";
+		entryToAdd.email = email;
 		entryToAdd.message = "Test Message";
 		done();
+	});
+
+	afterAll(async () => {
+		const connection = await sqlite.open(path.resolve("../api/db/testing.sqlite"));
+		await connection.run(`DELETE FROM contacts WHERE email=?`, [email]);
 	});
 
 	test('Missing Name', async (done) => {
@@ -65,7 +64,6 @@ describe('Contact New Suite', () => {
 		expect(parsedResponse.payload.contact.message).toBe(entryToAdd.message);
 		expect(parsedResponse.payload.contact.date).not.toBeNull();
 		expect(parsedResponse.payload.contact.id).not.toBeNull();
-		generatedID = parsedResponse.payload.contact.id;
 		done();
 	});
 

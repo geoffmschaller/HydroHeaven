@@ -13,6 +13,7 @@ import {SpaData} from "../../../data/SpaData";
 import ProductGrid from "../../Inflatables/ProductGrid/ProductGrid";
 import NavigationBar from "../../Inflatables/NavigationBar/NavigationBar";
 import Footer from "../../Inflatables/Footer/Footer";
+import EssentialService from "../../Inflatables/EssentialService/EssentialService";
 
 export default class IndexPage extends React.Component {
 
@@ -21,6 +22,7 @@ export default class IndexPage extends React.Component {
 			<>
 				<NavigationBar/>
 				<MainHeader media={JETS_IMAGE} type={VIDEO_FILE}/>
+				<EssentialService/>
 				<FeaturedCategory/>
 				<div className="widthRestriction">
 					<VerticalSpacer height={100}/>

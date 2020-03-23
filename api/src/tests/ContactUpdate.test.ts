@@ -11,11 +11,8 @@ const request = supertest.agent(app);
 
 describe('Address Book Update Suite', () => {
 
-	const entryToAdd: ContactModel = new ContactModel(
-		"Geoff Schaller",
-		"geoff@geoff.com",
-		"Test message"
-	);
+	const email = `email@${Math.floor((Math.random() * 1000) + 1)}test.com`;
+	const entryToAdd = new ContactModel("Geoff Schaller", email, "Test Message");
 
 	let generatedID: number = 0;
 
@@ -27,11 +24,16 @@ describe('Address Book Update Suite', () => {
 
 	beforeEach((done) => {
 		entryToAdd.name = "Geoff Schaller";
-		entryToAdd.email = "geoff@geoff.com";
+		entryToAdd.email = email;
 		entryToAdd.message = "Test message";
 		entryToAdd.id = generatedID;
 		entryToAdd.date = "";
 		done();
+	});
+
+	afterAll(async () => {
+		const connection = await sqlite.open(path.resolve("../api/db/testing.sqlite"));
+		await connection.run(`DELETE FROM contacts WHERE email=?`, [email]);
 	});
 
 	test('Missing ID', async (done) => {

@@ -39,16 +39,24 @@ class UsersAdapter extends DBAdapter {
 
 	};
 
-	update = async (model: UserModel): Promise<DBResponse> => {
+	update = async (model: UserModel, updatedEmail: string): Promise<DBResponse> => {
 
 		// CONNECT
 		await this.connect();
 		if (!this.connection) return new DBResponse(DBMessages.CONNECTION_FAILURE);
 
+		let vals = [model.firstName, model.lastName, model.id];
+		let stmt = "";
+		if (model.email !== updatedEmail) {
+			vals = [updatedEmail, model.firstName, model.lastName, model.id];
+			stmt = " email=?, ";
+		}
+
 		// RUN QUERY
 		let queryResult: sqlite.Statement;
 		try {
-			queryResult = await this.connection.run(`UPDATE users SET email=?, firstName=?, lastName=? WHERE id=?`, [model.email, model.firstName, model.lastName, model.id]);
+			queryResult = await this.connection.run(`UPDATE users SET ${stmt} firstName=?, lastName=? WHERE id=?`, vals);
+			model.email = updatedEmail;
 			await this.connection.close();
 		} catch (e) {
 			return this.handleError(e);

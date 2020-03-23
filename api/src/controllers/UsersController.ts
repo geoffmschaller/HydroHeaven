@@ -107,8 +107,11 @@ UsersController.post("/update", async (req: Request, res: Response) => {
 	if (!EmailValidator(submittedEmail)) return APIResponse.error(res, "Valid email required.");
 
 	// RETRIEVE ALL USERS
-	const generatedUser: UserModel = new UserModel(submittedEmail, submittedFirstName, submittedLastName, submittedId);
-	const queryResult: DBResponse = await new UsersAdapter().update(generatedUser);
+	const foundId: DBResponse = await new UsersAdapter().find(submittedId);
+	if (foundId.status === DBMessages.NO_RESULTS_FOR_ID) return APIResponse.error(res, "No user by ID");
+
+	const generatedUser: UserModel = new UserModel(foundId.payload.email, submittedFirstName, submittedLastName, submittedId);
+	const queryResult: DBResponse = await new UsersAdapter().update(generatedUser, submittedEmail);
 
 	switch (queryResult.status) {
 		case DBMessages.CONNECTION_FAILURE:
