@@ -1,5 +1,6 @@
 $white: #F8F9F9
 $green: #2ECC71
+$yellow: #F4D03F
 
 button
 	padding: 10px 20px
@@ -25,3 +26,11 @@ button
 
 	&:hover
 		background-color: lighten($green, 10)
+
+.btn-highlight-transparent
+	border: 2px solid $yellow
+	color: $yellow
+	background-color: transparent
+
+	&:hover
+		background-color: rgba(244, 246, 246, .2)

@@ -4,7 +4,7 @@
 			<video :src="require('../../assets/video/spa_jets.mp4')" autoplay loop></video>
 			<div id="text-container">
 				<div id="top-title">Ultimate In</div>
-				<div id="main-title">Massage <br> & Therapy</div>
+				<div id="main-title">Relaxation <br> & Massage Therapy</div>
 				<div id="line-break"/>
 				<div id="main-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias asperiores at beatae consectetur cum, impedit in ipsa
 					molestiae mollitia obcaecati odit provident quia repellendus repudiandae sed sunt tempora, vel.

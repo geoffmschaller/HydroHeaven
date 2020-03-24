@@ -2,6 +2,7 @@
 	<div>
 		<NavigationBar/>
 		<MainHeader/>
+		<router-view/>
 	</div>
 </template>
 

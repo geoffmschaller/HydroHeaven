@@ -1,25 +1,25 @@
 <template>
-	<div class="home">
-		<p>HOME PAGE</p>
-		<HelloWorld msg="Hello There!!!"/>
+	<div>
+		<BlockMenu/>
+		
+		
+		<Spacer setHeight="1000"></Spacer>
 	</div>
 </template>
-
-<style scoped>
-	p {
-		color: red;
-	}
-</style>
 
 <script>
 
 	// @ is an alias to /src
-	import HelloWorld from '@/components/HelloWorld/HelloWorld.vue'
+	import BlockMenu from "../components/BlockMenu/BlockMenu.vue";
+	import Spacer from "../utils/Spacer/Spacer.vue";
+	import WhiteSectionTitle from "../components/SectionTitle/WhiteSectionTitle.vue";
 
 	export default {
 		name: 'Home',
 		components: {
-			HelloWorld
+			BlockMenu,
+			Spacer,
+			WhiteSectionTitle
 		}
 	}
 </script>
