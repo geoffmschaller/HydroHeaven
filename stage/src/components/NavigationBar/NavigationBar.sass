@@ -1,0 +1,102 @@
+$nav-background: #154360
+$nav-highlight: #F5B041
+
+#navigation-bar
+	width: 100%
+	position: relative
+
+	#top-bar
+		padding: 20px 10%
+
+		#main-logo
+			width: 100%
+			max-width: 400px
+
+		#call-block
+			float: right
+			padding-top: 20px
+
+	#nav-bar
+		width: 100%
+		padding: 10px
+		background-color: $nav-background
+		position: relative
+
+		#nav-items
+			width: 100%
+			max-width: 1000px
+			margin: 0 auto
+			color: white
+			flex-direction: row
+			justify-content: space-around
+			text-transform: uppercase
+			display: flex
+
+			.item
+				cursor: pointer
+				border-bottom: 2px solid $nav-background
+				transition: all .2s ease-in-out
+
+				&:hover
+					border-bottom: 2px solid $nav-highlight
+
+	#mobile-menu-toggle
+		padding: 0 20px
+		font-size: 35px
+		color: white
+		display: none
+
+	.mobile-menu
+		width: 0
+		background-color: white
+		border: none
+		height: 100vh
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		z-index: 10000
+		padding: 0
+		transition: all .2s ease-in-out
+		overflow-x: hidden
+
+		#close
+			width: 100%
+			text-align: right
+			font-size: 30px
+			margin-bottom: 30px
+			color: #D5D8DC
+
+		.item
+			width: 100%
+			font-size: 18px
+			margin-bottom: 20px
+
+
+	.open
+		width: 80%
+		max-width: 400px
+		padding: 50px 20px
+		border-right: 5px solid $nav-background
+		overflow: hidden
+
+@media (max-width: 850px)
+	#navigation-bar
+		#top-bar
+			#main-logo
+				width: 100%
+				max-width: 100%
+
+			#call-block
+				width: 100%
+				text-align: center
+
+		#nav-bar
+			#nav-items
+				display: none
+
+		#mobile-menu-toggle
+			display: block
+
+		#mobile-menu
+			display: block

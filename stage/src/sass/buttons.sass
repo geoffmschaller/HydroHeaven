@@ -1,0 +1,27 @@
+$white: #F8F9F9
+$green: #2ECC71
+
+button
+	padding: 10px 20px
+	text-transform: uppercase
+	cursor: pointer
+	font-weight: bold
+	transition: all .2s ease-in-out
+	text-align: center
+
+
+.btn-white-transparent
+	border: 2px solid $white
+	color: $white
+	background-color: transparent
+
+	&:hover
+		background-color: rgba(248, 249, 249, .2)
+
+.btn-success
+	border: none
+	color: $white
+	background-color: $green
+
+	&:hover
+		background-color: lighten($green, 10)
