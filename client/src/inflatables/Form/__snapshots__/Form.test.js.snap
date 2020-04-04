@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Inflatable 1`] = `
+<Form
+  formData={
+    Object {
+      "inputs": Array [
+        Object {
+          "name": "Name",
+          "required": true,
+          "type": "line_input",
+          "validator": "text_validation",
+          "value": "",
+        },
+      ],
+      "mode": "form_ready",
+      "result": null,
+      "url": "/api/customer-contact/",
+    }
+  }
+/>
+`;

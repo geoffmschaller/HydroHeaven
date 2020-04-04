@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Vertical Spacer Inflatable 1`] = `
-<VerticalSpacer
-  height={500}
-/>
-`;

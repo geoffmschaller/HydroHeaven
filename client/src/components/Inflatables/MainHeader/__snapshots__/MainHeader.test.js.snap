@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Main Header Inflatable 1`] = `
-<MainHeader
-  media="swim_spa_display_header.png"
-  type="video_file"
-/>
-`;

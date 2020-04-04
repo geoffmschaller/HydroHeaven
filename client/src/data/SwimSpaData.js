@@ -1,4 +1,3 @@
-import {generateProductId} from "../utils/StringHelpers";
 import {AMERICAN_WHIRLPOOL} from "./BrandsData";
 // IMAGES
 import IMAGE_MX6 from '../static/images/swimSpas/mx6.png';
@@ -18,7 +17,9 @@ import PDF_DM8 from '../static/pdfs/swim-spas/dm8.pdf';
 
 export const SwimSpaData = [
 	{
-		id: generateProductId(AMERICAN_WHIRLPOOL, "MX6"),
+		id: "MX6",
+		name: "MX6",
+		brand: AMERICAN_WHIRLPOOL,
 		description: "The American Whirlpool PowerPool MX6—combine exercise with relaxation in this swim/spa hybrid. The MX6 provides swim, exercise and health benefits without the extra electrical hook up for the hot water side.",
 		seats: 3,
 		jets: 32,
@@ -30,7 +31,9 @@ export const SwimSpaData = [
 		pdf: PDF_MX6
 	},
 	{
-		id: generateProductId(AMERICAN_WHIRLPOOL, "MB4"),
+		id: "MB4",
+		name: "MB4",
+		brand: AMERICAN_WHIRLPOOL,
 		description: "The American Whirlpool PowerPool MB4 models are the perfect choice for families that like to relax and play. The two benches give these models large seating areas that can accommodate up to eight people. M models feature the MAAX Force Jet Propulsion System which offers variable swim speeds & hydrotherapy, and come with Modern Mocha, Resort Gray and Pecan Ridge cabinet options.",
 		seats: 9,
 		jets: 27,
@@ -42,7 +45,9 @@ export const SwimSpaData = [
 		pdf: PDF_MB4_RB4
 	},
 	{
-		id: generateProductId(AMERICAN_WHIRLPOOL, "ML4"),
+		id: "ML4",
+		name: "ML4",
+		brand: AMERICAN_WHIRLPOOL,
 		description: "The American Whirlpool ML4 PowerPool is perfect for those who want variable swim speeds and hydrotherapy. The M models come with 26 jets—19 hydrotherapy, 6 Aurora Cascade and 1 Ozone jet—with the MAAX Force Jet Propulsion system. The PowerPool ML4 model also features the Modern Mocha, Resort Gray or Pecan Ridge cabinet options.",
 		seats: 3,
 		jets: 27,
@@ -54,7 +59,9 @@ export const SwimSpaData = [
 		pdf: PDF_ML4_RL4
 	},
 	{
-		id: generateProductId(AMERICAN_WHIRLPOOL, "RL4"),
+		id: "RL4",
+		name: "RL4",
+		brand: AMERICAN_WHIRLPOOL,
 		description: "The American Whirlpool PowerPool RL4 features a lounge and has a low impact warm water exercise option. The R models come with 30 jets: 19 hydrotherapy, 4 swim jets, 6 Auroroa Cascade and 1 Ozone. Cabinet options include DuraMAAX™ Mocha, Gray and Pecan.",
 		seats: 3,
 		jets: 31,
@@ -66,7 +73,9 @@ export const SwimSpaData = [
 		pdf: PDF_ML4_RL4
 	},
 	{
-		id: generateProductId(AMERICAN_WHIRLPOOL, "RB4"),
+		id: "RB4",
+		name: "RB4",
+		brand: AMERICAN_WHIRLPOOL,
 		description: "The American Whirlpool RB4 PowerPool features a bench on each side—perfect choice for families that like to relax and play. The two benches give these models large seating areas that can accommodate up to eight people. R models have low impact water exercise options and come with 30 jets: 19 hydrotherapy, 4 swim, 6 Aurora Cascade and 1 Ozone jet. Cabinet options include DuraMAAX™ Mocha, Gray and Pecan.",
 		seats: 3,
 		jets: 29,
@@ -78,7 +87,9 @@ export const SwimSpaData = [
 		pdf: PDF_MB4_RB4
 	},
 	{
-		id: generateProductId(AMERICAN_WHIRLPOOL, "DM8"),
+		id: "DM8",
+		name: "DM8",
+		brand: AMERICAN_WHIRLPOOL,
 		description: "Enjoy the best of both worlds with the American Whirlpool PowerPool DM8—a combination swim spa and hot tub. Its two separate operating systems allow you to keep the swim zone at your desired exercise temperature while maintaining your hot tub at a higher temperature for hydrotherapy and stress relief.",
 		seats: 8,
 		jets: 37,
@@ -90,7 +101,9 @@ export const SwimSpaData = [
 		pdf: PDF_DM8
 	},
 	{
-		id: generateProductId(AMERICAN_WHIRLPOOL, "RS2"),
+		id: "RS2",
+		name: "RS2",
+		brand: AMERICAN_WHIRLPOOL,
 		description: "With a total of 81 jets—including 6 Turbo jets, and 6 Turbo Swim jets, balance bar rails and optional PowerResistance exercise kit, a complete full body aquatic workout is always challenging.",
 		seats: 7,
 		jets: 79,

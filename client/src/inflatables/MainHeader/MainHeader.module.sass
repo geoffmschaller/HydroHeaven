@@ -1,0 +1,78 @@
+@import "src/static/sass/config"
+
+#mainHeader
+	width: 100%
+
+	.videoHolder
+		width: 100%
+		margin: 0 auto
+		height: 500px
+		overflow: hidden
+		-webkit-box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.36)
+		-moz-box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.36)
+		box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.36)
+		position: relative
+
+		video
+			width: 100%
+
+		#videoOverlay
+			position: absolute
+			bottom: 25%
+			left: 15%
+			color: white
+
+			#title
+				font-size: 16px
+				text-transform: uppercase
+
+			#largeTitle
+				font-size: 80px
+				text-transform: uppercase
+				font-family: $montserat
+				font-weight: bold
+				line-height: 70px
+
+			#buttonBar
+				width: 100%
+				max-width: 600px
+				margin-top: 15px
+
+				button
+					margin-right: 10px
+
+@media (max-width: 600px)
+	#mainHeader
+		.videoHolder
+			height: 80vh
+
+			video
+				width: auto
+				height: 100vh
+
+			#videoOverlay
+				left: 5%
+
+				#title
+					font-size: 12px
+
+				#largeTitle
+					font-size: 40px
+					line-height: 40px
+
+				#buttonBar
+					button
+						margin-bottom: 10px
+
+@media (min-width: 601px) and (max-width: 1050px)
+	#mainHeader
+		.videoHolder
+			height: 80vh
+
+			video
+				width: auto
+				height: 100vh
+
+			#videoOverlay
+				bottom: 25%
+				left: 5%

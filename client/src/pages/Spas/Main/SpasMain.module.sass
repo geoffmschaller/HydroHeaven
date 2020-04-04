@@ -1,0 +1,170 @@
+@import "src/static/sass/config"
+
+$feature-color: #808B96
+
+.spasMain
+	width: 100%
+	max-width: $max-width
+	margin: 75px auto 0 auto
+
+	.howToShop
+
+		.options
+			display: flex
+			flex-direction: row
+			flex-wrap: wrap
+			justify-content: space-between
+			margin-top: 20px
+
+			a
+				width: 25%
+				padding: 0 10px
+				text-decoration: none
+
+				.item
+					width: 100%
+					text-align: center
+					background-color: $primary
+					padding: 10px 0
+					transform: skew(-45deg)
+					color: white
+					cursor: pointer
+					transition: all .2s ease-in-out
+					text-transform: uppercase
+
+					&:hover
+						color: $highlight
+
+					.text
+						transform: skew(45deg)
+
+	.featuresDocs
+		width: 100%
+		margin: 75px auto 0 auto
+		display: flex
+		flex-direction: row
+		flex-wrap: wrap
+
+		.features
+			width: 30%
+			padding: 5px
+
+			.item
+				width: 100%
+				margin-bottom: 30px
+
+				img
+					width: 100%
+					margin-bottom: 20px
+
+				.title
+					text-transform: uppercase
+
+				.description
+					color: $feature-color
+					font-size: 14px
+
+		.docs
+			width: 70%
+			padding: 0 15px
+
+			.brochures
+				width: 100%
+
+				.items
+					width: 80%
+					margin: 30px auto 0 auto
+					display: flex
+					flex-direction: row
+					flex-wrap: wrap
+
+					button
+						margin: 0 20px
+						border: 2px solid $primary
+						color: $primary
+						background-color: transparent
+
+			.maintenance
+				width: 100%
+				margin-top: 75px
+
+				.imageHolder
+					width: 50%
+					margin: 20px auto
+
+					img
+						width: 100%
+
+
+				p
+					padding: 0 50px
+
+@media (max-width: 600px)
+	.spasMain
+		.howToShop
+			.options
+				a
+					width: 100%
+					margin-bottom: 10px
+
+		.featuresDocs
+			.features
+				width: 100%
+
+			.docs
+				width: 100%
+
+				.brochures
+					.items
+						margin: 0 auto
+						width: 100%
+
+						button
+							margin: 10px auto
+							width: 100%
+
+				.maintenance
+					.imageHolder
+						width: 100%
+
+						img
+							width: 100%
+
+					p
+						padding: 10px
+
+@media (min-width: 601px) and (max-width: 850px)
+	.spasMain
+		.howToShop
+			padding: 20px
+
+			.options
+				a
+					width: 45%
+					margin-bottom: 10px
+
+		.featuresDocs
+			.features
+				width: 100%
+
+			.docs
+				width: 100%
+
+				.brochures
+					.items
+						margin: 0 auto
+						width: 100%
+
+						button
+							margin: 10px auto
+							width: 100%
+
+				.maintenance
+					.imageHolder
+						width: 100%
+
+						img
+							width: 100%
+
+					p
+						padding: 10px
