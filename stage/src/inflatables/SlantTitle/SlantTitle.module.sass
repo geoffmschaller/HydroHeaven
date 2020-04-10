@@ -1,0 +1,56 @@
+@import "src/static/sass/config"
+
+.slantTitle
+	width: 80%
+	text-align: center
+	text-transform: uppercase
+	margin: 30px auto
+	position: relative
+	font-size: 20px
+
+
+	.whiteSlantTitle
+		width: 90%
+		max-width: 500px
+		margin: 0 auto
+		transform: skew(-45deg)
+		background-color: white
+		color: $primary
+		padding: 10px
+
+		.text
+			transform: skew(45deg)
+
+	.whiteBorder
+		width: 100%
+		max-width: $max-width
+		margin: 0 auto
+		height: 1px
+		background-color: white
+		position: absolute
+		top: 50%
+		left: 0
+		right: 0
+
+	.darkSlantTitle
+		width: 90%
+		max-width: 500px
+		margin: 0 auto
+		transform: skew(-45deg)
+		background-color: $primary
+		color: white
+		padding: 10px
+
+		.text
+			transform: skew(45deg)
+
+	.darkBorder
+		width: 100%
+		max-width: $max-width
+		margin: 0 auto
+		height: 1px
+		background-color: $primary
+		position: absolute
+		top: 50%
+		left: 0
+		right: 0

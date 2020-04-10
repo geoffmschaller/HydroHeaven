@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Section Title Inflatable 1`] = `
-<DashboardTitle
-  title="This is the title"
-/>
-`;

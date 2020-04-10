@@ -1,0 +1,57 @@
+@import "src/static/sass/config"
+
+.videoPlayer
+    width: 100%
+    height: 100vh
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: rgba(0, 0, 0, .5)
+    z-index: 1000
+
+    .videoHolder
+        width: 100%
+        max-width: $max-width
+        margin: 5% auto
+        background-color: black
+        padding: 10px
+        postion: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+
+        .close
+            width: 100%
+            padding: 10px
+            font-size: 40px
+            color: $description-color
+            text-align: right
+            position: absolute
+            top: 0
+            right: 0
+            cursor: pointer
+            z-index: 10001
+
+        video
+            width: 100%
+
+@media (max-width: $mobile-portrait-max)
+    .videoPlayer
+        .videoHolder
+            height: 100vh
+            margin: 0
+            padding: 100px 0
+            .close
+                top: 20px
+
+@media (min-width: $mobile-portrait-max) and (max-width: $mobile-landscape-max)
+    .videoPlayer
+        .videoHolder
+            height: 100vh
+            margin: 0
+            padding: 0
+            .close
+                top: 20px

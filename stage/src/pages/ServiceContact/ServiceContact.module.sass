@@ -1,0 +1,97 @@
+@import "src/static/sass/config"
+
+.serviceContact
+	width: 100%
+	margin-top: 50px
+
+	.holder
+		width: 100%
+		max-width: $max-width
+		margin: 0 auto
+		display: flex
+		flex-direction: row
+		flex-wrap: wrap
+
+		.locations
+			width: 35%
+			padding: 50px 10px 0 10px
+
+			.location
+				width: 100%
+				margin-bottom: 50px
+
+				img
+					width: 100%
+					border: 2px solid $primary
+
+				.phone
+					font-size: 14px
+					color: $dark-description
+
+		.contact
+			width: 65%
+
+			.contactForm
+				width: 80%
+				margin: 0 auto
+
+				.description
+					color: $dark-description
+					margin-bottom: 40px
+
+				input, textarea
+					width: 100%
+					padding: 10px
+					margin-bottom: 10px
+
+				textarea
+					height: 100px
+
+				button
+					width: 100%
+					max-width: 200px
+					color: white
+					background-color: #52BE80
+					border: 2px solid #52BE80
+					float: right
+					transition: all .2s ease-in-out
+					margin-bottom: 20px
+
+					&:hover
+						color: #52BE80
+						background-color: white
+
+					i
+						font-size: 20px
+						animation: rotate 1s infinite
+
+				.result
+					text-align: center
+					font-weight: bold
+					text-transform: uppercase
+
+				.success
+					color: #52BE80
+
+				.error
+					color: #EC7063
+
+
+@keyframes rotate
+	0%
+		transform: rotate(0)
+
+	50%
+		transform: rotate(180deg)
+
+	99%
+		transform: rotate(359deg)
+
+
+@media (max-width: $mobile-landscape-max)
+	.serviceContact
+		.holder
+			.locations
+				width: 100%
+			.contact
+				width: 100%
