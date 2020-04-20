@@ -1,15 +1,23 @@
 import express, {Application, Response, Request, NextFunction} from 'express';
 import bodyParser from "body-parser";
-import ContactRouter from "./controllers/ContactController";
-import AddressBookRouter from "./controllers/AddressBookController";
-import AnalyticsController from "./controllers/AnalyticsController";
-import UsersController from "./controllers/UsersController";
-
-const app: Application = express();
+import ContactRouter from "./controllers/contact/ContactController";
+import AuthController from './controllers/auth/AuthController';
 
 require('dotenv').config();
 require('pug');
 
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.DB_URL, {
+	useNewUrlParser: true, 
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+	useCreateIndex: true
+});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+
+const app: Application = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -24,9 +32,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use("/contact", ContactRouter);
-app.use("/address-book", AddressBookRouter);
-app.use("/analytics", AnalyticsController);
-app.use("/users", UsersController);
+app.use("/auth", AuthController);
 
 if (process.env.NODE_ENV != 'test') app.listen(5000);
 

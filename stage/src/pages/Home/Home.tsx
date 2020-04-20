@@ -9,6 +9,7 @@ import {SpaData} from '../../data/SpaData';
 import SpaGridItem from "../../inflatables/SpaGridItem/SpaGridItem";
 import LocationInterface from "../../interfaces/LocationInterface";
 import ServiceInterface from "../../interfaces/ServiceInterface";
+import AwardInterface from '../../interfaces/AwardInterface';
 
 export default class Home extends React.Component {
 
@@ -73,6 +74,15 @@ export default class Home extends React.Component {
 		}
 	];
 
+	awards: Array<AwardInterface> = [
+		{
+			image: require('../../static/images/awards/2017.jpg')
+		},
+		{
+			image: require('../../static/images/awards/2018.jpg')
+		}
+	];
+
 	render() {
 		return (
 			<div className={styles.home}>
@@ -108,10 +118,22 @@ export default class Home extends React.Component {
 					</div>
 				</div>
 
+				{/* AWARDS */}
+				<div className={styles.awards}>
+					<DarkSlantTitle title={"Awards"}/>
+					<div className={styles.awardsHolder}>
+						{
+							this.awards.map((aw, index) => {
+								return <img src={aw.image} alt="" key={index}/>
+							})
+						}
+					</div>
+				</div>
+
+				{/* LOCATIONS AND SERVICES */}
 				<div className={styles.locationsServices}>
 					<DarkSlantTitle title={"Services & Locations"}/>
 					<div className={styles.locationsServicesHolder}>
-						{/* SERVICES */}
 						<div className={styles.services}>
 							{
 								this.services.map((serv, index) => {
@@ -125,7 +147,6 @@ export default class Home extends React.Component {
 								})
 							}
 						</div>
-						{/* LOCATIONS */}
 						<div className={styles.locations}>
 							{
 								this.locations.map((loc, index) => {

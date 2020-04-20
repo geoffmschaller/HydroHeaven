@@ -42,12 +42,12 @@ class ServiceContact extends React.Component {
 	sendContactForm = async () => {
 		await this.setState({sending: true});
 		let results = await SendContactForm(this.state.nameInput, this.state.emailInput, this.state.messageInput);
-		switch (results.data.status) {
+		switch (results.data['status']) {
 			case 500:
 				this.setState({error: true, result: results.data.message});
 				break;
 			default:
-				this.setState({error: false, result: results.data.messagem, nameInput: "", emailInput: "", messageInput: ""});
+				this.setState({error: false, result: results.data.message, nameInput: "", emailInput: "", messageInput: ""});
 		}
 		await this.setState({sending: false});
 	};

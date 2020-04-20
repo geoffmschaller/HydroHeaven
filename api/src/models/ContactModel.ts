@@ -1,22 +1,15 @@
-import DBModel from "./DBModel";
+const mongoose = require('mongoose');
 
-class ContactModel extends DBModel {
+const ContactSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    message: String,
+    date: {
+        type: Date,
+        default: Date.now
+    }
+});
 
-	name: string;
-	email: string;
-	message: string;
-	date?: string;
-	id?: number;
-
-	constructor(name: string, email: string, message: string, id?: number, date?: string) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.message = message;
-		this.date = date;
-		this.id = id;
-	}
-
-}
+const ContactModel = mongoose.model('Contact', ContactSchema);
 
 export default ContactModel;

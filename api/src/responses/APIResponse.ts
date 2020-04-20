@@ -1,12 +1,10 @@
 import {Response} from 'express';
-import Timer from "../utils/Timer";
 
 class APIResponse {
 
 	static error = (res: Response, message: string, payload?: any): Response => {
-		return res.status(500).json({
+		return res.status(200).json({
 			status: 500,
-			time: Timer.dateTime(),
 			message: message,
 			payload: payload
 		});
@@ -15,7 +13,6 @@ class APIResponse {
 	static success = (res: Response, message: string, payload?: any): Response => {
 		return res.status(200).json({
 			status: 200,
-			time: Timer.dateTime(),
 			message: message,
 			payload: payload
 		});

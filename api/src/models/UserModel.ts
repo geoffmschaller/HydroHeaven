@@ -1,26 +1,52 @@
-import DBModel from "./DBModel";
+const mongoose = require('mongoose');
 
-class UserModel extends DBModel {
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    location: {
+        type: String,
+        required: true
+    },
+    authToken: {
+        type: String,
+        default: ""
+    },
+    resetToken: {
+        types: String,
+        default: ""
+    },
+    active: {
+        type: Boolean,
+        default: true,
+        required: true
+    },
+    company: {
+        type: String,
+        default: "Hydro Heaven Spas",
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+        required: true
+    }
+});
 
-	email: string;
-	firstName: string;
-	lastName: string;
-	authToken?: string;
-	resetToken?: string;
-	id?: number;
-	date?: string;
-
-	constructor(email: string, firstName: string, lastName: string, id?: number, authToken?: string, resetToken?: string, date?: string) {
-		super();
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.authToken = authToken;
-		this.resetToken = resetToken;
-		this.id = id;
-		this.date = date;
-	}
-
-}
+const UserModel = mongoose.model('Users', UserSchema);
 
 export default UserModel;
