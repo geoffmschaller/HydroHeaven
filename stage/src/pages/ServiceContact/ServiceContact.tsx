@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, createRef} from 'react';
 import styles from './ServiceContact.module.sass';
 import DarkSlantTitle from "../../inflatables/SlantTitle/DarkSlantTitle";
 import LocationInterface from "../../interfaces/LocationInterface";
@@ -6,9 +6,11 @@ import SendContactForm from "../../api/contactAPICalls";
 
 class ServiceContact extends React.Component {
 
-	componentDidMount(){
-		window.scrollTo(0,0);
+	componentDidMount() {
+		window.scrollTo(0, this.scrollRef.current!.offsetTop - 50)
 	}
+
+	scrollRef = createRef<HTMLDivElement>();
 
 	state = {
 		error: true,
@@ -58,6 +60,7 @@ class ServiceContact extends React.Component {
 
 		return (
 			<div className={styles.serviceContact}>
+				<div ref={this.scrollRef}/>
 				<div className={styles.holder}>
 					{/* LOCATIONS */}
 					<div className={styles.locations}>

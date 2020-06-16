@@ -20,7 +20,7 @@
 		"nodemailer-mailgun-transport": "^1.4.0",
 		"nodemon": "^1.19.4",
 		"pug": "^2.0.4",
-		"sqlite": "^3.0.3",
+		"sqlite": "*",
 		"supertest": "^4.0.2",
 		"ts-jest": "^25.2.1",
 		"ts-node": "^8.6.2",

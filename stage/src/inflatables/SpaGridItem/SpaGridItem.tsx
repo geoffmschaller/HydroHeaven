@@ -6,6 +6,7 @@ import DeliveryDate from "../DeliveryDate/DeliveryDate";
 
 interface SpaGridItemProps {
 	spa: SpaDataInterface
+	click: Function
 }
 
 class SpaGridItem extends React.Component<SpaGridItemProps, {}> {
@@ -18,7 +19,7 @@ class SpaGridItem extends React.Component<SpaGridItemProps, {}> {
 				<div className={styles.name}>{this.props.spa.name}</div>
 				<div className={styles.brand}>By {this.props.spa.brand}</div>
 				<DeliveryDate stocked={this.props.spa.stocked}/>
-				<Link to={"/spas-hot-tubs/view/" + this.props.spa.id}>
+				<Link to={"/spas-hot-tubs/view/" + this.props.spa.id} onClick={() => this.props.click()}>
 					<button>View Details</button>
 				</Link>
 			</div>

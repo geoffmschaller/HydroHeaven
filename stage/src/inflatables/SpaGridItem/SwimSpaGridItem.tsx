@@ -5,7 +5,8 @@ import DeliveryDate from "../DeliveryDate/DeliveryDate";
 import SwimSpaInterface from "../../interfaces/SwimSpaInterface";
 
 interface SpaGridItemProps {
-	spa: SwimSpaInterface
+	spa: SwimSpaInterface,
+	click: Function
 }
 
 class SwimSpaGridItem extends React.Component<SpaGridItemProps, {}> {
@@ -18,7 +19,7 @@ class SwimSpaGridItem extends React.Component<SpaGridItemProps, {}> {
 				<div className={styles.name}>{this.props.spa.name}</div>
 				<div className={styles.brand}>By {this.props.spa.brand}</div>
 				<DeliveryDate stocked={this.props.spa.stocked}/>
-				<Link to={"/swim-spas/view/" + this.props.spa.id}>
+				<Link to={"/swim-spas/view/" + this.props.spa.id} onClick={() => this.props.click()}>
 					<button>View Details</button>
 				</Link>
 			</div>

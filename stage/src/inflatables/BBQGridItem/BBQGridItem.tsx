@@ -4,7 +4,8 @@ import {Link} from "react-router-dom";
 import BBQDataInterface from '../../interfaces/BBQDataInterface';
 
 interface BBQGridItemProps {
-	bbq: BBQDataInterface
+	bbq: BBQDataInterface,
+	click: Function
 }
 
 class BBQGridItem extends React.Component<BBQGridItemProps, {}> {
@@ -16,7 +17,7 @@ class BBQGridItem extends React.Component<BBQGridItemProps, {}> {
 				<img src={this.props.bbq.image} alt=""/>
 				<div className={styles.name}>{this.props.bbq.name}</div>
 				<div className={styles.brand}>By {this.props.bbq.brand}</div>
-				<Link to={"/bbqs-islands/view/" + this.props.bbq.id}>
+				<Link to={"/bbqs-islands/view/" + this.props.bbq.id} onClick={() => this.props.click()}>
 					<button>View Details</button>
 				</Link>
 			</div>

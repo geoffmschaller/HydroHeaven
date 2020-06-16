@@ -1,4 +1,4 @@
-import React from "react";
+import React, {createRef} from "react";
 import styles from './SpasHotTubsMain.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
 import DarkHollowButton from "../../../inflatables/HollowButton/DarkHollowButton";
@@ -10,9 +10,11 @@ import BrochuresInterface from "../../../interfaces/BrochuresInterface";
 
 class SpasHotTubsMain extends React.Component {
 
-	componentDidMount(){
-		window.scrollTo(0,0);
+	componentDidMount() {
+		window.scrollTo(0, this.scrollRef.current!.offsetTop - 50);
 	}
+
+	scrollRef = createRef<HTMLDivElement>();
 
 	shopBy: Array<ShopByInterface> = [
 		{
@@ -71,7 +73,7 @@ class SpasHotTubsMain extends React.Component {
 	render() {
 		return (
 			<div className={styles.spasHotTubsMain}>
-
+				<div ref={this.scrollRef}/>
 				{/* HOW TO SHOP */}
 				<div className={styles.howToShop}>
 					<WhiteSlantTitle title={"How do you like to spa shop?"}/>

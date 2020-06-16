@@ -31,7 +31,7 @@ export const SwimSpaData: Array<SwimSpaInterface> = [
 		height: 50,
 		image: require('../static/images/swimSpas/mb4.png'),
 		pdf: require('../static/pdfs/swim-spas/rb4-mb4.pdf'),
-		stocked: false
+		stocked: true
 	},
 	{
 		id: "ML4",

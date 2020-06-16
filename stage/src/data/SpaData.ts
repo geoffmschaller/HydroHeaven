@@ -18,7 +18,7 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 34,
 		image: require("../static/images/spas/100.png"),
 		pdf: require("../static/pdfs/spas/100-151.pdf"),
-		stocked: true
+		stocked: false
 	},
 	{
 		id: "151",
@@ -35,7 +35,7 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 30,
 		image: require("../static/images/spas/151.png"),
 		pdf: require("../static/pdfs/spas/100-151.pdf"),
-		stocked: true
+		stocked: false
 	},
 	{
 		id: "160",
@@ -52,7 +52,7 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 35,
 		image: require("../static/images/spas/160.png"),
 		pdf: require("../static/pdfs/spas/160-171.pdf"),
-		stocked: true
+		stocked: false
 	},
 	{
 		id: "171",
@@ -468,7 +468,7 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 37,
 		image: require("../static/images/spas/elegant.png"),
 		pdf: require("../static/pdfs/spas/elegant.pdf"),
-		stocked: true
+		stocked: false
 	},
 	{
 		id: "envie",
@@ -553,7 +553,7 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 32,
 		image: require("../static/images/spas/joli.png"),
 		pdf: require("../static/pdfs/spas/joli.pdf"),
-		stocked: true
+		stocked: false
 	},
 	{
 		id: "lune",
@@ -656,7 +656,7 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/prestige.png"),
 		pdf: require("../static/pdfs/spas/prestige.pdf"),
-		stocked: true
+		stocked: false
 	},
 	{
 		id: "rendezvous",

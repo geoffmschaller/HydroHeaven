@@ -1,29 +1,36 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import styles from './SwimSpasDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
-import {SwimSpaData} from "../../../data/SwimSpaData";
 import {RouteComponentProps} from "react-router";
 import DeliveryDate from "../../../inflatables/DeliveryDate/DeliveryDate";
 import {AcrylicData} from "../../../data/AcrylicData";
 import {CabinetData} from "../../../data/CabinetData";
 import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton';
-import SwimSpaInterface from '../../../interfaces/SwimSpaInterface';
 import SwimSpaGridItem from '../../../inflatables/SpaGridItem/SwimSpaGridItem';
+import {SwimSpaData} from "../../../data/SwimSpaData";
+import SwimSpaInterface from "../../../interfaces/SwimSpaInterface";
 
 const AMERICAN_WHIRLPOOL_BROCHURE = require('../../../static/pdfs/brochures/AmericanWhirlpoolBrochure.pdf');
 
-class SwimSpasDetails extends React.Component<RouteComponentProps, any> {
+
+class SwimSpasDetails extends React.PureComponent<RouteComponentProps, any> {
+
+	scrollRef = createRef<HTMLDivElement>();
 
 	state = {
-		spa: SwimSpaData[0],
-		cabinetLabel: "Cabinet Colors:",
-		acrylicLabel: "Acrylic Colors:"
+		swimSpa: SwimSpaData[0],
+		cabinetLabel: "",
+		acrylicLabel: ""
 	};
 
 	componentDidMount(): void {
-		window.scrollTo(0,0);
 		let id = this.props.match.url.replace("/swim-spas/view/", "");
-		this.setState({spa: SwimSpaData.filter((spa) => spa.id === id)[0]})
+		this.getSpaData(id);
+	}
+
+	getSpaData = (newId: string) => {
+		this.setState({swimSpa: SwimSpaData.filter((spa) => spa.id === newId)[0]});
+		window.scrollTo(0, this.scrollRef.current!.offsetTop - 50)
 	}
 
 	setCabinetColor = (name: string) => {
@@ -39,21 +46,22 @@ class SwimSpasDetails extends React.Component<RouteComponentProps, any> {
 	render() {
 		return (
 			<div className={styles.spasHotTubsDetails}>
-				<DarkSlantTitle title={this.state.spa.brand + " - " + this.state.spa.name}/>
+				<div ref={this.scrollRef}/>
+				<DarkSlantTitle title={this.state.swimSpa.brand + " - " + this.state.swimSpa.name}/>
 				<div className={styles.spaData}>
 					<div className={styles.imageHolder}>
-						<img src={this.state.spa.image} alt=""/>
+						<img src={this.state.swimSpa.image} alt=""/>
 					</div>
 					<div className={styles.dataHolder}>
 						<div className={styles.availability}>
-							<DeliveryDate stocked={this.state.spa.stocked}/>
+							<DeliveryDate stocked={this.state.swimSpa.stocked}/>
 						</div>
-						<div className={styles.description}>{this.state.spa.description}</div>
+						<div className={styles.description}>{this.state.swimSpa.description}</div>
 						<div className={styles.stats}>
-							<div className={styles.stat}>{this.state.spa.seats} Seats</div>
-							<div className={styles.stat}>{this.state.spa.gallons} Gallons</div>
-							<div className={styles.stat}>{this.state.spa.jets} Jets</div>
-							<div className={styles.stat}>{this.state.spa.length}" x {this.state.spa.width}" x {this.state.spa.height}"</div>
+							<div className={styles.stat}>{this.state.swimSpa.seats} Seats</div>
+							<div className={styles.stat}>{this.state.swimSpa.gallons} Gallons</div>
+							<div className={styles.stat}>{this.state.swimSpa.jets} Jets</div>
+							<div className={styles.stat}>{this.state.swimSpa.length}" x {this.state.swimSpa.width}" x {this.state.swimSpa.height}"</div>
 						</div>
 						<div className={styles.colors}>
 							<div className={styles.acrylic} onMouseLeave={() => this.setAcrylicColor("")}>
@@ -68,7 +76,7 @@ class SwimSpasDetails extends React.Component<RouteComponentProps, any> {
 								</div>
 							</div>
 							<div className={styles.cabinet} onMouseLeave={() => this.setCabinetColor("")}>
-							<div className={styles.colorTitle}>Cabinet Choices: {this.state.cabinetLabel}</div>
+								<div className={styles.colorTitle}>Cabinet Choices: {this.state.cabinetLabel}</div>
 								<div className={styles.itemHolder}>
 									{
 										CabinetData.map((cab, index) => {
@@ -82,7 +90,7 @@ class SwimSpasDetails extends React.Component<RouteComponentProps, any> {
 						<div className={styles.docs}>
 							<div className={styles.docTitle}>Spa Documents</div>
 							<div className={styles.docHolder}>
-								<DarkHollowButton title={this.state.spa.name + " Spec Sheet"} width={50} link={this.state.spa.pdf} external/>
+								<DarkHollowButton title={this.state.swimSpa.name + " Spec Sheet"} width={50} link={this.state.swimSpa.pdf} external/>
 								<DarkHollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE} external/>
 							</div>
 						</div>
@@ -93,15 +101,14 @@ class SwimSpasDetails extends React.Component<RouteComponentProps, any> {
 					<div className={styles.gridHolder}>
 						{
 							this.alsoViewed.map((spa, index) => {
-								return <SwimSpaGridItem spa={spa} key={index}/>
+								return <SwimSpaGridItem spa={spa} key={index} click={() => this.getSpaData(spa.id)}/>
 							})
 						}
 					</div>
 				</div>
 			</div>
-		);
+		)
 	}
-
 }
 
 export default SwimSpasDetails;

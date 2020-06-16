@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import styles from './BBQIslandsDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
 import {RouteComponentProps} from "react-router";
@@ -17,10 +17,18 @@ class BBQIslandsGrid extends React.Component<RouteComponentProps, any> {
 		tileLabel: ""
 	};
 
+	scrollRef = createRef<HTMLDivElement>();
+
 	componentDidMount(): void {
-		window.scrollTo(0,0);
 		let id = this.props.match.url.replace("/bbqs-islands/view/", "");
-		this.setState({bbq: BBQData.filter((bbq) => bbq.id === id)[0]})
+		this.getBBQData(id);
+	}
+
+	getBBQData = async (id: string) => {
+		let s = {...this.state};
+		s.bbq = BBQData.filter((bbq) => bbq.id === id)[0];
+		window.scrollTo(0, this.scrollRef.current!.offsetTop - 50);
+		await this.setState(s);
 	}
 
 	setStuccoColor = (name: string) => {
@@ -36,11 +44,14 @@ class BBQIslandsGrid extends React.Component<RouteComponentProps, any> {
 	render() {
 		return (
 			<div className={styles.bbqIslandsDetails}>
+				<div ref={this.scrollRef}/>
 				<DarkSlantTitle title={this.state.bbq.brand + " - " + this.state.bbq.name}/>
 				<div className={styles.bbqData}>
 					<div className={styles.imageHolder}>
 						<img src={this.state.bbq.image} alt=""/>
-                        <div className={styles.disclaimer}>* Island pictured above may be shown with additional upgrades. Please review Spec Sheet (standard features) before ordering.</div>
+						<div className={styles.disclaimer}>* Island pictured above may be shown with additional upgrades. Please review Spec Sheet (standard features) before
+							ordering.
+						</div>
 					</div>
 					<div className={styles.dataHolder}>
 						<div className={styles.description}>{this.state.bbq.description}</div>
@@ -57,7 +68,7 @@ class BBQIslandsGrid extends React.Component<RouteComponentProps, any> {
 								</div>
 							</div>
 							<div className={styles.stucco} onMouseLeave={() => this.setStuccoColor("")}>
-							<div className={styles.colorTitle}>Stucco Choices: {this.state.stuccoLabel}</div>
+								<div className={styles.colorTitle}>Stucco Choices: {this.state.stuccoLabel}</div>
 								<div className={styles.itemHolder}>
 									{
 										StuccoData.map((stuc, index) => {
@@ -81,7 +92,7 @@ class BBQIslandsGrid extends React.Component<RouteComponentProps, any> {
 					<div className={styles.gridHolder}>
 						{
 							this.alsoViewed.map((bbq, index) => {
-								return <BBQGridItem bbq={bbq} key={index}/>
+								return <BBQGridItem bbq={bbq} key={index} click={() => this.getBBQData(bbq.id)}/>
 							})
 						}
 					</div>

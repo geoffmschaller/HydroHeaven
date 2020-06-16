@@ -13,10 +13,8 @@ import AwardInterface from '../../interfaces/AwardInterface';
 
 export default class Home extends React.Component {
 
-
-
-	componentDidMount(){
-		window.scrollTo(0,0);
+	componentDidMount() {
+		window.scrollTo(0, 0);
 	}
 
 	featuredCategories: Array<FeaturedCategory> = [
@@ -112,7 +110,8 @@ export default class Home extends React.Component {
 					<div className={styles.itemList}>
 						{
 							this.featuredSpas.map((spa, index) => {
-								return <SpaGridItem spa={spa} key={index}/>
+								return <SpaGridItem spa={spa} key={index} click={() => {
+								}}/>
 							})
 						}
 					</div>
