@@ -4,7 +4,6 @@ import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
 import {SpaData} from "../../../data/SpaData";
 import {RouteComponentProps} from "react-router";
 import DeliveryDate from "../../../inflatables/DeliveryDate/DeliveryDate";
-import {AcrylicData} from "../../../data/AcrylicData";
 import {CabinetData} from "../../../data/CabinetData";
 import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton';
 import {AMERICAN_WHIRLPOOL} from '../../../data/BrandsData';
@@ -78,7 +77,7 @@ class SpasHotTubsDetails extends React.Component<RouteComponentProps, any> {
 								<div className={styles.colorTitle}>Acrylic Choices: {this.state.acrylicLabel}</div>
 								<div className={styles.itemHolder}>
 									{
-										AcrylicData.map((acr, index) => {
+										this.state.spa.acrylic.map((acr, index) => {
 											return <img className={styles.item} src={acr.image} key={index}
 											            onMouseEnter={() => this.setAcrylicColor(acr.name)} alt=""/>
 										})

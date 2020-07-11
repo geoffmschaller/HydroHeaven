@@ -74,10 +74,13 @@ export default class Home extends React.Component {
 
 	awards: Array<AwardInterface> = [
 		{
-			image: require('../../static/images/awards/2017.jpg')
+			image: require('../../static/images/awards/2019.jpg')
 		},
 		{
 			image: require('../../static/images/awards/2018.jpg')
+		},
+		{
+			image: require('../../static/images/awards/2017.jpg')
 		}
 	];
 

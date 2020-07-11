@@ -1,21 +1,32 @@
 import React from 'react';
 import styles from './DeliveryDate.module.sass';
-import Timer from "../../utils/Timer";
 
 interface DeliveryDateProps {
-	stocked: boolean
+	stocked: "SLO" | "AG" | "BOTH" | false
 }
 
-const DeliveryDate = (props: DeliveryDateProps) => {
+class DeliveryDate extends React.Component<DeliveryDateProps, any> {
 
-	return (
-		<div className={styles.availability}>
-			{
-				props.stocked ? <div>Delivery Available: {new Timer().getDeliveryDate()}</div> : null
-			}
-		</div>
-	);
+	render() {
 
-};
+		let result: JSX.Element = <div/>;
+		switch (this.props.stocked) {
+			case "SLO":
+				result = <div>View in SLO Location!</div>
+				break;
+			case "AG":
+				result = <div>View in AG Location!</div>
+				break;
+		}
+
+		return (
+			//props.stocked ? <div>Delivery Available: {new Timer().getDeliveryDate()}</div> : null
+			<div className={styles.availability}>
+				{result}
+			</div>
+		);
+	}
+
+}
 
 export default DeliveryDate;

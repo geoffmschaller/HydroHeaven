@@ -1,3 +1,5 @@
+import AcrylicDataInterface from "./AcrylicDataInterface";
+
 interface SwimSpaInterface {
 	id: string,
 	name: string,
@@ -11,7 +13,8 @@ interface SwimSpaInterface {
 	height: number,
 	image: string,
 	pdf: string,
-	stocked: boolean
+	stocked: "SLO" | "AG" | "BOTH" | false,
+	acrylic: AcrylicDataInterface[]
 }
 
 export default SwimSpaInterface;

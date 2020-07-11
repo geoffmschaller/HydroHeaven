@@ -3,7 +3,6 @@ import styles from './SwimSpasDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
 import {RouteComponentProps} from "react-router";
 import DeliveryDate from "../../../inflatables/DeliveryDate/DeliveryDate";
-import {AcrylicData} from "../../../data/AcrylicData";
 import {CabinetData} from "../../../data/CabinetData";
 import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton';
 import SwimSpaGridItem from '../../../inflatables/SpaGridItem/SwimSpaGridItem';
@@ -68,7 +67,7 @@ class SwimSpasDetails extends React.PureComponent<RouteComponentProps, any> {
 								<div className={styles.colorTitle}>Acrylic Choices: {this.state.acrylicLabel}</div>
 								<div className={styles.itemHolder}>
 									{
-										AcrylicData.map((acr, index) => {
+										this.state.swimSpa.acrylic.map((acr, index) => {
 											return <img className={styles.item} src={acr.image} key={index}
 											            onMouseEnter={() => this.setAcrylicColor(acr.name)} alt=""/>
 										})

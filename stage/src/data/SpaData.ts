@@ -1,5 +1,7 @@
 import {AMERICAN_WHIRLPOOL, VITA_SPAS} from "./BrandsData";
 import SpaDataInterface from "../interfaces/SpaDataInterface";
+import {AcrylicData} from './AcrylicData';
+
 
 export const SpaData: Array<SpaDataInterface> = [
 	{
@@ -18,7 +20,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 34,
 		image: require("../static/images/spas/100.png"),
 		pdf: require("../static/pdfs/spas/100-151.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "151",
@@ -35,7 +38,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 30,
 		image: require("../static/images/spas/151.png"),
 		pdf: require("../static/pdfs/spas/100-151.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "160",
@@ -52,7 +56,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 35,
 		image: require("../static/images/spas/160.png"),
 		pdf: require("../static/pdfs/spas/160-171.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "171",
@@ -70,7 +75,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 35,
 		image: require("../static/images/spas/171.png"),
 		pdf: require("../static/pdfs/spas/160-171.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "250",
@@ -87,7 +93,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 33,
 		image: require("../static/images/spas/250.png"),
 		pdf: require("../static/pdfs/spas/250-261.pdf"),
-		stocked: true
+		stocked: "SLO",
+		acrylic: AcrylicData
 	},
 	{
 		id: "261",
@@ -104,7 +111,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 33,
 		image: require("../static/images/spas/261.png"),
 		pdf: require("../static/pdfs/spas/250-261.pdf"),
-		stocked: true
+		stocked: "AG",
+		acrylic: AcrylicData
 	},
 	{
 		id: "270",
@@ -121,7 +129,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 36,
 		image: require("../static/images/spas/270.png"),
 		pdf: require("../static/pdfs/spas/270-271.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "271",
@@ -138,7 +147,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 36,
 		image: require("../static/images/spas/271.png"),
 		pdf: require("../static/pdfs/spas/270-271.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "280",
@@ -155,7 +165,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 36,
 		image: require("../static/images/spas/280.png"),
 		pdf: require("../static/pdfs/spas/280.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "281",
@@ -172,7 +183,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 36,
 		image: require("../static/images/spas/281.png"),
 		pdf: require("../static/pdfs/spas/281-282.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "282",
@@ -189,7 +201,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 36,
 		image: require("../static/images/spas/282.png"),
 		pdf: require("../static/pdfs/spas/281-282.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "451",
@@ -206,7 +219,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 31,
 		image: require("../static/images/spas/451.png"),
 		pdf: require("../static/pdfs/spas/451.pdf"),
-		stocked: true
+		stocked: "AG",
+		acrylic: AcrylicData
 	},
 	{
 		id: "460",
@@ -223,7 +237,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 35,
 		image: require("../static/images/spas/460.png"),
 		pdf: require("../static/pdfs/spas/460.pdf"),
-		stocked: true
+		stocked: "AG",
+		acrylic: AcrylicData
 	},
 	{
 		id: "461",
@@ -240,7 +255,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 35,
 		image: require("../static/images/spas/461.png"),
 		pdf: require("../static/pdfs/spas/461.pdf"),
-		stocked: true
+		stocked: "SLO",
+		acrylic: AcrylicData
 	},
 	{
 		id: "470",
@@ -258,7 +274,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 35,
 		image: require("../static/images/spas/470.png"),
 		pdf: require("../static/pdfs/spas/470.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "471",
@@ -276,7 +293,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 35,
 		image: require("../static/images/spas/471.png"),
 		pdf: require("../static/pdfs/spas/471.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "472",
@@ -293,7 +311,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 35,
 		image: require("../static/images/spas/472.png"),
 		pdf: require("../static/pdfs/spas/472.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "480",
@@ -311,7 +330,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/480.png"),
 		pdf: require("../static/pdfs/spas/480.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "481",
@@ -329,7 +349,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/481.png"),
 		pdf: require("../static/pdfs/spas/481.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "881",
@@ -347,7 +368,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/881.png"),
 		pdf: require("../static/pdfs/spas/881.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "890",
@@ -365,7 +387,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/890.png"),
 		pdf: require("../static/pdfs/spas/890.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "982",
@@ -383,7 +406,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/982.png"),
 		pdf: require("../static/pdfs/spas/982.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "amour",
@@ -400,7 +424,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 30,
 		image: require("../static/images/spas/amour.png"),
 		pdf: require("../static/pdfs/spas/amour.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "cabaret",
@@ -417,24 +442,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/cabaret.png"),
 		pdf: require("../static/pdfs/spas/cabaret.pdf"),
-		stocked: false
-	},
-	{
-		id: "chateau",
-		name: "Chateau",
-		brand: VITA_SPAS,
-		price: 10495,
-		reviews: [],
-		description: "Our most popular model. Vita’s Chateau creates a soothing and tranquil setting for you to escape to. But it’s not just for one—you should invite your friends!",
-		seats: 6,
-		jets: 49,
-		gallons: 339,
-		length: 83,
-		width: 83,
-		height: 38,
-		image: require("../static/images/spas/chateau.png"),
-		pdf: require("../static/pdfs/spas/chateau.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "duet",
@@ -451,7 +460,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 30,
 		image: require("../static/images/spas/duet.png"),
 		pdf: require("../static/pdfs/spas/duet.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "elegant",
@@ -468,7 +478,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 37,
 		image: require("../static/images/spas/elegant.png"),
 		pdf: require("../static/pdfs/spas/elegant.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "envie",
@@ -485,7 +496,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/envie.png"),
 		pdf: require("../static/pdfs/spas/envie.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "grand",
@@ -502,7 +514,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/grand.png"),
 		pdf: require("../static/pdfs/spas/grand.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "image",
@@ -519,7 +532,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 32,
 		image: require("../static/images/spas/image.png"),
 		pdf: require("../static/pdfs/spas/image.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "intrigue",
@@ -536,7 +550,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 37,
 		image: require("../static/images/spas/intrigue.png"),
 		pdf: require("../static/pdfs/spas/intrigue.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "joli",
@@ -553,7 +568,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 32,
 		image: require("../static/images/spas/joli.png"),
 		pdf: require("../static/pdfs/spas/joli.pdf"),
-		stocked: false
+		stocked: "SLO",
+		acrylic: AcrylicData
 	},
 	{
 		id: "lune",
@@ -570,7 +586,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 36,
 		image: require("../static/images/spas/lune.png"),
 		pdf: require("../static/pdfs/spas/lune.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "luxe",
@@ -587,7 +604,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/luxe.png"),
 		pdf: require("../static/pdfs/spas/luxe.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "monarque",
@@ -604,7 +622,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/monarque.png"),
 		pdf: require("../static/pdfs/spas/monarque.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "mystique",
@@ -622,24 +641,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/mystique.png"),
 		pdf: require("../static/pdfs/spas/mystique.pdf"),
-		stocked: false
-	},
-	{
-		id: "nuage",
-		name: "Nuage",
-		brand: VITA_SPAS,
-		price: 10495,
-		reviews: [],
-		description: "The Nuage gives you a reason to stay home. Offering barrier free seating for up to 7, the Nuage’s high powered therapy pumps deliver a full-action, deep muscle massage.",
-		seats: 7,
-		jets: 50,
-		gallons: 354,
-		length: 83,
-		width: 83,
-		height: 38,
-		image: require("../static/images/spas/nuage.png"),
-		pdf: require("../static/pdfs/spas/nuage.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "prestige",
@@ -656,7 +659,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/prestige.png"),
 		pdf: require("../static/pdfs/spas/prestige.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "rendezvous",
@@ -674,7 +678,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 38,
 		image: require("../static/images/spas/rendezvous.png"),
 		pdf: require("../static/pdfs/spas/rendezvous.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "trio",
@@ -691,7 +696,8 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 31,
 		image: require("../static/images/spas/trio.png"),
 		pdf: require("../static/pdfs/spas/trio.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	},
 	{
 		id: "vouex",
@@ -708,6 +714,7 @@ export const SpaData: Array<SpaDataInterface> = [
 		height: 34,
 		image: require("../static/images/spas/voeux.png"),
 		pdf: require("../static/pdfs/spas/voeux.pdf"),
-		stocked: false
+		stocked: false,
+		acrylic: AcrylicData
 	}
 ];

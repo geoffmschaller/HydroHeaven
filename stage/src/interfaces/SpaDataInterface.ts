@@ -1,4 +1,5 @@
 import SpaReview from "./SpaReview";
+import AcrylicDataInterface from "./AcrylicDataInterface";
 
 interface SpaDataInterface {
 	id: string,
@@ -15,7 +16,8 @@ interface SpaDataInterface {
 	height: number,
 	image: string,
 	pdf: string,
-	stocked: boolean
+	stocked: "SLO" | "AG" | "BOTH" | false,
+	acrylic: AcrylicDataInterface[]
 }
 
 export default SpaDataInterface;

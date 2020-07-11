@@ -1,6 +1,6 @@
 import {AMERICAN_WHIRLPOOL} from "./BrandsData";
 import SwimSpaInterface from "../interfaces/SwimSpaInterface";
-
+import {AcrylicData} from "./AcrylicData";
 
 export const SwimSpaData: Array<SwimSpaInterface> = [
 	{
@@ -16,7 +16,8 @@ export const SwimSpaData: Array<SwimSpaInterface> = [
 		height: 61,
 		image: require('../static/images/swimSpas/mx6.png'),
 		pdf: require('../static/pdfs/swim-spas/mx6.pdf'),
-		stocked: false
+		stocked: false,
+		acrylic: [AcrylicData[5]]
 	},
 	{
 		id: "MB4",
@@ -31,7 +32,8 @@ export const SwimSpaData: Array<SwimSpaInterface> = [
 		height: 50,
 		image: require('../static/images/swimSpas/mb4.png'),
 		pdf: require('../static/pdfs/swim-spas/rb4-mb4.pdf'),
-		stocked: true
+		stocked: "AG",
+		acrylic: [AcrylicData[5]]
 	},
 	{
 		id: "ML4",
@@ -46,7 +48,8 @@ export const SwimSpaData: Array<SwimSpaInterface> = [
 		height: 50,
 		image: require('../static/images/swimSpas/ml4.png'),
 		pdf: require('../static/pdfs/swim-spas/rl4-ml4.pdf'),
-		stocked: false
+		stocked: false,
+		acrylic: [AcrylicData[5]]
 	},
 	{
 		id: "RL4",
@@ -61,7 +64,8 @@ export const SwimSpaData: Array<SwimSpaInterface> = [
 		height: 50,
 		image: require('../static/images/swimSpas/rl4.png'),
 		pdf: require('../static/pdfs/swim-spas/rl4-ml4.pdf'),
-		stocked: false
+		stocked: false,
+		acrylic: [AcrylicData[5]]
 	},
 	{
 		id: "RB4",
@@ -76,7 +80,8 @@ export const SwimSpaData: Array<SwimSpaInterface> = [
 		height: 50,
 		image: require('../static/images/swimSpas/rb4.png'),
 		pdf: require('../static/pdfs/swim-spas/rb4-mb4.pdf'),
-		stocked: false
+		stocked: false,
+		acrylic: [AcrylicData[5]]
 	},
 	{
 		id: "DM8",
@@ -91,7 +96,8 @@ export const SwimSpaData: Array<SwimSpaInterface> = [
 		height: 34,
 		image: require('../static/images/swimSpas/dm8.png'),
 		pdf: require('../static/pdfs/swim-spas/dm8.pdf'),
-		stocked: false
+		stocked: false,
+		acrylic: [AcrylicData[5]]
 	},
 	{
 		id: "RS2",
@@ -106,6 +112,7 @@ export const SwimSpaData: Array<SwimSpaInterface> = [
 		height: 50,
 		image: require('../static/images/swimSpas/rs2.png'),
 		pdf: require('../static/pdfs/swim-spas/rs2.pdf'),
-		stocked: false
+		stocked: false,
+		acrylic: [AcrylicData[5]]
 	}
 ];
