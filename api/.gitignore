@@ -94,3 +94,5 @@ db/*
 .vscode/settings.json
 
 dist/*
+
+.env

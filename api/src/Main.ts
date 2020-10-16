@@ -7,7 +7,7 @@ require('pug');
 
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DB_URL, {
+mongoose.connect(process.env.MONGO_DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
