@@ -44,13 +44,16 @@ class ServiceContact extends React.Component {
 	sendContactForm = async () => {
 		await this.setState({sending: true});
 		let results = await SendContactForm(this.state.nameInput, this.state.emailInput, this.state.messageInput);
-		switch (results.data['status']) {
-			case 500:
-				this.setState({error: true, result: results.data.message});
-				break;
-			default:
-				this.setState({error: false, result: results.data.message, nameInput: "", emailInput: "", messageInput: ""});
-		}
+		if (results.data.errors.length > 0)
+			this.setState({error: true, result: results.data.message});
+		else
+			this.setState({
+				error: false,
+				result: results.data.message,
+				nameInput: "",
+				emailInput: "",
+				messageInput: ""
+			});
 		await this.setState({sending: false});
 	};
 
@@ -78,7 +81,8 @@ class ServiceContact extends React.Component {
 						<DarkSlantTitle title={"Contact Us"}/>
 						<div className={styles.contactForm}>
 							<div className={styles.description}>
-								Please feel free to send us a message below, we'd love to hear from you. If this is urgent please call one of our locations so
+								Please feel free to send us a message below, we'd love to hear from you. If this is
+								urgent please call one of our locations so
 								that a team member can help you directly.
 							</div>
 							<input name="nameInput" type="text" placeholder={"Full Name"} value={this.state.nameInput}
