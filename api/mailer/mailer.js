@@ -20,7 +20,6 @@ const mailer = async (inputs) => {
 			template: inputs.template
 		});
 	} catch (e) {
-		console.log(e);
 		return 500;
 	}
 	return 200;
