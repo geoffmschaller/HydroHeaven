@@ -2,6 +2,7 @@ const express = require('express');
 const mailer = require('../mailer/mailer');
 const sanitizer = require('../sanitizer/sanitizer');
 const validator = require('../validators/contactValidator');
+const contactModel = require('../models/contactModel');
 
 const router = express.Router();
 
@@ -17,6 +18,9 @@ router.post('/new', async (req, res) => {
 		email: sanitizer(req.body.email),
 		message: sanitizer(req.body.message)
 	};
+
+	// SEND TO DB
+	new contactModel({...cleanedInputs}).save();
 
 	// SEND EMAILS
 	const ClientContactPayload = {
