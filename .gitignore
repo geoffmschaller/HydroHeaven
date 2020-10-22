@@ -1,11 +1,8 @@
-api/node_modules
 .idea/*
-.idea\*
 .idea/codeStyles/codeStyleConfig.xml
 .idea/HydroHeaven.iml
 .idea/jsLibraryMappings.xml
-api/.env
 .idea/codeStyles/codeStyleConfig.xml
 .idea/HydroHeaven.iml
 .idea/jsLibraryMappings.xml
-api/.env
+.vscode/*
