@@ -44,7 +44,7 @@ class ServiceContact extends React.Component {
 	sendContactForm = async () => {
 		await this.setState({sending: true});
 		let results = await SendContactForm(this.state.nameInput, this.state.emailInput, this.state.messageInput);
-		if (results.data.errors.length > 0)
+		if (results.data.status_code === 500)
 			this.setState({error: true, result: results.data.message});
 		else
 			this.setState({

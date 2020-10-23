@@ -3,6 +3,7 @@ const mailer = require('../mailer/mailer');
 const sanitizer = require('../sanitizer/sanitizer');
 const validator = require('../validators/contactValidator');
 const contactModel = require('../models/contactModel');
+const apiResponse = require('../responses/apiResponse');
 
 const router = express.Router();
 
@@ -10,7 +11,14 @@ router.post('/new', async (req, res) => {
 
 	// VALIDATE INPUT
 	const valid_result = await validator(req.body);
-	if (valid_result !== 200) return res.json(valid_result);
+	console.log(valid_result);
+	if (valid_result !== 200) return apiResponse(res, {
+		name: "Validation Error",
+		status_code: 500,
+		values: valid_result.value,
+		errors: valid_result.errors,
+		message: valid_result.message
+	});
 
 	// SANITIZE
 	const cleanedInputs = {
@@ -60,7 +68,13 @@ router.post('/new', async (req, res) => {
 	await mailer(HouseContactPayload);
 	await mailer(ClientContactPayload);
 
-	res.json({errors: [], message: "Thank you! We have received your message!"});
+	return apiResponse(res, {
+		name: "Contact Success",
+		status_code: 200,
+		values: cleanedInputs,
+		errors: [],
+		message: "Thank you, we have received your message!"
+	});
 
 });
 

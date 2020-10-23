@@ -6,3 +6,7 @@
 .idea/HydroHeaven.iml
 .idea/jsLibraryMappings.xml
 .vscode/*
+
+*/node_modules
+api/.env
+stage/build
