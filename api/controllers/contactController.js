@@ -24,11 +24,25 @@ router.post('/new', async (req, res) => {
 		email: req.body.email,
 		message: req.body.message
 	};
-	const users = await clientModel.findOne({ email: req.body.email.toString() }).exec();
-	if (!users)
-		await new clientModel({name: req.body.name, email: req.body.email, contacts: [{message: req.body.message}]}).save();
-	else
-		await users.contacts.push({message: req.body.message}).save();
+	try {
+		const users = await clientModel.findOne({ email: req.body.email.toString() }).exec();
+		if (!users)
+			await new clientModel({name: req.body.name, email: req.body.email, contacts: [{message: req.body.message}]}).save();
+		else {
+			users.contacts.push({ message: req.body.message });
+			await users.save();
+		}
+			
+	} catch (e) {
+		return apiResponse(res, {
+			name: "Database Error",
+			status_code: 500,
+			values: valid_result.value,
+			errors: [e.message],
+			message: ''
+		});
+	}
+	
 
 	// SEND EMAILS
 	const ClientContactPayload = {
