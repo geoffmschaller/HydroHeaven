@@ -1,7 +1,7 @@
 const express = require('express');
 const mailer = require('../mailer/mailer');
 const validator = require('../validators/contactValidator');
-const contactModel = require('../models/contactModel');
+const clientModel = require('../models/clientModel');
 const apiResponse = require('../responses/apiResponse');
 
 const router = express.Router();
@@ -24,7 +24,11 @@ router.post('/new', async (req, res) => {
 		email: req.body.email,
 		message: req.body.message
 	};
-	new contactModel({...user_inputs}).save();
+	const users = await clientModel.findOne({ email: req.body.email.toString() }).exec();
+	if (!users)
+		await new clientModel({name: req.body.name, email: req.body.email, contacts: [{message: req.body.message}]}).save();
+	else
+		await users.contacts.push({message: req.body.message}).save();
 
 	// SEND EMAILS
 	const ClientContactPayload = {
@@ -61,8 +65,8 @@ router.post('/new', async (req, res) => {
 		}
 	}
 
-	await mailer(HouseContactPayload);
-	await mailer(ClientContactPayload);
+	//await mailer(HouseContactPayload);
+	//await mailer(ClientContactPayload);
 
 	return apiResponse(res, {
 		name: "Contact Success",
