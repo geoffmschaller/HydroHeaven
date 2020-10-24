@@ -65,8 +65,8 @@ router.post('/new', async (req, res) => {
 		}
 	}
 
-	//await mailer(HouseContactPayload);
-	//await mailer(ClientContactPayload);
+	await mailer(HouseContactPayload);
+	await mailer(ClientContactPayload);
 
 	return apiResponse(res, {
 		name: "Contact Success",

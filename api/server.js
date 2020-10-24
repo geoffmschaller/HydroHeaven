@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const contactController = require('./controllers/contactController');
+const analyticsController = require('./controllers/analyticsController');
 const mongoose = require('mongoose');
 
 require('dotenv').config();
@@ -31,4 +32,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/contact", contactController);
+app.use("/analytics", analyticsController);
+
 app.listen(5000);
