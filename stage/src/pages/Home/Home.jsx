@@ -182,7 +182,7 @@ class Home extends React.Component {
 
 }
 
-const mapStateToProps = (state) => {
+let mapStateToProps = (state) => {
 	return {
 		session: state.session
 	};

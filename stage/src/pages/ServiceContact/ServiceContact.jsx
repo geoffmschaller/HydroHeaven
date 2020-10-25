@@ -2,6 +2,8 @@ import React, {createRef} from 'react';
 import styles from './ServiceContact.module.sass';
 import DarkSlantTitle from "../../inflatables/SlantTitle/DarkSlantTitle";
 import SendContactForm from "../../api/contactAPICalls";
+import { connect } from 'react-redux';
+import SendPageView from '../../api/analyticsAPICalls';
 
 import L1 from '../../static/images/locations/arroyo_grande.jpg';
 import L2 from '../../static/images/locations/san_luis_obispo.jpg';
@@ -9,7 +11,8 @@ import L2 from '../../static/images/locations/san_luis_obispo.jpg';
 class ServiceContact extends React.Component {
 
 	componentDidMount() {
-		window.scrollTo(0, this.scrollRef.current.offsetTop - 50)
+		window.scrollTo(0, this.scrollRef.current.offsetTop - 50);
+		SendPageView(this.props.session, "/contact");
 	}
 
 	scrollRef = createRef();
@@ -111,4 +114,11 @@ class ServiceContact extends React.Component {
 
 }
 
-export default ServiceContact;
+let mapStateToProps = (state) => {
+	return {
+		session: state.session
+	};
+}
+
+
+export default connect(mapStateToProps)(ServiceContact);

@@ -2,13 +2,16 @@ import React, {createRef} from 'react';
 import styles from './Financing.module.sass';
 import DarkSlantTitle from "../../inflatables/SlantTitle/DarkSlantTitle";
 import FinancingBar from "../../inflatables/FinancingBar/FinancingBar";
+import { connect } from 'react-redux';
+import SendPageView from '../../api/analyticsAPICalls';
 
 const GREEN_SKY_LOGO = require('../../static/images/greensky.svg');
 
 class Financing extends React.Component {
 
 	componentDidMount() {
-		window.scrollTo(0, this.scrollRef.current.offsetTop - 50)
+		window.scrollTo(0, this.scrollRef.current.offsetTop - 50);
+		SendPageView(this.props.session, "/financing");
 	}
 
 	scrollRef = createRef();
@@ -38,4 +41,11 @@ class Financing extends React.Component {
 
 }
 
-export default Financing;
+let mapStateToProps = (state) => {
+	return {
+		session: state.session
+	};
+}
+
+
+export default connect(mapStateToProps)(Financing);

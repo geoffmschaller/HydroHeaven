@@ -6,8 +6,10 @@ import {StuccoData} from "../../../data/StuccoData";
 import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton';
 import {BBQData} from '../../../data/BBQData';
 import BBQGridItem from '../../../inflatables/BBQGridItem/BBQGridItem';
+import SendPageView from '../../../api/analyticsAPICalls';
+import { connect } from 'react-redux';
 
-class BBQIslandsGrid extends React.Component {
+class BBQIslandsDetails extends React.Component {
 
 	state = {
 		bbq: BBQData[0],
@@ -25,6 +27,7 @@ class BBQIslandsGrid extends React.Component {
 	getBBQData = async (id) => {
 		let s = {...this.state};
 		s.bbq = BBQData.filter((bbq) => bbq.id === id)[0];
+		SendPageView(this.props.session, '/bbq/' + s.bbq.name);
 		window.scrollTo(0, this.scrollRef.current.offsetTop - 50);
 		await this.setState(s);
 	}
@@ -101,4 +104,11 @@ class BBQIslandsGrid extends React.Component {
 
 }
 
-export default BBQIslandsGrid;
+let mapStateToProps = (state) => {
+	return {
+		session: state.session
+	};
+}
+
+
+export default connect(mapStateToProps)(BBQIslandsDetails);

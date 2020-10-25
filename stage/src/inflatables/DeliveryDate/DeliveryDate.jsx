@@ -10,8 +10,11 @@ class DeliveryDate extends React.Component {
 			case "SLO":
 				result = <div>View in SLO Location!</div>
 				break;
-			default:
+			case "AG":
 				result = <div>View in AG Location!</div>
+				break;
+			default:
+				result = "";
 				break;
 		}
 

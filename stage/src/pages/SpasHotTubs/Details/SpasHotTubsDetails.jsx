@@ -8,6 +8,8 @@ import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton
 import {AMERICAN_WHIRLPOOL} from '../../../data/BrandsData';
 import SpaGridItem from '../../../inflatables/SpaGridItem/SpaGridItem';
 import FinancingBar from "../../../inflatables/FinancingBar/FinancingBar";
+import { connect } from 'react-redux';
+import SendPageView from '../../../api/analyticsAPICalls';
 
 const AMERICAN_WHIRLPOOL_BROCHURE = require('../../../static/pdfs/brochures/AmericanWhirlpoolBrochure.pdf');
 const VITA_SPAS_BROCHURE = require('../../../static/pdfs/brochures/VitaSpasBrochure.pdf');
@@ -28,7 +30,10 @@ class SpasHotTubsDetails extends React.Component {
 	}
 
 	getSpaData = async (newId) => {
-		this.setState({spa: SpaData.filter((spa) => spa.id === newId)[0]});
+		let s = this.state;
+		s.spa = SpaData.filter((spa) => spa.id === newId)[0];
+		SendPageView(this.props.session, '/spa/' + s.spa.name);
+		this.setState(s);
 		window.scrollTo(0, this.scrollRef.current.offsetTop - 50)
 	}
 
@@ -116,4 +121,11 @@ class SpasHotTubsDetails extends React.Component {
 
 }
 
-export default SpasHotTubsDetails;
+let mapStateToProps = (state) => {
+	return {
+		session: state.session
+	};
+}
+
+
+export default connect(mapStateToProps)(SpasHotTubsDetails);

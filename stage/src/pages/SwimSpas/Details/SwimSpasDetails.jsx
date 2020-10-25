@@ -5,7 +5,9 @@ import DeliveryDate from "../../../inflatables/DeliveryDate/DeliveryDate";
 import {CabinetData} from "../../../data/CabinetData";
 import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton';
 import SwimSpaGridItem from '../../../inflatables/SpaGridItem/SwimSpaGridItem';
-import {SwimSpaData} from "../../../data/SwimSpaData";
+import { SwimSpaData } from "../../../data/SwimSpaData";
+import { connect } from 'react-redux';
+import SendPageView from '../../../api/analyticsAPICalls';
 
 const AMERICAN_WHIRLPOOL_BROCHURE = require('../../../static/pdfs/brochures/AmericanWhirlpoolBrochure.pdf');
 
@@ -26,7 +28,10 @@ class SwimSpasDetails extends React.PureComponent {
 	}
 
 	getSpaData = (newId) => {
-		this.setState({swimSpa: SwimSpaData.filter((spa) => spa.id === newId)[0]});
+		let s = this.state;
+		s.swimSpa = SwimSpaData.filter((spa) => spa.id === newId)[0];
+		SendPageView(this.props.session, "/swim/" + s.swimSpa.name);
+		this.setState(s);
 		window.scrollTo(0, this.scrollRef.current.offsetTop - 50)
 	}
 
@@ -108,4 +113,11 @@ class SwimSpasDetails extends React.PureComponent {
 	}
 }
 
-export default SwimSpasDetails;
+let mapStateToProps = (state) => {
+	return {
+		session: state.session
+	};
+}
+
+
+export default connect(mapStateToProps)(SwimSpasDetails);
