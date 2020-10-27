@@ -1,4 +1,3 @@
-
 import T1 from '../static/images/tiles/alchemy-copper.jpg';
 import T2 from '../static/images/tiles/alchemy-silver.jpg';
 import T3 from '../static/images/tiles/bombay-arcot.jpg';
@@ -16,7 +15,7 @@ import T14 from '../static/images/tiles/st-moritz-cotton.jpg';
 import T15 from '../static/images/tiles/st-moritz-gray.jpg';
 import T16 from '../static/images/tiles/st-moritz-silver.jpg';
 
-export const TileData = [
+const TileData = [
 	{
 		name: "Alchemy Copper",
 		image: T1
@@ -82,3 +81,5 @@ export const TileData = [
 		image: T16
 	},
 ];
+
+export default TileData;

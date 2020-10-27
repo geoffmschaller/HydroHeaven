@@ -1,13 +1,13 @@
 import React, {createRef} from 'react';
 import styles from './BBQIslandsDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
-import {TileData} from "../../../data/TileData";
-import {StuccoData} from "../../../data/StuccoData";
-import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton';
-import {BBQData} from '../../../data/BBQData';
+import TileData from "../../../data/TileData";
+import StuccoData from "../../../data/StuccoData";
+import HollowButton from '../../../inflatables/Buttons/HollowButton';
+import BBQData from '../../../data/BBQData';
 import BBQGridItem from '../../../inflatables/BBQGridItem/BBQGridItem';
 import SendPageView from '../../../api/analyticsAPICalls';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 class BBQIslandsDetails extends React.Component {
 
@@ -50,7 +50,8 @@ class BBQIslandsDetails extends React.Component {
 				<div className={styles.bbqData}>
 					<div className={styles.imageHolder}>
 						<img src={this.state.bbq.image} alt=""/>
-						<div className={styles.disclaimer}>* Island pictured above may be shown with additional upgrades. Please review Spec Sheet (standard features) before
+						<div className={styles.disclaimer}>* Island pictured above may be shown with additional upgrades. Please review Spec Sheet
+							(standard features) before
 							ordering.
 						</div>
 					</div>
@@ -83,7 +84,8 @@ class BBQIslandsDetails extends React.Component {
 						<div className={styles.docs}>
 							<div className={styles.docTitle}>Spa Documents</div>
 							<div className={styles.docHolder}>
-								<DarkHollowButton title={this.state.bbq.name + " Spec Sheet"} width={50} link={this.state.bbq.pdf} external/>
+								<HollowButton title={this.state.bbq.name + " Spec Sheet"} width={50} link={this.state.bbq.pdf} external
+								              color={'dark'}/>
 							</div>
 						</div>
 					</div>

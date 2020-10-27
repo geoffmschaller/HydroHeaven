@@ -1,7 +1,7 @@
 import React, {createRef} from 'react';
 import styles from './SwimSpasGrid.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
-import {SwimSpaData} from "../../../data/SwimSpaData";
+import SwimSpaData from "../../../data/SwimSpaData";
 import SwimSpaGridItem from "../../../inflatables/SpaGridItem/SwimSpaGridItem";
 
 class SwimSpasGrid extends React.Component {

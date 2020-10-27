@@ -1,14 +1,14 @@
 import React, {createRef} from 'react';
 import styles from './SpasHotTubsDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
-import {SpaData} from "../../../data/SpaData";
+import SpaData from "../../../data/SpaData";
 import DeliveryDate from "../../../inflatables/DeliveryDate/DeliveryDate";
-import {CabinetData} from "../../../data/CabinetData";
-import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton';
+import CabinetData from "../../../data/CabinetData";
+import HollowButton from '../../../inflatables/Buttons/HollowButton';
 import {AMERICAN_WHIRLPOOL} from '../../../data/BrandsData';
 import SpaGridItem from '../../../inflatables/SpaGridItem/SpaGridItem';
 import FinancingBar from "../../../inflatables/FinancingBar/FinancingBar";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import SendPageView from '../../../api/analyticsAPICalls';
 
 const AMERICAN_WHIRLPOOL_BROCHURE = require('../../../static/pdfs/brochures/AmericanWhirlpoolBrochure.pdf');
@@ -94,11 +94,13 @@ class SpasHotTubsDetails extends React.Component {
 						<div className={styles.docs}>
 							<div className={styles.docTitle}>Spa Documents</div>
 							<div className={styles.docHolder}>
-								<DarkHollowButton title={this.state.spa.name + " Spec Sheet"} width={50} link={this.state.spa.pdf} external/>
+								<HollowButton title={this.state.spa.name + " Spec Sheet"} width={50} link={this.state.spa.pdf} external
+								              color={'dark'}/>
 								{
 									this.state.spa.brand === AMERICAN_WHIRLPOOL
-										? <DarkHollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE} external/>
-										: <DarkHollowButton title={"Vita Spas Brochure"} width={50} link={VITA_SPAS_BROCHURE} external/>
+										? <HollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE}
+										                external color={'dark'}/>
+										: <HollowButton title={"Vita Spas Brochure"} width={50} link={VITA_SPAS_BROCHURE} external color={'dark'}/>
 								}
 							</div>
 						</div>

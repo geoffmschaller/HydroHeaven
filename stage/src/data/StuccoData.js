@@ -7,7 +7,7 @@ import St6 from '../static/images/stucco/rock_15.jpg';
 import St7 from '../static/images/stucco/rock_16.jpg';
 import St8 from '../static/images/stucco/rock_20.jpg';
 
-export const StuccoData = [
+const StuccoData = [
 	{
 		name: "Aspin",
 		image: St1
@@ -41,3 +41,5 @@ export const StuccoData = [
 		image: St8
 	},
 ];
+
+export default StuccoData;

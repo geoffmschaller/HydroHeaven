@@ -1,5 +1,5 @@
 import {AMERICAN_WHIRLPOOL} from "./BrandsData";
-import { AcrylicData } from "./AcrylicData";
+import AcrylicData from "./AcrylicData";
 
 import Sim1 from '../static/images/swimSpas/mx6.png';
 import Sim2 from '../static/images/swimSpas/mb4.png';
@@ -17,7 +17,7 @@ import Spdf5 from '../static/pdfs/swim-spas/rb4-mb4.pdf';
 import Spdf6 from '../static/pdfs/swim-spas/dm8.pdf';
 import Spdf7 from '../static/pdfs/swim-spas/rs2.pdf';
 
-export const SwimSpaData = [
+const SwimSpaData = [
 	{
 		id: "MX6",
 		name: "MX6",
@@ -131,3 +131,5 @@ export const SwimSpaData = [
 		acrylic: [AcrylicData[5]]
 	}
 ];
+
+export default SwimSpaData;

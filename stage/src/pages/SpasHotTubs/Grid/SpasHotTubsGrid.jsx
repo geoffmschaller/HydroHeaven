@@ -1,7 +1,7 @@
 import React, {createRef} from 'react';
 import styles from './SpasHotTubsGrid.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
-import {SpaData} from '../../../data/SpaData';
+import SpaData from '../../../data/SpaData';
 import SpaGridItem from "../../../inflatables/SpaGridItem/SpaGridItem";
 
 class SpasHotTubsGrid extends React.Component {

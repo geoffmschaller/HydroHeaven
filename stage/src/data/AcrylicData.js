@@ -7,7 +7,7 @@ import Ac6 from '../static/images/acrylic/silver_marble.png';
 import Ac7 from '../static/images/acrylic/storm_clouds.png';
 import Ac8 from '../static/images/acrylic/tuscan_sun.png';
 
-export const AcrylicData = [
+const AcrylicData = [
 	{
 		image: Ac1,
 		name: "Glacier Mountain"
@@ -41,3 +41,5 @@ export const AcrylicData = [
 		name: "Tuscan Sun"
 	},
 ];
+
+export default AcrylicData;

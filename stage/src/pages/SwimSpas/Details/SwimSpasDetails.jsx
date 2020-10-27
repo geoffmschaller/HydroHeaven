@@ -2,11 +2,11 @@ import React, {createRef} from 'react';
 import styles from './SwimSpasDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
 import DeliveryDate from "../../../inflatables/DeliveryDate/DeliveryDate";
-import {CabinetData} from "../../../data/CabinetData";
-import DarkHollowButton from '../../../inflatables/HollowButton/DarkHollowButton';
+import CabinetData from "../../../data/CabinetData";
+import HollowButton from '../../../inflatables/Buttons/HollowButton';
 import SwimSpaGridItem from '../../../inflatables/SpaGridItem/SwimSpaGridItem';
-import { SwimSpaData } from "../../../data/SwimSpaData";
-import { connect } from 'react-redux';
+import SwimSpaData from "../../../data/SwimSpaData";
+import {connect} from 'react-redux';
 import SendPageView from '../../../api/analyticsAPICalls';
 
 const AMERICAN_WHIRLPOOL_BROCHURE = require('../../../static/pdfs/brochures/AmericanWhirlpoolBrochure.pdf');
@@ -63,7 +63,8 @@ class SwimSpasDetails extends React.PureComponent {
 							<div className={styles.stat}>{this.state.swimSpa.seats} Seats</div>
 							<div className={styles.stat}>{this.state.swimSpa.gallons} Gallons</div>
 							<div className={styles.stat}>{this.state.swimSpa.jets} Jets</div>
-							<div className={styles.stat}>{this.state.swimSpa.length}" x {this.state.swimSpa.width}" x {this.state.swimSpa.height}"</div>
+							<div className={styles.stat}>{this.state.swimSpa.length}" x {this.state.swimSpa.width}" x {this.state.swimSpa.height}"
+							</div>
 						</div>
 						<div className={styles.colors}>
 							<div className={styles.acrylic} onMouseLeave={() => this.setAcrylicColor("")}>
@@ -92,8 +93,10 @@ class SwimSpasDetails extends React.PureComponent {
 						<div className={styles.docs}>
 							<div className={styles.docTitle}>Spa Documents</div>
 							<div className={styles.docHolder}>
-								<DarkHollowButton title={this.state.swimSpa.name + " Spec Sheet"} width={50} link={this.state.swimSpa.pdf} external/>
-								<DarkHollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE} external/>
+								<HollowButton title={this.state.swimSpa.name + " Spec Sheet"} width={50} link={this.state.swimSpa.pdf} external
+								              color={'dark'}/>
+								<HollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE} external
+								              color={'dark'}/>
 							</div>
 						</div>
 					</div>

@@ -1,5 +1,5 @@
 import {AMERICAN_WHIRLPOOL, VITA_SPAS} from "./BrandsData";
-import { AcrylicData } from './AcrylicData';
+import AcrylicData from './AcrylicData';
 
 import Sim1 from '../static/images/spas/100.png';
 import Sim2 from '../static/images/spas/151.png';
@@ -89,7 +89,7 @@ import Spdf41 from '../static/pdfs/spas/trio.pdf';
 import Spdf42 from '../static/pdfs/spas/vivre.pdf';
 import Spdf43 from '../static/pdfs/spas/voeux.pdf';
 
-export const SpaData = [
+const SpaData = [
 	{
 		id: "100",
 		name: "#100",
@@ -876,3 +876,5 @@ export const SpaData = [
 		acrylic: AcrylicData
 	}
 ];
+
+export default SpaData;

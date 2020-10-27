@@ -1,4 +1,4 @@
-import { BULL_BBQS } from "./BrandsData";
+import {BULL_BBQS} from "./BrandsData";
 
 import BBQim1 from '../static/images/islands/bbq.png';
 import BBQim2 from '../static/images/islands/culinary-q.png';
@@ -38,7 +38,7 @@ import BBQpdf16 from '../static/pdfs/bbq/supreme-q.pdf';
 import BBQpdf17 from '../static/pdfs/bbq/supreme-q-raised-bar.pdf';
 import BBQpdf18 from '../static/pdfs/bbq/western-q.pdf';
 
-export const BBQData = [
+const BBQData = [
 	{
 		id: "BBQ",
 		name: "BBQ",
@@ -186,3 +186,5 @@ export const BBQData = [
 		pdf: BBQpdf18
 	}
 ];
+
+export default BBQData;
