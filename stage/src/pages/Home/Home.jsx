@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Home.module.sass';
-import {Link} from "react-router-dom";
 import WhiteSlantTitle from "../../inflatables/SlantTitle/WhiteSlantTitle";
 import DarkSlantTitle from "../../inflatables/SlantTitle/DarkSlantTitle";
 import SpaGridItem from "../../inflatables/SpaGridItem/SpaGridItem";
+import SolidButton from '../../inflatables/Buttons/SolidButton';
 
 import SpaData from '../../data/SpaData';
 import FeaturedCategoriesData from '../../data/FeaturedCategoriesData';
@@ -34,9 +34,7 @@ class Home extends React.Component {
 									<img src={feat.image} alt=""/>
 									<div className={styles.title}>{feat.name}</div>
 									<div className={styles.description}>{feat.description}</div>
-									<Link to={feat.link}>
-										<button>View More {feat.name}</button>
-									</Link>
+									<SolidButton title={"View More"} color={'#58d68d'} external={false} link={feat.link} width={100}/>
 								</div>
 							})
 						}

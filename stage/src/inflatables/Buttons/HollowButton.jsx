@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './HollowButton.module.sass';
+import styles from './Button.module.sass';
 import {Link} from "react-router-dom";
 import propTypes from 'prop-types';
 
@@ -19,13 +19,13 @@ const HollowButton = (props) => {
 	}
 
 	return (
-		<div className={styles.hollowButton} style={{maxWidth: `${window.innerWidth > 850 ? props.width : 100}%`}}>
+		<div className={styles.hollowButton} style={{maxWidth: window.innerWidth > 850 ? props.width + '%' : `100%`}}>
 			{
-				this.props.external
-					? <a href={this.props.link} target={"blank"}>
+				props.external
+					? <a href={props.link} target={"_blank"} rel={"noreferrer"}>
 						{destination}
 					</a>
-					: <Link to={this.props.link}>
+					: <Link to={props.link}>
 						{destination}
 					</Link>
 			}
@@ -38,7 +38,8 @@ HollowButton.propTypes = {
 	width: propTypes.number.isRequired,
 	title: propTypes.string.isRequired,
 	external: propTypes.bool.isRequired,
-	link: propTypes.string.isRequired
+	link: propTypes.string.isRequired,
+	style: propTypes.object,
 }
 
 export default HollowButton;

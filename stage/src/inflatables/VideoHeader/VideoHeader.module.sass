@@ -21,15 +21,20 @@
 			position: absolute
 			color: white
 			text-align: center
-			top: 10%
+			top: 0
 			left: 0
 			bottom: 0
 			right: 0
-			padding: 10px
+			background-color: rgba(21, 67, 96, 0.5)
 
 			.title
-				font-size: 20px
+				font-size: 18px
 				text-transform: uppercase
+				color: #d4e6f1
+				font-weight: 900
+				text-shadow: $montserat
+				line-height: 0
+				margin-top: 5%
 
 			.main
 				font-size: 80px
@@ -38,21 +43,23 @@
 
 			.buttonBar
 				width: 100%
-				margin-top: 40px
+				max-width: 800px
+				margin: 40px auto 0 auto
+				display: flex
+				flex-direction: row
 
 				button
+					width: 30%
+					padding: 0
+
+				a
 					margin-right: 5px
 					font-weight: bold
 
-			.purple
-				background-color: $purple
-				color: white
-				border: 2px solid $purple
-
-			.white
-				background-color: transparent
-				color: white
-				border: 2px solid white
+				.purple
+					background-color: $purple
+					color: white
+					border: 2px solid $purple
 
 
 @media (max-width: $mobile-landscape-max)
@@ -71,6 +78,8 @@
 					line-height: 50px
 
 				.buttonBar
+					flex-direction: column
+					padding: 0 10px
 
 					button
 						width: 100%

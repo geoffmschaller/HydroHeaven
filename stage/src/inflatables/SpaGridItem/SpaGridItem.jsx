@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './SpaGridItem.module.sass';
-import {Link} from "react-router-dom";
 import DeliveryDate from "../DeliveryDate/DeliveryDate";
+import HollowButton from '../Buttons/HollowButton';
 
 class SpaGridItem extends React.Component {
 
@@ -13,9 +13,7 @@ class SpaGridItem extends React.Component {
 				<div className={styles.name}>{this.props.spa.name}</div>
 				<div className={styles.brand}>By {this.props.spa.brand}</div>
 				<DeliveryDate stocked={this.props.spa.stocked}/>
-				<Link to={"/spas-hot-tubs/view/" + this.props.spa.id} onClick={() => this.props.click()}>
-					<button>View Details</button>
-				</Link>
+				<HollowButton width={100} link={"/spas-hot-tubs/view/" + this.props.spa.id} external={false} color={'dark'} title={"View Details"}/>
 			</div>
 		);
 	}

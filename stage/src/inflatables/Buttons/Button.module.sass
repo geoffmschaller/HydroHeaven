@@ -5,14 +5,10 @@
 	text-align: center
 	text-transform: uppercase
 	padding: 0 10px
+	margin-top: 10px
 
 	a
 		text-decoration: none
-
-		.button
-			padding: 10px 20px
-			background-color: transparent
-			transition: all .2s ease-in-out
 
 		.dark
 			border: 2px solid $primary
@@ -38,6 +34,21 @@
 				background-color: #7DCEA0
 				color: white
 
+
+.solidButton
+	width: 100%
+	text-align: center
+	text-transform: uppercase
+	margin-top: 10px
+
+	a
+		text-decoration: none
+		color: white
+
+
+.button
+	padding: 10px 20px
+
 @media (max-width: $mobile-landscape-max)
-	.hollowButton
+	.hollowButton, .solidButton
 		margin-bottom: 10px
