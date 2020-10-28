@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post('/page-view', async (req, res) => {
 
-	// VALIDATE INPUT
 	const valid_result = await validator(req.body);
 	if (valid_result !== 200) return apiResponse(res, {
 		name: "Validation Error",
@@ -17,7 +16,6 @@ router.post('/page-view', async (req, res) => {
 		message: valid_result.message
 	});
 
-	// SEND TO DB
 	const session = await pageViewsModel.findOne({ session: req.body.session.toString() }).exec();
 	if (!session)
 		await new pageViewsModel({ session: req.body.session, pages: [req.body.page] }).save();

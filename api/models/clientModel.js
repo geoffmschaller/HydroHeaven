@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const ClientSchema = new Schema({
+const ClientModel = mongoose.model('Clients', new Schema({
 	id: ObjectId,
 	name: {
 		type: String,
@@ -34,8 +34,6 @@ const ClientSchema = new Schema({
 		type: Date,
 		default: new Date()
 	}
-});
-
-const ClientModel = mongoose.model('Clients', ClientSchema);
+}));
 
 module.exports = ClientModel;

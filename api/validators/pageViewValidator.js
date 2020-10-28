@@ -2,7 +2,6 @@ const yup = require('yup');
 
 const pageViewValidator = async (object_to_validate) => {
 
-	// VALIDATE
 	let schema = yup.object().shape({
 		session: yup.string().trim().required().min(2).max(50),
 		page: yup.string().trim().required().max(50),
