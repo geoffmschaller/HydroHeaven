@@ -2,7 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest --testPathPattern=tests --watchAll  --runInBand --detectOpenHandles",
     "start": "nodemon server.js"
