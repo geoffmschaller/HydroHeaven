@@ -11,7 +11,8 @@ const ClientModel = mongoose.model('Clients', new Schema({
 	},
 	email: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	phone: String,
 	address: String,

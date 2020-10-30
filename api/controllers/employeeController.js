@@ -24,23 +24,23 @@ router.post('/new', async (req, res) => {
 	}
 	try {
 		await new EmployeeModel(userInputs).save();
+		return apiResponse(res, {
+			name: 'Employee Created Successfully!',
+			status_code: 200,
+			values: {...userInputs, password: '[REDACTED]'},
+			errors: [],
+			message: 'Thank you, we have received your message!'
+		});
 	}
 	catch (err) {
 		return apiResponse(res, {
 			name: 'Database Error',
 			status_code: 500,
 			values: validResult.value,
-			errors: [e.message],
+			errors: [err.message],
 			message: ''
 		});
 	}
-	return apiResponse(res, {
-		name: 'Employee Created Successfully!',
-		status_code: 200,
-		values: {...userInputs, password: '[REDACTED]'},
-		errors: [],
-		message: 'Thank you, we have received your message!'
-	});
 });
 
 module.exports = router;
