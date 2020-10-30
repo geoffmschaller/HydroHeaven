@@ -7,6 +7,6 @@ const createConnection = async () => {
 		useFindAndModify: false,
 		useCreateIndex: true
 	});
-}
+};
 
 module.exports = createConnection;

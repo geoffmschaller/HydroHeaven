@@ -1,19 +1,31 @@
 const yup = require('yup');
 
-const contactValidator = async (object_to_validate) => {
-
-	let schema = yup.object().shape({
-		name: yup.string().trim().required().min(2).max(50),
-		email: yup.string().trim().required().email().min(5).max(50),
-		message: yup.string().trim().required().min(2).max(500),
+const contactValidator = async (objectToValidate) => {
+	const schema = yup.object().shape({
+		name: yup.string()
+			.trim()
+			.required()
+			.min(2)
+			.max(50),
+		email: yup.string()
+			.trim()
+			.required()
+			.email()
+			.min(5)
+			.max(50),
+		message: yup.string()
+			.trim()
+			.required()
+			.min(2)
+			.max(500)
 	});
 	try {
-		await schema.validate(object_to_validate);
+		await schema.validate(objectToValidate);
 		return 200;
-	} catch (err) {
+	}
+	catch (err) {
 		return err;
-	} 
-
-}
+	}
+};
 
 module.exports = contactValidator;

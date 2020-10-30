@@ -1,18 +1,24 @@
 const yup = require('yup');
 
-const pageViewValidator = async (object_to_validate) => {
-
-	let schema = yup.object().shape({
-		session: yup.string().trim().required().min(2).max(50),
-		page: yup.string().trim().required().max(50),
+const pageViewValidator = async (objectToValidate) => {
+	const schema = yup.object().shape({
+		session: yup.string()
+			.trim()
+			.required()
+			.min(2)
+			.max(50),
+		page: yup.string()
+			.trim()
+			.required()
+			.max(50)
 	});
 	try {
-		await schema.validate(object_to_validate);
+		await schema.validate(objectToValidate);
 		return 200;
-	} catch (err) {
+	}
+	catch (err) {
 		return err;
-	} 
-
-}
+	}
+};
 
 module.exports = pageViewValidator;

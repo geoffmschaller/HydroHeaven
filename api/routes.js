@@ -11,8 +11,8 @@ const assignRoutes = (app) => {
 		}
 		next();
 	});
-	app.use("/contact", contactController);
-	app.use("/analytics", analyticsController);
-}
+	app.use('/contact', contactController);
+	app.use('/analytics', analyticsController);
+};
 
 module.exports = assignRoutes;

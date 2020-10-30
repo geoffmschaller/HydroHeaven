@@ -6,7 +6,7 @@ require('dotenv').config();
 const nodemailerMailgun = nodemailer.createTransport(mg({
 	auth: {
 		api_key: process.env.MAILGUN_API_KEY,
-		domain: process.env.MAILGUN_DOMAIN,
+		domain: process.env.MAILGUN_DOMAIN
 	}
 }));
 
@@ -19,10 +19,11 @@ const mailer = async (inputs) => {
 			'h:Reply-To': inputs.replyTo,
 			template: inputs.template
 		});
-	} catch (e) {
+	}
+	catch (e) {
 		return 500;
 	}
 	return 200;
-}
+};
 
 module.exports = mailer;

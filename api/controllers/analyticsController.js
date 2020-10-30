@@ -1,37 +1,36 @@
 const express = require('express');
 const validator = require('../validators/pageViewValidator');
-const pageViewsModel = require('../models/pageViewsModel');
+const PageViewsModel = require('../models/pageViewsModel');
 const apiResponse = require('../responses/apiResponse');
 
 const router = express.Router();
 
 router.post('/page-view', async (req, res) => {
-
-	const valid_result = await validator(req.body);
-	if (valid_result !== 200) return apiResponse(res, {
-		name: "Validation Error",
-		status_code: 500,
-		values: valid_result.value,
-		errors: valid_result.errors,
-		message: valid_result.message
-	});
-
-	const session = await pageViewsModel.findOne({ session: req.body.session.toString() }).exec();
-	if (!session)
-		await new pageViewsModel({ session: req.body.session, pages: [req.body.page] }).save();
+	const validResult = await validator(req.body);
+	if (validResult !== 200) {
+		return apiResponse(res, {
+			name: 'Validation Error',
+			status_code: 500,
+			values: validResult.value,
+			errors: validResult.errors,
+			message: validResult.message
+		});
+	}
+	const session = await PageViewsModel.findOne({ session: req.body.session.toString() }).exec();
+	if (!session) {
+		await new PageViewsModel({ session: req.body.session, pages: [req.body.page] }).save();
+	}
 	else {
 		session.pages.push(req.body.page.toString());
 		await session.save();
 	}
-	
 	return apiResponse(res, {
-		name: "Analytics Updated",
+		name: 'Analytics Updated',
 		status_code: 200,
-		values: valid_result.value,
-		errors: valid_result.errors,
-		message: valid_result.message
+		values: validResult.value,
+		errors: validResult.errors,
+		message: validResult.message
 	});
-
 });
 
 module.exports = router;
