@@ -1,5 +1,6 @@
 const contactController = require('./controllers/contactController');
 const analyticsController = require('./controllers/analyticsController');
+const employeeController = require('./controllers/employeeController');
 
 const assignRoutes = (app) => {
 	app.use((req, res, next) => {
@@ -13,6 +14,7 @@ const assignRoutes = (app) => {
 	});
 	app.use('/contact', contactController);
 	app.use('/analytics', analyticsController);
+	app.use('/employee', employeeController);
 };
 
 module.exports = assignRoutes;
