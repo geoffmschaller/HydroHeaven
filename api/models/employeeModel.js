@@ -18,7 +18,22 @@ const EmployeeModel = mongoose.model('Employees', new Schema({
 		type: String,
 		required: true
 	},
-	accountStatus: {
+	phone: {
+		type: Number,
+		required: true,
+		min: 1000000000,
+		max: 9999999999
+	},
+	role: {
+		type: String,
+		required: true
+	},
+	location: {
+		type: String,
+		required: true,
+		enum: ["AG", "SLO"]
+	},
+	accountActive: {
 		type: Boolean,
 		default: true
 	},
@@ -26,7 +41,7 @@ const EmployeeModel = mongoose.model('Employees', new Schema({
 	currentPin: String,
 	loginAttempts: [{
 		status: {
-			type: String,
+			type: Number,
 			required: true,
 			enum: [200, 500]
 		},

@@ -2,6 +2,7 @@ const express = require('express');
 const EmployeeModel = require('../models/EmployeeModel');
 const createEmployeeValidator = require('../validators/createEmployeeValidator');
 const changePWithPValidator = require('../validators/changePWithPValidator');
+const editEmployeeValidator = require('../validators/editEmployeeValidator');
 const hasher = require('../hashers/hasher');
 const apiResponse = require('../responses/apiResponse');
 const hashCompare = require('../hashers/hashCompare');
@@ -22,7 +23,10 @@ router.post('/new', async (req, res) => {
 	const userInputs = {
 		name: req.body.name,
 		email: req.body.email,
-		password: await hasher(req.body.password)
+		password: await hasher(req.body.password),
+		role: req.body.role,
+		location: req.body.location,
+		phone: req.body.phone
 	}
 	try {
 		await new EmployeeModel(userInputs).save();
@@ -103,6 +107,61 @@ router.post('/change-password-with-password', async (req, res) => {
 			values: validResult.value,
 			errors: validResult.errors,
 			message: err.message
+		});
+	}
+});
+
+router.post('/edit', async (req, res) => {
+	const validResult = await editEmployeeValidator(req.body);
+	if (validResult !== 200) {
+		return apiResponse(res, {
+			name: 'Validation Error',
+			status_code: 500,
+			values: validResult.value,
+			errors: validResult.errors,
+			message: validResult.message
+		});
+	}
+	const userInputs = {
+		email: req.body.email,
+		name: req.body.name,
+		phone: req.body.phone,
+		loction: req.body.location,
+		role: req.body.role,
+		accountActive: req.body.accountActive
+	}
+	try {
+		const employee = await EmployeeModel.findOne({ email: req.body.email });
+		if (!employee) {
+			return apiResponse(res, {
+				name: 'Unknown Email',
+				status_code: 500,
+				values: validResult.value,
+				errors: validResult.errors,
+				message: validResult.message
+			});
+		}
+		for (const [key, value] of Object.entries(userInputs)) {
+			if (key != 'email') {
+				employee[key] = value;
+			}
+		}
+		await employee.save();
+		return apiResponse(res, {
+			name: 'Employee Updated Successfully!',
+			status_code: 200,
+			values: validResult.value,
+			errors: validResult.errors,
+			message: validResult.message
+		});
+	}
+	catch (err) {
+		return apiResponse(res, {
+			name: 'Unknown Error',
+			status_code: 500,
+			values: validResult.value,
+			errors: validResult.errors,
+			message: err
 		});
 	}
 });
