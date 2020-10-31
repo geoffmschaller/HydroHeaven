@@ -4,7 +4,7 @@ const loginValidator = require('../validators/loginValidator');
 const logoutValidator = require('../validators/logoutValidator');
 const apiResponse = require('../responses/apiResponse');
 const hashCompare = require('../hashers/hashCompare');
-const encodeAuthToken = require('../hashers/encodeAuthToken');
+const encodeToken = require('../hashers/encodeToken');
 
 const router = express.Router();
 
@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
 			});
 		}
 		employee.loginAttempts.push({ status: 200, message: 'Successful Login' });
-		const token = await encodeAuthToken(userInputs.email);
+		const token = await encodeToken(userInputs.email);
 		employee.currentToken = token;
 		await employee.save();
 		return apiResponse(res, {

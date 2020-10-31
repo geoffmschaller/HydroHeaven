@@ -39,6 +39,10 @@ const EmployeeModel = mongoose.model('Employees', new Schema({
 	},
 	currentToken: String,
 	currentPin: String,
+	resetToken: {
+		type: String,
+		default: ''
+	},
 	loginAttempts: [{
 		status: {
 			type: Number,
