@@ -39,6 +39,18 @@ const EmployeeModel = mongoose.model('Employees', new Schema({
 			default: new Date()
 		}
 	}],
+	accountEvents: [
+		{
+			event: {
+				type: String,
+				required: true
+			},
+			date: {
+				type: Date,
+				default: new Date()
+			}
+		}
+	],
 	created: {
 		type: Date,
 		default: new Date()

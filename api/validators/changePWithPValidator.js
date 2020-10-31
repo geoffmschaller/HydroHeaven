@@ -1,19 +1,19 @@
 const yup = require('yup');
 
-const employeeValidator = async (objectToValidate) => {
+const changePWithPValidator = async (objectToValidate) => {
 	const schema = yup.object().shape({
-		name: yup.string()
-			.trim()
-			.required()
-			.min(2)
-			.max(50),
 		email: yup.string()
 			.trim()
 			.required()
 			.email()
 			.min(5)
 			.max(50),
-		password: yup.string()
+		oldPassword: yup.string()
+			.trim()
+			.required()
+			.min(10)
+			.max(100),
+		newPassword: yup.string()
 			.trim()
 			.required()
 			.min(10)
@@ -28,4 +28,4 @@ const employeeValidator = async (objectToValidate) => {
 	}
 };
 
-module.exports = employeeValidator;
+module.exports = changePWithPValidator;
