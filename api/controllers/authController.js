@@ -1,5 +1,5 @@
 const express = require('express');
-const EmployeeModel = require('../models/EmployeeModel');
+const EmployeeModel = require('../models/employeeModel');
 const loginValidator = require('../validators/loginValidator');
 const logoutValidator = require('../validators/logoutValidator');
 const apiResponse = require('../responses/apiResponse');
@@ -14,7 +14,7 @@ router.post('/login', async (req, res) => {
 		return apiResponse(res, {
 			name: 'Validation Error',
 			status_code: 500,
-			values: { ...validResult.value, password: '[REDACTED]'},
+			values: { ...validResult.value, password: '[REDACTED]' },
 			errors: validResult.errors,
 			message: validResult.message
 		});
@@ -22,7 +22,7 @@ router.post('/login', async (req, res) => {
 	const userInputs = {
 		email: req.body.email,
 		password: req.body.password
-	}
+	};
 	try {
 		const employee = await EmployeeModel.findOne({ email: req.body.email });
 		if (!employee) {
@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
 			});
 		}
 		if (!await hashCompare(userInputs.password, employee.password)) {
-			employee.loginAttempts.push({ status: 500, message: "Invalid Password" });
+			employee.loginAttempts.push({ status: 500, message: 'Invalid Password' });
 			await employee.save();
 			return apiResponse(res, {
 				name: 'Email or Password is incorrect',
@@ -49,7 +49,7 @@ router.post('/login', async (req, res) => {
 				message: validResult.message
 			});
 		}
-		employee.loginAttempts.push({ status: 200, message: "Successful Login" });
+		employee.loginAttempts.push({ status: 200, message: 'Successful Login' });
 		const token = await encodeAuthToken(userInputs.email);
 		employee.currentToken = token;
 		await employee.save();
@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
 			status_code: 200,
 			values: {
 				email: userInputs.email,
-				token: token
+				token
 			},
 			errors: validResult.errors,
 			message: validResult.message
@@ -90,7 +90,7 @@ router.post('/logout', async (req, res) => {
 	}
 	const userInputs = {
 		email: req.body.email
-	}
+	};
 	try {
 		const employee = await EmployeeModel.findOne({ email: userInputs.email });
 		if (!employee) {
@@ -104,7 +104,7 @@ router.post('/logout', async (req, res) => {
 				message: validResult.message
 			});
 		}
-		employee.currentToken = "";
+		employee.currentToken = '';
 		await employee.save();
 		return apiResponse(res, {
 			name: 'Successful Logout',
@@ -118,7 +118,7 @@ router.post('/logout', async (req, res) => {
 	}
 	catch (err) {
 		return apiResponse(res, {
-			name: "Error, please try again",
+			name: 'Error, please try again',
 			status_code: 500,
 			values: {
 				email: userInputs.email

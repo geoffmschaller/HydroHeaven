@@ -1,5 +1,5 @@
 const express = require('express');
-const EmployeeModel = require('../models/EmployeeModel');
+const EmployeeModel = require('../models/employeeModel');
 const createEmployeeValidator = require('../validators/createEmployeeValidator');
 const changePWithPValidator = require('../validators/changePWithPValidator');
 const editEmployeeValidator = require('../validators/editEmployeeValidator');
@@ -15,7 +15,7 @@ router.post('/new', async (req, res) => {
 		return apiResponse(res, {
 			name: 'Validation Error',
 			status_code: 500,
-			values: { ...validResult.value, password: '[REDACTED]'},
+			values: { ...validResult.value, password: '[REDACTED]' },
 			errors: validResult.errors,
 			message: validResult.message
 		});
@@ -27,13 +27,13 @@ router.post('/new', async (req, res) => {
 		role: req.body.role,
 		location: req.body.location,
 		phone: req.body.phone
-	}
+	};
 	try {
 		await new EmployeeModel(userInputs).save();
 		return apiResponse(res, {
 			name: 'Employee Created Successfully!',
 			status_code: 200,
-			values: {...userInputs, password: '[REDACTED]'},
+			values: { ...userInputs, password: '[REDACTED]' },
 			errors: [],
 			message: 'Thank you, we have received your message!'
 		});
@@ -64,7 +64,7 @@ router.post('/change-password-with-password', async (req, res) => {
 		email: req.body.email,
 		oldPassword: req.body.oldPassword,
 		newPassword: req.body.newPassword
-	}
+	};
 	try {
 		const employee = await EmployeeModel.findOne({ email: userInputs.email });
 		if (!employee) {
@@ -78,7 +78,7 @@ router.post('/change-password-with-password', async (req, res) => {
 				message: validResult.message
 			});
 		}
-		if (!await hashCompare(userInputs.oldPassword, employee.password)){
+		if (!await hashCompare(userInputs.oldPassword, employee.password)) {
 			return apiResponse(res, {
 				name: 'Invalid Password',
 				status_code: 500,
@@ -90,7 +90,7 @@ router.post('/change-password-with-password', async (req, res) => {
 			});
 		}
 		employee.password = await hasher(userInputs.newPassword);
-		employee.accountEvents.push({ event: "Password Changed" });
+		employee.accountEvents.push({ event: 'Password Changed' });
 		await employee.save();
 		return apiResponse(res, {
 			name: 'Password Changed Successfully!',
@@ -129,7 +129,7 @@ router.post('/edit', async (req, res) => {
 		loction: req.body.location,
 		role: req.body.role,
 		accountActive: req.body.accountActive
-	}
+	};
 	try {
 		const employee = await EmployeeModel.findOne({ email: req.body.email });
 		if (!employee) {
@@ -142,10 +142,11 @@ router.post('/edit', async (req, res) => {
 			});
 		}
 		for (const [key, value] of Object.entries(userInputs)) {
-			if (key != 'email') {
+			if (key !== 'email') {
 				employee[key] = value;
 			}
 		}
+		employee.accountEvents.push({ event: 'Employee Details Changed by Geoff' });
 		await employee.save();
 		return apiResponse(res, {
 			name: 'Employee Updated Successfully!',

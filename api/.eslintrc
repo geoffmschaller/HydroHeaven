@@ -38,7 +38,7 @@
         ],
         "no-console": ["off"],
         "eol-last": [
-            "never"
+            "off"
         ]
     }
 }

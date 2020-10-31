@@ -31,7 +31,7 @@ const EmployeeModel = mongoose.model('Employees', new Schema({
 	location: {
 		type: String,
 		required: true,
-		enum: ["AG", "SLO"]
+		enum: ['AG', 'SLO']
 	},
 	accountActive: {
 		type: Boolean,

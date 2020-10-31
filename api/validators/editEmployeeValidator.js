@@ -23,7 +23,7 @@ const editEmployeeValidator = async (objectToValidate) => {
 			.trim()
 			.min(2)
 			.max(3),
-		accountActive: yup.bool(),
+		accountActive: yup.bool()
 	});
 	try {
 		await schema.validate(objectToValidate);

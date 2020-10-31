@@ -31,7 +31,7 @@ const createEmployeeValidator = async (objectToValidate) => {
 			.required()
 			.trim()
 			.min(2)
-			.max(3),
+			.max(3)
 	});
 	try {
 		await schema.validate(objectToValidate);
