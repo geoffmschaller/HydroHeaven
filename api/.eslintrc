@@ -4,6 +4,7 @@
         "es6": true,
         "browser": true
     },
+    "ignorePatterns": ["*.test.js"],
     "rules": {
         "brace-style": [
             "error",
@@ -38,6 +39,9 @@
         ],
         "no-console": ["off"],
         "eol-last": [
+            "off"
+        ],
+        "no-return-await": [
             "off"
         ]
     }

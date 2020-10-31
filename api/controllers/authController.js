@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
 			});
 		}
 		employee.loginAttempts.push({ status: 200, message: 'Successful Login' });
-		const token = await encodeToken(userInputs.email);
+		const token = await encodeToken({ email: userInputs.email });
 		employee.currentToken = token;
 		await employee.save();
 		return apiResponse(res, {

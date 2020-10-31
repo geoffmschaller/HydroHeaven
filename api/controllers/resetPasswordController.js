@@ -98,7 +98,7 @@ router.post('/generate-reset-token', async (req, res) => {
 				message: validResult.message
 			});
 		}
-		employee.resetToken = await encodeToken(userInputs.email);
+		employee.resetToken = await encodeToken({ email: userInputs.email });
 		await employee.save();
 		// TODO: SEND RESET TOKEN VIA EMAIL
 		return apiResponse(res, {
