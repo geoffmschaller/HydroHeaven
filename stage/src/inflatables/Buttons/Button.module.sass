@@ -1,54 +1,14 @@
-@import "src/static/sass/config"
-
-.hollowButton
+a
 	width: 100%
-	text-align: center
-	text-transform: uppercase
-	padding: 0 10px
-	margin-top: 10px
 
-	a
-		text-decoration: none
-
-		.dark
-			border: 2px solid $primary
-			color: $primary
-
-			&:hover
-				color: white
-				background-color: $primary
-
-		.white
-			border: 2px solid white
-			color: white
-
-			&:hover
-				background-color: white
-				color: $primary
-
-		.green
-			border: 2px solid #7DCEA0
-			color: #7DCEA0
-
-			&:hover
-				background-color: #7DCEA0
-				color: white
-
-
-.solidButton
+button
 	width: 100%
-	text-align: center
+	padding: 10px 40px
+	color: white
+	cursor: pointer
 	text-transform: uppercase
-	margin-top: 10px
+	font-size: 16px
+	transition: all .2s ease-in-out
 
-	a
-		text-decoration: none
-		color: white
-
-
-.button
-	padding: 10px 20px
-
-@media (max-width: $mobile-landscape-max)
-	.hollowButton, .solidButton
-		margin-bottom: 10px
+	&:hover
+		transform: scale(1.1, 1.1)

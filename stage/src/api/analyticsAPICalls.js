@@ -1,11 +1,7 @@
 import Axios from "axios";
 
-//https://cors-anywhere.herokuapp.com/
-
-const pageViewUrl = "https://api.hydroheavenspas.com/analytics/page-view";
-
 const SendPageView = async (session, page) => {
-	return await Axios.post(pageViewUrl, {
+	return await Axios.post("https://api.hydroheavenspas.com/analytics/page-view", {
 		session: session,
 		page: page
 	});

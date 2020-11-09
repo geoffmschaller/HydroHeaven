@@ -19,19 +19,21 @@
 		flex-direction: row
 		justify-content: space-between
 
-		.social
-			width: 30%
-			padding: 5px
-			color: white
-			font-size: 30px
-			transform: skew(-45deg)
-			cursor: pointer
+		a
+			.social
+				width: 30%
+				padding: 5px
+				color: white
+				font-size: 30px
+				transform: skew(-45deg)
+				cursor: pointer
+				transition: all .2s ease-in-out
 
-			&:hover
-				padding-left: 10px
+				&:hover
+					padding-left: 10px
 
-			i
-				transform: skew(45deg)
+				i
+					transform: skew(45deg)
 
 		.facebook
 			background-color: $facebook

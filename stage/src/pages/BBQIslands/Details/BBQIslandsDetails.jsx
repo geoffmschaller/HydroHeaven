@@ -3,7 +3,7 @@ import styles from './BBQIslandsDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
 import TileData from "../../../data/TileData";
 import StuccoData from "../../../data/StuccoData";
-import HollowButton from '../../../inflatables/Buttons/HollowButton';
+import Button from '../../../inflatables/Buttons/Button';
 import BBQData from '../../../data/BBQData';
 import BBQGridItem from '../../../inflatables/BBQGridItem/BBQGridItem';
 import SendPageView from '../../../api/analyticsAPICalls';
@@ -78,7 +78,7 @@ const BBQIslandsDetails = props => {
 					<div className={styles.docs}>
 						<div className={styles.docTitle}>Spa Documents</div>
 						<div className={styles.docHolder}>
-							<HollowButton title={currentBBQ.name + " Spec Sheet"} width={50} link={currentBBQ.pdf} color={'dark'}/>
+							<Button title={`${currentBBQ.name} Spec Sheet`} link={currentBBQ.pdf} color="#3498db" hollow="true"/>
 						</div>
 					</div>
 				</div>

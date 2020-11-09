@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './SpaGridItem.module.sass';
-import DeliveryDate from "../DeliveryDate/DeliveryDate";
-import HollowButton from '../Buttons/HollowButton';
+import Button from '../Buttons/Button';
 
 const SwimSpaGridItem = props => {
 	return (
@@ -9,8 +8,7 @@ const SwimSpaGridItem = props => {
 			<img src={props.spa.image} alt=""/>
 			<div className={styles.name}>{props.spa.name}</div>
 			<div className={styles.brand}>By {props.spa.brand}</div>
-			<DeliveryDate stocked={props.spa.stocked}/>
-			<HollowButton title={"View Details"} color={'dark'} link={'/swim-spas/view/' + props.spa.id} width={100} onClick={props.click}/>
+			<Button title="View Details" link={`/swim-spas/view/${props.spa.id}`} color="#3498db" hollow="true" onClick={props.click}/>
 		</div> 
 	);
 }

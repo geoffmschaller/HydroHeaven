@@ -3,7 +3,7 @@ import styles from './Home.module.sass';
 import WhiteSlantTitle from "../../inflatables/SlantTitle/WhiteSlantTitle";
 import DarkSlantTitle from "../../inflatables/SlantTitle/DarkSlantTitle";
 import SpaGridItem from "../../inflatables/SpaGridItem/SpaGridItem";
-import SolidButton from '../../inflatables/Buttons/SolidButton';
+import Button from '../../inflatables/Buttons/Button';
 
 import SpaData from '../../data/SpaData';
 import FeaturedCategoriesData from '../../data/FeaturedCategoriesData';
@@ -30,7 +30,7 @@ const Home = props => {
 								<img src={feat.image} alt=""/>
 								<div className={styles.title}>{feat.name}</div>
 								<div className={styles.description}>{feat.description}</div>
-								<SolidButton title={"View More"} color={'#58d68d'} external={false} link={feat.link} width={100}/>
+								<Button title="View More" color="#58d68d" link={feat.link} hollow="true"/>
 							</div>
 						})
 					}

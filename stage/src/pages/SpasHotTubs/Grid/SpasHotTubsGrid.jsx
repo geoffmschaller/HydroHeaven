@@ -11,33 +11,10 @@ const SpasHotTubsGrid = props => {
 	});
 
 	const scrollRef = createRef();
-
-	const type = 	props.match.url.replace("/spas-hot-tubs/grid/", "");
-	let data = [];
-	switch (type) {
-		case 'price':
-			data = SpaData.sort((a, b) => {
+	
+	let data = SpaData.sort((a, b) => {
 				return a.price > b.price ? 1 : -1
 			});
-			break;
-		case 'seating':
-			data = SpaData.sort((a, b) => {
-				return a.seats > b.seats ? -1 : 1
-			});
-			break;
-		case 'stocked':
-			data = SpaData.filter((spa) => {
-				return spa.stocked;
-			});
-			break;
-		case 'size':
-			data = SpaData.sort((a, b) => {
-				return a.gallons > b.gallons ? -1 : 1
-			});
-			break;
-		default:
-			data = SpaData;
-	}
 
 	return (
 		<div className={styles.spasHotTubsGrid}>

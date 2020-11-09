@@ -2,14 +2,13 @@ import React, {createRef, useState, useEffect} from 'react';
 import styles from './SpasHotTubsDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
 import SpaData from "../../../data/SpaData";
-import DeliveryDate from "../../../inflatables/DeliveryDate/DeliveryDate";
 import CabinetData from "../../../data/CabinetData";
-import HollowButton from '../../../inflatables/Buttons/HollowButton';
 import {AMERICAN_WHIRLPOOL} from '../../../data/BrandsData';
 import SpaGridItem from '../../../inflatables/SpaGridItem/SpaGridItem';
 import FinancingBar from "../../../inflatables/FinancingBar/FinancingBar";
 import {connect} from 'react-redux';
 import SendPageView from '../../../api/analyticsAPICalls';
+import Button from '../../../inflatables/Buttons/Button';
 
 const AMERICAN_WHIRLPOOL_BROCHURE = require('../../../static/pdfs/brochures/AmericanWhirlpoolBrochure.pdf');
 const VITA_SPAS_BROCHURE = require('../../../static/pdfs/brochures/VitaSpasBrochure.pdf');
@@ -51,9 +50,6 @@ const  SpasHotTubsDetails = props => {
 			<DarkSlantTitle title={currentSpa.brand + " - " + currentSpa.name}/>
 			<div className={styles.spaData}>
 				<div className={styles.dataHolder}>
-					<div className={styles.availability}>
-						<DeliveryDate stocked={currentSpa.stocked}/>
-					</div>
 					<div className={styles.description}>{currentSpa.description}</div>
 					<div className={styles.stats}>
 						<div className={styles.stat}>{currentSpa.seats} Seats</div>
@@ -88,13 +84,11 @@ const  SpasHotTubsDetails = props => {
 					<div className={styles.docs}>
 						<div className={styles.docTitle}>Spa Documents</div>
 						<div className={styles.docHolder}>
-							<HollowButton title={currentSpa.name + " Spec Sheet"} width={50} link={currentSpa.pdf}
-											color={'dark'}/>
+							<Button title={`${currentSpa.name} Spec Sheet`} link={currentSpa.pdf} color="#3498db" hollow="true"/>
 							{
 								currentSpa.brand === AMERICAN_WHIRLPOOL
-									? <HollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE.default}
-													color={'dark'}/>
-									: <HollowButton title={"Vita Spas Brochure"} width={50} link={VITA_SPAS_BROCHURE.default} color={'dark'}/>
+									? <Button title={"American Whirlpool Brochure"} link={AMERICAN_WHIRLPOOL_BROCHURE.default} color="#3498db" hollow="true"/>
+									: <Button title={"Vita Spas Brochure"} link={VITA_SPAS_BROCHURE.default} color="#3498db" hollow="true"/>
 							}
 						</div>
 					</div>

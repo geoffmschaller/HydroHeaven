@@ -1,13 +1,12 @@
 import React, {createRef, useState, useEffect} from 'react';
 import styles from './SwimSpasDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
-import DeliveryDate from "../../../inflatables/DeliveryDate/DeliveryDate";
 import CabinetData from "../../../data/CabinetData";
-import HollowButton from '../../../inflatables/Buttons/HollowButton';
 import SwimSpaGridItem from '../../../inflatables/SpaGridItem/SwimSpaGridItem';
 import SwimSpaData from "../../../data/SwimSpaData";
 import {connect} from 'react-redux';
 import SendPageView from '../../../api/analyticsAPICalls';
+import Button from '../../../inflatables/Buttons/Button';
 
 const AMERICAN_WHIRLPOOL_BROCHURE = require('../../../static/pdfs/brochures/AmericanWhirlpoolBrochure.pdf');
 
@@ -49,9 +48,6 @@ const SwimSpasDetails = props => {
 					<img src={currentSwimSpa.image} alt=""/>
 				</div>
 				<div className={styles.dataHolder}>
-					<div className={styles.availability}>
-						<DeliveryDate stocked={currentSwimSpa.stocked}/>
-					</div>
 					<div className={styles.description}>{currentSwimSpa.description}</div>
 					<div className={styles.stats}>
 						<div className={styles.stat}>{currentSwimSpa.seats} Seats</div>
@@ -87,16 +83,8 @@ const SwimSpasDetails = props => {
 					<div className={styles.docs}>
 						<div className={styles.docTitle}>Spa Documents</div>
 						<div className={styles.docHolder}>
-							<HollowButton
-								title={currentSwimSpa.name + " Spec Sheet"}
-								width={50}
-								link={currentSwimSpa.pdf}
-								color={'dark'} />
-							<HollowButton
-								title={"American Whirlpool Brochure"}
-								width={50}
-								link={AMERICAN_WHIRLPOOL_BROCHURE.default}
-								color={'dark'}/>
+							<Button title={`${currentSwimSpa.name} Spec Sheet`} link={currentSwimSpa.pdf} color="#3498db" hollow="true"/>
+							<Button title={"American Whirlpool Brochure"} link={AMERICAN_WHIRLPOOL_BROCHURE.default} color="#3498db" hollow="true"/>
 						</div>
 					</div>
 				</div>

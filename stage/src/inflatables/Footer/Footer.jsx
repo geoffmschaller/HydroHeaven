@@ -9,9 +9,15 @@ const Footer = () => {
 		<div className={styles.footer}>
 			<img src={MAIN_LOGO} alt=""/>
 			<div className={styles.socialBar}>
-				<div className={[styles.social, styles.facebook].join(" ")}><i className="fab fa-facebook-f"/></div>
-				<div className={[styles.social, styles.instagram].join(" ")}><i className="fab fa-instagram"/></div>
-				<div className={[styles.social, styles.yelp].join(" ")}><i className="fab fa-yelp"/></div>
+				<a href="https://www.facebook.com/pages/category/Health-Spa/Hydro-Heaven-831250550309179/" target='_blank' rel="noreferrer">
+					<div className={[styles.social, styles.facebook].join(" ")}><i className="fab fa-facebook-f"/></div>
+				</a>
+				<a>
+					<div className={[styles.social, styles.instagram].join(" ")}><i className="fab fa-instagram" /></div>
+				</a>
+				<a href="https://www.yelp.com/biz/hydro-heaven-spas-stoves-and-bbqs-arroyo-grande" target='_blank' rel="noreferrer">
+					<div className={[styles.social, styles.yelp].join(" ")}><i className="fab fa-yelp"/></div>
+				</a>
 			</div>
 			<div className={styles.locations}>
 				<div className={styles.location}>135 Traffic Way, Arroyo Grande - (805) 473 - 2205</div>

@@ -6,7 +6,6 @@ import MainHeader from "../inflatables/MainHeader/MainHeader";
 import NavBar from "../inflatables/Navbar/NavBar";
 import VideoHeader from "../inflatables/VideoHeader/VideoHeader";
 import Footer from "../inflatables/Footer/Footer";
-import SpasHotTubsMain from "../pages/SpasHotTubs/Main/SpasHotTubsMain";
 import SpasHotTubsGrid from "../pages/SpasHotTubs/Grid/SpasHotTubsGrid";
 import SpasHotTubsDetails from "../pages/SpasHotTubs/Details/SpasHotTubsDetails";
 import ServiceContact from "../pages/ServiceContact/ServiceContact";
@@ -31,8 +30,7 @@ const App = () => {
 					<Route exact path="/financing" component={Financing}/>
 					<Route exact path="/service-contact" component={ServiceContact}/>
 					<Route exact path="/spas-hot-tubs/view/:id" component={SpasHotTubsDetails}/>
-					<Route exact path="/spas-hot-tubs/grid/:type" component={SpasHotTubsGrid}/>
-					<Route exact path="/spas-hot-tubs" component={SpasHotTubsMain}/>
+					<Route exact path="/spas-hot-tubs" component={SpasHotTubsGrid}/>
 					<Route path="/" component={Home}/>
 				</Switch>
 				<Footer/>
