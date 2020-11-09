@@ -1,4 +1,4 @@
-import React, {createRef} from 'react';
+import React, {createRef, useState, useEffect} from 'react';
 import styles from './SpasHotTubsDetails.module.sass';
 import DarkSlantTitle from "../../../inflatables/SlantTitle/DarkSlantTitle";
 import SpaData from "../../../data/SpaData";
@@ -14,112 +14,105 @@ import SendPageView from '../../../api/analyticsAPICalls';
 const AMERICAN_WHIRLPOOL_BROCHURE = require('../../../static/pdfs/brochures/AmericanWhirlpoolBrochure.pdf');
 const VITA_SPAS_BROCHURE = require('../../../static/pdfs/brochures/VitaSpasBrochure.pdf');
 
-class SpasHotTubsDetails extends React.Component {
+const  SpasHotTubsDetails = props => {
 
-	state = {
-		spa: SpaData[0],
-		cabinetLabel: "",
-		acrylicLabel: ""
-	};
+	const [currentSpa, setCurrentSpa] = useState(SpaData[0]);
+	const [acrylicLabel, setAcrylicLabel] = useState('');
+	const [cabinetLabel, setCabinetLabel] = useState(''); 
 
-	scrollRef = createRef();
+	const scrollRef = createRef();
 
-	async componentDidMount() {
-		let id = this.props.match.url.replace("/spas-hot-tubs/view/", "");
-		await this.getSpaData(id);
+	useEffect(() => {
+		getSpaData(props.match.url.replace("/spas-hot-tubs/view/", ""));
+	}, []);
+
+	const getSpaData = async (newId) => {
+		setCurrentSpa(SpaData.filter((spa) => spa.id === newId)[0]);
+		SendPageView(props.session, '/spa/' + currentSpa.name);
+		window.scrollTo(0, scrollRef.current.offsetTop - 50)
 	}
 
-	getSpaData = async (newId) => {
-		let s = this.state;
-		s.spa = SpaData.filter((spa) => spa.id === newId)[0];
-		SendPageView(this.props.session, '/spa/' + s.spa.name);
-		this.setState(s);
-		window.scrollTo(0, this.scrollRef.current.offsetTop - 50)
-	}
-
-	setCabinetColor = (name) => {
-		this.setState({cabinetLabel: name})
+	const setCabinetColor = (name) => {
+		setCabinetLabel(name);
 	};
 
-	setAcrylicColor = (name) => {
-		this.setState({acrylicLabel: name})
+	const setAcrylicColor = (name) => {
+		setAcrylicLabel(name);
 	};
 
-	alsoViewed = [SpaData[0], SpaData[1], SpaData[2], SpaData[3]];
+	const alsoViewed = [SpaData[0], SpaData[1], SpaData[2], SpaData[3]];
 
-	render() {
-		return (
-			<div className={styles.spasHotTubsDetails}>
-				<div ref={this.scrollRef}/>
-				<div className={styles.imageHolder}>
-					<img src={this.state.spa.image} alt=""/>
-				</div>
-				<DarkSlantTitle title={this.state.spa.brand + " - " + this.state.spa.name}/>
-				<div className={styles.spaData}>
-					<div className={styles.dataHolder}>
-						<div className={styles.availability}>
-							<DeliveryDate stocked={this.state.spa.stocked}/>
-						</div>
-						<div className={styles.description}>{this.state.spa.description}</div>
-						<div className={styles.stats}>
-							<div className={styles.stat}>{this.state.spa.seats} Seats</div>
-							<div className={styles.stat}>{this.state.spa.gallons} Gallons</div>
-							<div className={styles.stat}>{this.state.spa.jets} Jets</div>
-							<div className={styles.stat}>{this.state.spa.length}" x {this.state.spa.width}" x {this.state.spa.height}"</div>
-						</div>
-						<div className={styles.colors}>
-							<div className={styles.acrylic} onMouseLeave={() => this.setAcrylicColor("")}>
-								<div className={styles.colorTitle}>Acrylic Choices: {this.state.acrylicLabel}</div>
-								<div className={styles.itemHolder}>
-									{
-										this.state.spa.acrylic.map((acr, index) => {
-											return <img className={styles.item} src={acr.image} key={index}
-											            onMouseEnter={() => this.setAcrylicColor(acr.name)} alt=""/>
-										})
-									}
-								</div>
-							</div>
-							<div className={styles.cabinet} onMouseLeave={() => this.setCabinetColor("")}>
-								<div className={styles.colorTitle}>Cabinet Choices: {this.state.cabinetLabel}</div>
-								<div className={styles.itemHolder}>
-									{
-										CabinetData.map((cab, index) => {
-											return <img className={styles.item} src={cab.image} key={index}
-											            onMouseEnter={() => this.setCabinetColor(cab.name)} alt=""/>
-										})
-									}
-								</div>
-							</div>
-						</div>
-						<div className={styles.docs}>
-							<div className={styles.docTitle}>Spa Documents</div>
-							<div className={styles.docHolder}>
-								<HollowButton title={this.state.spa.name + " Spec Sheet"} width={50} link={this.state.spa.pdf} external
-								              color={'dark'}/>
+	return (
+		<div className={styles.spasHotTubsDetails}>
+			<div ref={scrollRef}/>
+			<div className={styles.imageHolder}>
+				<img src={currentSpa.image} alt=""/>
+			</div>
+			<DarkSlantTitle title={currentSpa.brand + " - " + currentSpa.name}/>
+			<div className={styles.spaData}>
+				<div className={styles.dataHolder}>
+					<div className={styles.availability}>
+						<DeliveryDate stocked={currentSpa.stocked}/>
+					</div>
+					<div className={styles.description}>{currentSpa.description}</div>
+					<div className={styles.stats}>
+						<div className={styles.stat}>{currentSpa.seats} Seats</div>
+						<div className={styles.stat}>{currentSpa.gallons} Gallons</div>
+						<div className={styles.stat}>{currentSpa.jets} Jets</div>
+						<div className={styles.stat}>{currentSpa.length}" x {currentSpa.width}" x {currentSpa.height}"</div>
+					</div>
+					<div className={styles.colors}>
+						<div className={styles.acrylic} onMouseLeave={() => setAcrylicColor("")}>
+							<div className={styles.colorTitle}>Acrylic Choices: {acrylicLabel}</div>
+							<div className={styles.itemHolder}>
 								{
-									this.state.spa.brand === AMERICAN_WHIRLPOOL
-										? <HollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE}
-										                external color={'dark'}/>
-										: <HollowButton title={"Vita Spas Brochure"} width={50} link={VITA_SPAS_BROCHURE} external color={'dark'}/>
+									currentSpa.acrylic.map((acr, index) => {
+										return <img className={styles.item} src={acr.image} key={index}
+													onMouseEnter={() => setAcrylicColor(acr.name)} alt=""/>
+									})
+								}
+							</div>
+						</div>
+						<div className={styles.cabinet} onMouseLeave={() => setCabinetColor("")}>
+							<div className={styles.colorTitle}>Cabinet Choices: {cabinetLabel}</div>
+							<div className={styles.itemHolder}>
+								{
+									CabinetData.map((cab, index) => {
+										return <img className={styles.item} src={cab.image} key={index}
+													onMouseEnter={() => setCabinetColor(cab.name)} alt=""/>
+									})
 								}
 							</div>
 						</div>
 					</div>
-					<FinancingBar/>
-				</div>
-				<div className={styles.alsoViewed}>
-					<DarkSlantTitle title={"Customers Also Viewed"}/>
-					<div className={styles.gridHolder}>
-						{
-							this.alsoViewed.map((spa, index) => {
-								return <SpaGridItem spa={spa} key={index} click={() => this.getSpaData(spa.id)}/>
-							})
-						}
+					<div className={styles.docs}>
+						<div className={styles.docTitle}>Spa Documents</div>
+						<div className={styles.docHolder}>
+							<HollowButton title={currentSpa.name + " Spec Sheet"} width={50} link={currentSpa.pdf} external
+											color={'dark'}/>
+							{
+								currentSpa.brand === AMERICAN_WHIRLPOOL
+									? <HollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE}
+													external color={'dark'}/>
+									: <HollowButton title={"Vita Spas Brochure"} width={50} link={VITA_SPAS_BROCHURE} external color={'dark'}/>
+							}
+						</div>
 					</div>
 				</div>
+				<FinancingBar/>
 			</div>
-		);
-	}
+			<div className={styles.alsoViewed}>
+				<DarkSlantTitle title={"Customers Also Viewed"}/>
+				<div className={styles.gridHolder}>
+					{
+						alsoViewed.map((spa, index) => {
+							return <SpaGridItem spa={spa} key={index} click={() => getSpaData(spa.id)}/>
+						})
+					}
+				</div>
+			</div>
+		</div>
+	);
 
 }
 

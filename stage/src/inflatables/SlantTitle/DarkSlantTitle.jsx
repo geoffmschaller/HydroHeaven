@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './SlantTitle.module.sass';
 
-const DarkSlantTitle = (props) => {
-
+const DarkSlantTitle = props => {
 	return (
 		<div className={styles.slantTitle}>
 			<div className={styles.darkBorder}/>
@@ -11,7 +10,6 @@ const DarkSlantTitle = (props) => {
 			</div>
 		</div>
 	);
-
 };
 
 export default DarkSlantTitle;

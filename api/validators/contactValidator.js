@@ -6,18 +6,21 @@ const contactValidator = async (objectToValidate) => {
 			.trim()
 			.required()
 			.min(2)
-			.max(50),
+			.max(50)
+			.strict(),
 		email: yup.string()
 			.trim()
 			.required()
 			.email()
 			.min(5)
-			.max(50),
+			.max(50)
+			.strict(),
 		message: yup.string()
 			.trim()
 			.required()
 			.min(2)
 			.max(500)
+			.strict()
 	});
 	try {
 		await schema.validate(objectToValidate);

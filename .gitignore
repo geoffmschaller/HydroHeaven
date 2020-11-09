@@ -8,3 +8,34 @@
 stage/build
 **/.env
 /api/todo.md
+/api/apiMap.md
+
+tank/.DS_Store
+tank/node_modules
+tank/dist
+
+tank/tests/e2e/videos/
+tank/tests/e2e/screenshots/
+
+
+# local env files
+tank/.env.local
+tank/.env.*.local
+
+# Log files
+tank/npm-debug.log*
+tank/yarn-debug.log*
+tank/yarn-error.log*
+tank/pnpm-debug.log*
+
+# Editor directories and files
+tank/.idea
+tank/.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.editorconfig
+.prettierignore
+.prettierrc

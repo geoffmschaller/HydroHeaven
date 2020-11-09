@@ -1,12 +1,10 @@
 import React from 'react';
 import styles from './DeliveryDate.module.sass';
 
-class DeliveryDate extends React.Component {
+const DeliveryDate = props => {
 
-	render() {
-
-		let result = <div/>;
-		switch (this.props.stocked) {
+	let result = <div/>;
+		switch (props.stocked) {
 			case "SLO":
 				result = <div>View in SLO Location!</div>
 				break;
@@ -24,7 +22,6 @@ class DeliveryDate extends React.Component {
 				{result}
 			</div>
 		);
-	}
 
 }
 

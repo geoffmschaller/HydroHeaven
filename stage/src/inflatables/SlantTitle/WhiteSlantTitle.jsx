@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './SlantTitle.module.sass';
 
-const WhiteSlantTitle = (props) => {
-
+const WhiteSlantTitle = props => {
 	return (
 		<div className={styles.slantTitle}>
 			<div className={styles.whiteBorder}/>
@@ -11,7 +10,6 @@ const WhiteSlantTitle = (props) => {
 			</div>
 		</div>
 	);
-
 };
 
 export default WhiteSlantTitle;

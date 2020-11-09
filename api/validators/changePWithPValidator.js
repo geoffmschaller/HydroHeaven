@@ -7,17 +7,20 @@ const changePWithPValidator = async (objectToValidate) => {
 			.required()
 			.email()
 			.min(5)
-			.max(50),
+			.max(50)
+			.strict(),
 		oldPassword: yup.string()
 			.trim()
 			.required()
 			.min(10)
-			.max(100),
+			.max(100)
+			.strict(),
 		newPassword: yup.string()
 			.trim()
 			.required()
 			.min(10)
 			.max(100)
+			.strict()
 	});
 	try {
 		await schema.validate(objectToValidate);

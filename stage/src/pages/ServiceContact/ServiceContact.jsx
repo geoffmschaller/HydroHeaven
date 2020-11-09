@@ -1,109 +1,100 @@
-import React, {createRef} from 'react';
+import React, {createRef, useState, useEffect} from 'react';
 import styles from './ServiceContact.module.sass';
 import DarkSlantTitle from "../../inflatables/SlantTitle/DarkSlantTitle";
 import SendContactForm from "../../api/contactAPICalls";
-import {connect} from 'react-redux';
-import SendPageView from '../../api/analyticsAPICalls';
 import LocationsData from '../../data/LocationData';
 
-class ServiceContact extends React.Component {
+const ServiceContact = props => {
 
-	componentDidMount() {
-		window.scrollTo(0, this.scrollRef.current.offsetTop - 50);
-		SendPageView(this.props.session, "/contact");
-	}
+	const [contactError, setContactError] = useState(false);
+	const [contactResult, setContactResult] = useState('');
+	const [contactSending, setContactSending] = useState(false);
+	const [nameValue, setNameValue] = useState('');
+	const [emailValue, setEmailValue] = useState('');
+	const [messageValue, setMessageValue] = useState('');
 
-	scrollRef = createRef();
+	useEffect(() => {
+		window.scrollTo(0, scrollRef.current.offsetTop - 50);
+	});
 
-	state = {
-		error: true,
-		result: "",
-		sending: false,
-		nameInput: "",
-		emailInput: "",
-		messageInput: ""
+	const scrollRef = createRef();
+
+	const updateValue = (event) => {
+		switch (event.target.name) {
+			case 'nameInput':
+				setNameValue(event.target.value);
+				break;
+			case 'emailInput':
+				setEmailValue(event.target.value);
+				break;
+			default:
+				setMessageValue(event.target.value);
+		}
 	};
 
-	updateValue = (event) => {
-		let input = event.target.name;
-		let s = {...this.state};
-		s[input] = event.target.value;
-		this.setState(s);
+	const sendContactForm = async () => {
+		setContactSending(true);
+		let results = await SendContactForm(nameValue, emailValue, messageValue);
+		if (results.data.status_code === 500) {
+			setContactError(true);
+			setContactResult(results.data.message);
+		} else {
+			setContactError(false);
+			setContactResult(results.data.message);
+			setNameValue('');
+			setEmailValue('');
+			setMessageValue('');
+		}
+		setContactSending(false);
 	};
 
-	sendContactForm = async () => {
-		await this.setState({sending: true});
-		let results = await SendContactForm(this.state.nameInput, this.state.emailInput, this.state.messageInput);
-		if (results.data.status_code === 500)
-			this.setState({error: true, result: results.data.message});
-		else
-			this.setState({
-				error: false,
-				result: results.data.message,
-				nameInput: "",
-				emailInput: "",
-				messageInput: ""
-			});
-		await this.setState({sending: false});
-	};
+	const resultClasses = contactError ? [styles.result, styles.error].join(" ") : [styles.result, styles.success].join(" ");
 
-	render() {
-
-		let resultClasses = this.state.error ? [styles.result, styles.error].join(" ") : [styles.result, styles.success].join(" ");
-
-		return (
-			<div className={styles.serviceContact}>
-				<div ref={this.scrollRef}/>
-				<div className={styles.holder}>
-					{/* LOCATIONS */}
-					<div className={styles.locations}>
-						{
-							LocationsData.map((loc, index) => {
-								return <div className={styles.location} key={index}>
-									<img src={loc.image} alt=""/>
-									<div className={styles.address}>{loc.address}</div>
-									<div className={styles.phone}>{loc.phone}</div>
-								</div>
-							})
-						}
-					</div>
-					<div className={styles.contact}>
-						<DarkSlantTitle title={"Contact Us"}/>
-						<div className={styles.contactForm}>
-							<div className={styles.description}>
-								Please feel free to send us a message below, we'd love to hear from you. If this is
-								urgent please call one of our locations so
-								that a team member can help you directly.
+	return (
+		<div className={styles.serviceContact}>
+			<div ref={scrollRef}/>
+			<div className={styles.holder}>
+				<div className={styles.locations}>
+					{
+						LocationsData.map((loc, index) => {
+							return <div className={styles.location} key={index}>
+								<img src={loc.image} alt=""/>
+								<div className={styles.address}>{loc.address}</div>
+								<div className={styles.phone}>{loc.phone}</div>
 							</div>
-							<input name="nameInput" type="text" placeholder={"Full Name"} value={this.state.nameInput}
-							       onChange={(event) => this.updateValue(event)}/>
-							<input name="emailInput" type="text" placeholder={"Email"} value={this.state.emailInput}
-							       onChange={(event) => this.updateValue(event)}/>
-							<textarea name="messageInput" placeholder={"Your Message"} value={this.state.messageInput}
-							          onChange={(event) => this.updateValue(event)}/>
-							<button disabled={this.state.sending} onClick={() => this.sendContactForm()}>
-								{
-									this.state.sending
-										? <i className="fas fa-spinner"/>
-										: <div>Send</div>
-								}
-							</button>
-							<div className="clear"/>
-							<div className={resultClasses}>{this.state.result}</div>
+						})
+					}
+				</div>
+				<div className={styles.contact}>
+					<DarkSlantTitle title={"Contact Us"}/>
+					<div className={styles.contactForm}>
+						<div className={styles.description}>
+							Please feel free to send us a message below, we'd love to hear from you. If this is
+							urgent please call one of our locations so
+							that a team member can help you directly.
 						</div>
+						<input name="nameInput" type="text" placeholder={"Full Name"} value={nameValue}
+								onChange={(event) => updateValue(event)}/>
+						<input name="emailInput" type="text" placeholder={"Email"} value={emailValue}
+								onChange={(event) => updateValue(event)}/>
+						<textarea name="messageInput" placeholder={"Your Message"} value={messageValue}
+									onChange={(event) => updateValue(event)}/>
+						<button disabled={contactSending} onClick={() => sendContactForm()}>
+							{
+								contactSending
+									? <i className="fas fa-spinner"/>
+									: <div>Send</div>
+							}
+						</button>
+						<div className="clear"/>
+						<div className={resultClasses}>{contactResult}</div>
 					</div>
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 
 }
 
-let mapStateToProps = (state) => {
-	return {
-		session: state.session
-	};
-}
 
-
-export default connect(mapStateToProps)(ServiceContact);
+export default ServiceContact;

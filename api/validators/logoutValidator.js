@@ -8,6 +8,7 @@ const logoutValidator = async (objectToValidate) => {
 			.email()
 			.min(5)
 			.max(50)
+			.strict()
 	});
 	try {
 		await schema.validate(objectToValidate);

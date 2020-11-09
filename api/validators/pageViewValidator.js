@@ -6,11 +6,13 @@ const pageViewValidator = async (objectToValidate) => {
 			.trim()
 			.required()
 			.min(2)
-			.max(50),
+			.max(50)
+			.strict(),
 		page: yup.string()
 			.trim()
 			.required()
 			.max(50)
+			.strict()
 	});
 	try {
 		await schema.validate(objectToValidate);

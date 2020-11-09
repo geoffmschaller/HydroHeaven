@@ -1,0 +1,14 @@
+{
+	"trailingComma": "none",
+	"tabWidth": 4,
+	"singleQuote": true,
+	"indentStyle": "tab",
+	"printWidth": 80,
+	"editor.formatOnSave": true,
+	"proseWrap": "always",
+	"requireConfig": false,
+	"useTabs": true,
+	"bracketSpacing": true,
+	"jsxBracketSameLine": false,
+	"semi": true
+}

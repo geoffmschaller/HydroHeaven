@@ -73,13 +73,18 @@ describe('Page View Validator: Session', () => {
 			expect.objectContaining({
 				name: 'ValidationError',
 				path: 'session',
-				type: 'required'
+				type: 'typeError'
 			})
 		)
 	});
-	// ! Should throw a 'type' or 'required' error
 	it('has an empty object as an input', async () => {
-		expect(await PageViewValidator({ ...fakeData, session: {} })).toBe(200);
+		expect(await PageViewValidator({ ...fakeData, session: {} })).toEqual(
+			expect.objectContaining({
+				name: 'ValidationError',
+				path: 'session',
+				type: 'typeError'
+			})
+		);
 	});
 });
 
@@ -116,12 +121,17 @@ describe('Page View Validator: Page', () => {
 			expect.objectContaining({
 				name: 'ValidationError',
 				path: 'page',
-				type: 'required'
+				type: 'typeError'
 			})
 		)
 	});
-	// ! Should throw a 'type' or 'required' error
 	it('has an empty object as an input', async () => {
-		expect(await PageViewValidator({ ...fakeData, page: {} })).toBe(200);
+		expect(await PageViewValidator({ ...fakeData, page: {} })).toEqual(
+			expect.objectContaining({
+				name: 'ValidationError',
+				path: 'page',
+				type: 'typeError'
+			})
+		);
 	})
 });

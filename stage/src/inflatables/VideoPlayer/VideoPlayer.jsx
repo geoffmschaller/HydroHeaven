@@ -1,32 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './VideoPlayer.module.sass';
 
-class VideoPlayer extends React.Component {
-    
-    state = {
-        offset: 0
-    }
+const VideoPlayer = props => {
 
-    componentDidMount(){
-        this.setState({offset: window.scrollY});
-        document.body.style.overflow = 'hidden';
-    }
+	const [screenOffset, setScreenOffset] = useState(0);
 
-    componentWillUnmount(){
-        document.body.style.overflow = 'auto';
-    }
+	useEffect(() => {
+		setScreenOffset(window.scrollY);
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = 'auto';
+		}
+	}, []);
 
-
-    render(){
-        return(
-            <div className={styles.videoPlayer} style={{top: `${this.state.offset}px`}}>
-                <div className={styles.videoHolder}>
-                    <div className={styles.close} onClick={() => this.props.close(false)}><i className="fas fa-times"/></div>
-                    <video src={this.props.video} autoPlay loop controls/>
-                </div>
-            </div>
-        );
-    }
+    return(
+		<div className={styles.videoPlayer} style={{top: `${screenOffset}px`}}>
+			<div className={styles.videoHolder}>
+				<div className={styles.close} onClick={() => props.close(false)}><i className="fas fa-times"/></div>
+				<video src={props.video} autoPlay loop controls/>
+			</div>
+		</div>
+	);
 
 }
 
