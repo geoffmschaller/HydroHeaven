@@ -43,7 +43,7 @@ const SpasHotTubsMain = props => {
 				<div className={styles.buttonBar}>
 					{
 						shopBy.map((shop, index) => {
-							return <HollowButton title={shop.title} link={shop.link} key={index} width={25} external={false} color={"white"}/>
+							return <HollowButton title={shop.title} link={shop.link} key={index} width={25} color={"white"}/>
 						})
 					}
 				</div>
@@ -66,7 +66,7 @@ const SpasHotTubsMain = props => {
 						<div className={styles.brochures}>
 							{
 								BrochureData.map((broc, index) => {
-									return <HollowButton title={broc.name} link={broc.link} key={index} width={50} external color={'white'}/>
+									return <HollowButton title={broc.name} link={broc.link} key={index} width={50} color={'white'}/>
 								})
 							}
 						</div>

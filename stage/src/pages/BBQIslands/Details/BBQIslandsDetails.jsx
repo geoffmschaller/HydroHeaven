@@ -78,8 +78,7 @@ const BBQIslandsDetails = props => {
 					<div className={styles.docs}>
 						<div className={styles.docTitle}>Spa Documents</div>
 						<div className={styles.docHolder}>
-							<HollowButton title={currentBBQ.name + " Spec Sheet"} width={50} link={currentBBQ.pdf} external
-											color={'dark'}/>
+							<HollowButton title={currentBBQ.name + " Spec Sheet"} width={50} link={currentBBQ.pdf} color={'dark'}/>
 						</div>
 					</div>
 				</div>

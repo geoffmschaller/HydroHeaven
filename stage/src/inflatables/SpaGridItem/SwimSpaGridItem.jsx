@@ -10,8 +10,8 @@ const SwimSpaGridItem = props => {
 			<div className={styles.name}>{props.spa.name}</div>
 			<div className={styles.brand}>By {props.spa.brand}</div>
 			<DeliveryDate stocked={props.spa.stocked}/>
-			<HollowButton title={"View Details"} color={'dark'} external={false} link={'/swim-spas/view/' + props.spa.id} width={100}/>
-		</div>
+			<HollowButton title={"View Details"} color={'dark'} link={'/swim-spas/view/' + props.spa.id} width={100} onClick={props.click}/>
+		</div> 
 	);
 }
 

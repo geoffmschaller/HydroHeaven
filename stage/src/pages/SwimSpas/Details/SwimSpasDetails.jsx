@@ -20,10 +20,6 @@ const SwimSpasDetails = props => {
 
 	const scrollRef = createRef();
 
-	useEffect(() => {
-		getSpaData(props.match.url.replace("/swim-spas/view/", ""));
-	}, []);
-
 	const getSpaData = (newId) => {
 		setCurrentSwimSpas(SwimSpaData.filter((spa) => spa.id === newId)[0]);
 		SendPageView(props.session, "/swim/" + currentSwimSpa.name);
@@ -39,6 +35,10 @@ const SwimSpasDetails = props => {
 	};
 
 	const alsoViewed = [SwimSpaData[0], SwimSpaData[1], SwimSpaData[2], SwimSpaData[3]];
+
+	useEffect(() => {
+		getSpaData(props.match.url.replace("/swim-spas/view/", ""));
+	}, []);
 
 	return (
 		<div className={styles.spasHotTubsDetails}>
@@ -87,10 +87,16 @@ const SwimSpasDetails = props => {
 					<div className={styles.docs}>
 						<div className={styles.docTitle}>Spa Documents</div>
 						<div className={styles.docHolder}>
-							<HollowButton title={currentSwimSpa.name + " Spec Sheet"} width={50} link={currentSwimSpa.pdf} external
-											color={'dark'}/>
-							<HollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE} external
-											color={'dark'}/>
+							<HollowButton
+								title={currentSwimSpa.name + " Spec Sheet"}
+								width={50}
+								link={currentSwimSpa.pdf}
+								color={'dark'} />
+							<HollowButton
+								title={"American Whirlpool Brochure"}
+								width={50}
+								link={AMERICAN_WHIRLPOOL_BROCHURE.default}
+								color={'dark'}/>
 						</div>
 					</div>
 				</div>

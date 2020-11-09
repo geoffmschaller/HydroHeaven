@@ -10,7 +10,7 @@ const SpaGridItem = props => {
 			<div className={styles.name}>{props.spa.name}</div>
 			<div className={styles.brand}>By {props.spa.brand}</div>
 			<DeliveryDate stocked={props.spa.stocked}/>
-			<HollowButton width={100} link={"/spas-hot-tubs/view/" + props.spa.id} external={false} color={'dark'} title={"View Details"}/>
+			<HollowButton width={100} link={"/spas-hot-tubs/view/" + props.spa.id} color={'dark'} title={"View Details"}/>
 		</div>
 	);
 }

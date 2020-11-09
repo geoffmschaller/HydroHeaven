@@ -17,14 +17,10 @@ const VITA_SPAS_BROCHURE = require('../../../static/pdfs/brochures/VitaSpasBroch
 const  SpasHotTubsDetails = props => {
 
 	const [currentSpa, setCurrentSpa] = useState(SpaData[0]);
+	const [cabinetLabel, setCabinetLabel] = useState('');
 	const [acrylicLabel, setAcrylicLabel] = useState('');
-	const [cabinetLabel, setCabinetLabel] = useState(''); 
 
 	const scrollRef = createRef();
-
-	useEffect(() => {
-		getSpaData(props.match.url.replace("/spas-hot-tubs/view/", ""));
-	}, []);
 
 	const getSpaData = async (newId) => {
 		setCurrentSpa(SpaData.filter((spa) => spa.id === newId)[0]);
@@ -41,6 +37,10 @@ const  SpasHotTubsDetails = props => {
 	};
 
 	const alsoViewed = [SpaData[0], SpaData[1], SpaData[2], SpaData[3]];
+
+	useEffect(() => {
+		getSpaData(props.match.url.replace("/spas-hot-tubs/view/", ""));
+	}, []);
 
 	return (
 		<div className={styles.spasHotTubsDetails}>
@@ -88,13 +88,13 @@ const  SpasHotTubsDetails = props => {
 					<div className={styles.docs}>
 						<div className={styles.docTitle}>Spa Documents</div>
 						<div className={styles.docHolder}>
-							<HollowButton title={currentSpa.name + " Spec Sheet"} width={50} link={currentSpa.pdf} external
+							<HollowButton title={currentSpa.name + " Spec Sheet"} width={50} link={currentSpa.pdf}
 											color={'dark'}/>
 							{
 								currentSpa.brand === AMERICAN_WHIRLPOOL
-									? <HollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE}
-													external color={'dark'}/>
-									: <HollowButton title={"Vita Spas Brochure"} width={50} link={VITA_SPAS_BROCHURE} external color={'dark'}/>
+									? <HollowButton title={"American Whirlpool Brochure"} width={50} link={AMERICAN_WHIRLPOOL_BROCHURE.default}
+													color={'dark'}/>
+									: <HollowButton title={"Vita Spas Brochure"} width={50} link={VITA_SPAS_BROCHURE.default} color={'dark'}/>
 							}
 						</div>
 					</div>

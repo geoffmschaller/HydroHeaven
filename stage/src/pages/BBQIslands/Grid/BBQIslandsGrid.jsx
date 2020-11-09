@@ -18,7 +18,7 @@ const BBQIslandsGrid = props => {
 		<div className={styles.bbqIslandsMain}>
 			<div ref={scrollRef}/>
 			<div className={styles.warranty}>
-				<img src={WARRANTY_BADGE} alt=""/>
+				<img src={WARRANTY_BADGE.default} alt=""/>
 				<div className={styles.description}>Bull is so confident in its fabulous lineup of premium outdoor grills that Lifetime
 					Warranties* come standard on all fire
 					boxes, cooking grates and on all cast stainless steel burners. With 9 durable grill heads to choose from, Bull has the perfect

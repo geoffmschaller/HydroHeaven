@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Button.module.sass';
 import {Link} from "react-router-dom";
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const HollowButton = (props) => {
 
@@ -19,13 +19,13 @@ const HollowButton = (props) => {
 	}
 
 	return (
-		<div className={styles.hollowButton} style={{maxWidth: window.innerWidth > 850 ? props.width + '%' : `100%`}}>
+		<div className={styles.hollowButton} style={{ maxWidth: window.innerWidth > 850 ? props.width + '%' : `100%` }}>
 			{
-				props.external
-					? <a href={props.link} target={"_blank"} rel={"noreferrer"}>
+				props.link.toString().indexOf('/static') > -1
+					? <a {...props} href={props.link} target={"_blank"} rel={"noreferrer"}>
 						{destination}
 					</a>
-					: <Link to={props.link}>
+					: <Link {...props} to={props.link}>
 						{destination}
 					</Link>
 			}
@@ -34,12 +34,11 @@ const HollowButton = (props) => {
 }
 
 HollowButton.propTypes = {
-	color: propTypes.oneOf(['dark', 'green', 'white']).isRequired,
-	width: propTypes.number.isRequired,
-	title: propTypes.string.isRequired,
-	external: propTypes.bool.isRequired,
-	link: propTypes.string.isRequired,
-	style: propTypes.object,
+	color: PropTypes.oneOf(['dark', 'green', 'white']).isRequired,
+	width: PropTypes.number.isRequired,
+	title: PropTypes.string.isRequired,
+	link: PropTypes.string.isRequired,
+	style: PropTypes.object,
 }
 
 export default HollowButton;

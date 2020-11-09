@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Button.module.sass';
 import {Link} from "react-router-dom";
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const SolidButton = (props) => {
 
@@ -11,7 +11,7 @@ const SolidButton = (props) => {
 	return (
 		<div className={styles.solidButton} style={{maxWidth: window.innerWidth > 850 ? props.width + '%' : `100%`}}>
 			{
-				props.external
+				props.link.indexOf('http://') > -1 || props.link.indexOf('https://') > -1
 					? <a href={props.link} target={"_blank"} rel={"noreferrer"}>
 						{destination}
 					</a>
@@ -24,12 +24,11 @@ const SolidButton = (props) => {
 }
 
 SolidButton.propTypes = {
-	color: propTypes.string.isRequired,
-	width: propTypes.number.isRequired,
-	title: propTypes.any.isRequired,
-	external: propTypes.bool.isRequired,
-	link: propTypes.string.isRequired,
-	style: propTypes.object,
+	color: PropTypes.string.isRequired,
+	width: PropTypes.number.isRequired,
+	title: PropTypes.any.isRequired,
+	link: PropTypes.string.isRequired,
+	style: PropTypes.object,
 }
 
 export default SolidButton;
