@@ -1,6 +1,8 @@
 **/.vscode/**
 **/node_modules
 **/.idea/
+.idea/
+.vscode/
 **/.vs/
 **/.pk
 **/.pem
