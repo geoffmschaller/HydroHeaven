@@ -11,6 +11,7 @@ stage/build
 **/.env
 /api/todo.md
 /api/apiMap.md
+/api/coverage
 
 tank/.DS_Store
 tank/node_modules

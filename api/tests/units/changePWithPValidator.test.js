@@ -1,4 +1,4 @@
-const changePWithPValidator = require('../validators/changePWithPValidator');
+const changePWithPValidator = require('../../validators/changePWithPValidator');
 
 const testData = {
 	email: 'test@email.com',
