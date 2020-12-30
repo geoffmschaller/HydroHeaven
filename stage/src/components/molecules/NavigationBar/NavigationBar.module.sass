@@ -1,0 +1,111 @@
+@import '../../../themes/Main'
+
+.navigationBar
+	width: 100%
+	padding: 2rem
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	z-index: 100000
+
+	.socialBar
+		display: flex
+		flex-direction: row
+		justify-content: flex-end
+		align-items: center
+		color: white
+
+		a
+			color: white
+			text-decoration: none
+
+			i
+				font-size: 1.2rem
+				margin: 0 0.7rem
+
+		.phone
+			font-size: 1.2rem
+			margin: 0 0.7rem
+
+	.menuBar
+		display: flex
+		flex-direction: row
+		justify-content: space-between
+		align-content: center
+		width: 100%
+		max-width: 1400px
+		margin: 0 auto
+		margin-top: 2rem
+
+		.logo
+			display: flex
+			flex-direction: row
+			align-content: center
+			color: white
+
+			.companyName
+				font-size: 1.6rem
+
+		.menu
+			display: flex
+			flex-direction: row
+			justify-content: flex-end
+			align-content: center
+			color: white
+			font-size: 1rem
+			overflow: hidden
+			height: 2rem
+
+			a
+				text-decoration: none
+				color: inherit
+
+			.item
+				margin: 0 1rem
+				cursor: pointer
+				transition: all .2s ease-in-out
+
+				&:hover
+					color: $accent
+
+			i
+				font-size: 2rem
+				cursor: pointer
+
+	.mobileMenu
+		display: none
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		width: 0
+		transition: all .2s ease-in-out
+		background-color: $dark
+		padding-top: 5rem
+
+		.item
+			margin: 0 1rem
+			cursor: pointer
+			padding: 2rem 0
+			transition: all .2s ease-in-out
+			color: white
+
+			&:hover
+				color: $accent
+
+			i
+				font-size: 2rem
+				cursor: pointer
+
+	.openMenu
+		display: block
+		width: 15rem
+		height: 100vh
+
+.home
+	background-color: transparent
+
+.hotTubs
+	background-color: $dark
+

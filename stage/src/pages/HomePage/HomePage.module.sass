@@ -1,0 +1,84 @@
+@import '../../themes/Main'
+
+.homePage
+	width: 100%
+	overflow: hidden
+	margin-bottom: 10rem
+
+	.background
+		width: 100%
+		background-position: center
+		background-size: cover
+		z-index: 1
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+
+	.overlay
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		background-color: rgba($dark, 0.3)
+		z-index: 10
+
+		.display
+			width: 100%
+			max-width: 1400px
+			margin: 0 auto
+			display: flex
+			justify-content: center
+			align-items: center
+			flex-direction: row
+			margin-top: 16%
+			padding: 0 1rem
+
+			.left
+				width: 50%
+
+				.title
+					font-size: 3.5rem
+					color: white
+
+					.highlight
+						font-weight: bold
+						color: #fff176
+						font-style: italic
+
+				.subtitle
+					font-size: 1.5rem
+					color: white
+					margin-top: 1rem
+
+				.getStarted
+					padding: 10px 20px
+					max-width: 300px
+					text-align: center
+					font-size: 20px
+					background-color: #417eeb
+					color: white
+					cursor: pointer
+					margin-top: 3rem
+					transition: all .2s ease-in-out
+					border-radius: 10px
+
+			.right
+				width: 50%
+
+@media screen and (max-width: 901px)
+	.homePage
+		.overlay
+			.display
+				.left
+					width: 100%
+					text-align: center
+					margin-top: 6rem
+
+					.getStarted
+						margin: 3rem auto
+
+				.right
+					width: 0

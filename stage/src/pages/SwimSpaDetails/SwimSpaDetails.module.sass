@@ -1,0 +1,85 @@
+@import '../../themes/Main'
+
+.swimSpaDetails
+	width: 100%
+	overflow: hidden
+	position: relative
+	padding: 10rem 1rem
+
+	.wrapper
+		width: 100%
+		max-width: 1400px
+		margin: 1rem auto
+		display: flex
+		flex-direction: row
+		justify-content: center
+		align-items: center
+
+		.left
+			width: 50%
+
+			img
+				width: 100%
+
+		.right
+			width: 50%
+
+			.title
+				font-size: 2rem
+				color: $primary
+
+			.brand
+				font-size: 1rem
+				color: #abb2b9
+				margin-bottom: 1.5rem
+
+			.dimensions
+				font-size: 1.2rem
+				color: $primary
+				margin-bottom: 1.5rem
+				font-weight: bold
+				font-style: italic
+
+			.description
+				font-size: 1rem
+				color: #abb2b9
+				margin-bottom: 2rem
+
+			.acrylicGrid
+				display: flex
+				flex-direction: row
+				flex-wrap: wrap
+				margin-bottom: 1rem
+
+				.acrylic
+					width: 5rem
+					padding: 0.5rem
+
+					img
+						width: 100%
+
+					.title
+						font-size: 0.8rem
+						text-align: center
+
+			.specSheet
+				width: 100%
+				max-width: 300px
+				background-color: $accent
+				color: white
+				padding: 1rem 2rem
+				border-radius: 6px
+				text-align: center
+				cursor: pointer
+				font-weight: bold
+
+@media screen and (max-width: 901px)
+	.swimSpaDetails
+		.wrapper
+			flex-direction: column
+
+			.left
+				width: 100%
+
+			.right
+				width: 100%
