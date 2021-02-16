@@ -6,10 +6,12 @@ import Footer from "../../components/molecules/Footer/Footer";
 import SwimSpaGridItem from "../../components/molecules/SwimSpaGridItem/SwimSpaGridItem";
 import FadePageTransition from "../../animations/FadePageTransition";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const SwimSpasGrid: FunctionComponent = () => {
 	return (
 		<FadePageTransition>
+			<ScrollToTop/>
 			<div className={styles.swimSpaGrid}>
 				<NavigationBar background="swimSpas"/>
 				<FadeAndSlideUp duration={0.3}>

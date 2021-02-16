@@ -5,6 +5,7 @@ import Footer from "../../components/molecules/Footer/Footer";
 import axios, {AxiosResponse} from "axios";
 import RotateClockwise from "../../animations/RotateClockwise";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const Contact: FunctionComponent = () => {
 
@@ -41,6 +42,7 @@ const Contact: FunctionComponent = () => {
 
 	return (
 		<div className={styles.contact}>
+			<ScrollToTop/>
 			<NavigationBar background="contact"/>
 			<div className={styles.wrapper}>
 				<div className={styles.right}>

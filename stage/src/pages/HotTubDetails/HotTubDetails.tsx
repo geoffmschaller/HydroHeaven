@@ -7,6 +7,7 @@ import BreadCrumb from "../../components/molecules/BreadCrumbs/BreadCrumbs";
 import FadePageTransition from "../../animations/FadePageTransition";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
 import ScaleUpAndFadeIn from "../../animations/ScaleUpAndFadeIn";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const HotTubDetails: FunctionComponent<any> = (props) => {
 
@@ -21,6 +22,7 @@ const HotTubDetails: FunctionComponent<any> = (props) => {
 
 	return (
 		<FadePageTransition>
+			<ScrollToTop/>
 			<div className={styles.spaDetails}>
 				<NavigationBar background={'spaDetails'}/>
 				<BreadCrumb link={'/spas-hot-tubs'} name={'All Spas & Hot Tubs'}/>

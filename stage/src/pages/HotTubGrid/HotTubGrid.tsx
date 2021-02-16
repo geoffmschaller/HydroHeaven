@@ -6,10 +6,12 @@ import HotTubGridItem from "../../components/molecules/HotTubGridItem/HotTubGrid
 import Footer from "../../components/molecules/Footer/Footer";
 import FadePageTransition from "../../animations/FadePageTransition";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const HotTubGrid: FunctionComponent = () => {
 	return (
 		<FadePageTransition>
+			<ScrollToTop/>
 			<div className={styles.spasGrid}>
 				<NavigationBar background="hotTubs"/>
 				<FadeAndSlideUp duration={0.3}>

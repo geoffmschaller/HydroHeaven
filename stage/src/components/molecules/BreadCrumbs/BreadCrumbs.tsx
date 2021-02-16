@@ -10,7 +10,7 @@ interface Props {
 const BreadCrumb: FunctionComponent<Props> = (props) => {
 	return (
 		<div className={styles.breadCrumb}>
-			<i className="fas fa-chevron-double-left"/> <Link to={props.link}>{props.name}</Link>
+			<Link to={props.link}><i className="fas fa-chevron-double-left"/> {props.name}</Link>
 		</div>
 	)
 }

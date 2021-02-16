@@ -7,6 +7,7 @@ import SwimSpaData from '../../data/SwimSpaData';
 import FadePageTransition from "../../animations/FadePageTransition";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
 import ScaleUpAndFadeIn from "../../animations/ScaleUpAndFadeIn";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const SwimSpaDetails: FunctionComponent<any> = (props) => {
 
@@ -21,6 +22,7 @@ const SwimSpaDetails: FunctionComponent<any> = (props) => {
 
 	return (
 		<FadePageTransition>
+			<ScrollToTop/>
 			<div className={styles.swimSpaDetails}>
 				<NavigationBar background={'spaDetails'}/>
 				<BreadCrumb link={'/swim-spas'} name={'All Swim Spas'}/>

@@ -6,10 +6,12 @@ import BBQData from '../../data/BBQData';
 import BBQIslandGridItem from "../../components/molecules/BBQIslandGridItem/BBQIslandGridItem";
 import FadePageTransition from "../../animations/FadePageTransition";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const BBQIslandGrid: FunctionComponent = () => {
 	return (
 		<FadePageTransition>
+			<ScrollToTop/>
 			<div className={styles.bbqIslandGrid}>
 				<NavigationBar background="bbqs"/>
 				<FadeAndSlideUp duration={0.3}>

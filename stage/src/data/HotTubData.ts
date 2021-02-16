@@ -1,7 +1,7 @@
 import {AMERICAN_WHIRLPOOL, VITA_SPAS} from "./BrandsData";
 import AcrylicData from './AcrylicData';
 
-import Sim1 from '../static/images/spas/100.png';
+//import Sim1 from '../static/images/spas/100.png';
 import Sim2 from '../static/images/spas/151.png';
 import Sim3 from '../static/images/spas/160.png';
 import Sim4 from '../static/images/spas/171.png';
@@ -23,16 +23,16 @@ import Sim19 from '../static/images/spas/481.png';
 import Sim20 from '../static/images/spas/881.png';
 import Sim21 from '../static/images/spas/890.png';
 import Sim22 from '../static/images/spas/982.png';
-import Sim23 from '../static/images/spas/amour.png';
+//import Sim23 from '../static/images/spas/amour.png';
 import Sim24 from '../static/images/spas/cabaret.png';
-import Sim25 from '../static/images/spas/duet.png';
+//import Sim25 from '../static/images/spas/duet.png';
 import Sim26 from '../static/images/spas/elegant.png';
 import Sim27 from '../static/images/spas/envie.png';
 import Sim28 from '../static/images/spas/grand.png';
 import Sim29 from '../static/images/spas/image.png';
 import Sim30 from '../static/images/spas/intrigue.png';
 import Sim31 from '../static/images/spas/joli.png';
-import Sim32 from '../static/images/spas/lune.png';
+//import Sim32 from '../static/images/spas/lune.png';
 import Sim33 from '../static/images/spas/luxe.png';
 import Sim34 from '../static/images/spas/monarque.png';
 import Sim35 from '../static/images/spas/mystique.png';
@@ -45,7 +45,7 @@ import Sim41 from '../static/images/spas/trio.png';
 import Sim42 from '../static/images/spas/vivre.png';
 import Sim43 from '../static/images/spas/voeux.png';
 
-import Spdf1 from '../static/pdfs/spas/100-151.pdf';
+//import Spdf1 from '../static/pdfs/spas/100-151.pdf';
 import Spdf2 from '../static/pdfs/spas/100-151.pdf';
 import Spdf3 from '../static/pdfs/spas/160-171.pdf';
 import Spdf4 from '../static/pdfs/spas/160-171.pdf';
@@ -67,16 +67,16 @@ import Spdf19 from '../static/pdfs/spas/481.pdf';
 import Spdf20 from '../static/pdfs/spas/881.pdf';
 import Spdf21 from '../static/pdfs/spas/890.pdf';
 import Spdf22 from '../static/pdfs/spas/982.pdf';
-import Spdf23 from '../static/pdfs/spas/amour.pdf';
+//import Spdf23 from '../static/pdfs/spas/amour.pdf';
 import Spdf24 from '../static/pdfs/spas/cabaret.pdf';
-import Spdf25 from '../static/pdfs/spas/duet.pdf';
+//import Spdf25 from '../static/pdfs/spas/duet.pdf';
 import Spdf26 from '../static/pdfs/spas/elegant.pdf';
 import Spdf27 from '../static/pdfs/spas/envie.pdf';
 import Spdf28 from '../static/pdfs/spas/grand.pdf';
 import Spdf29 from '../static/pdfs/spas/image.pdf';
 import Spdf30 from '../static/pdfs/spas/intrigue.pdf';
 import Spdf31 from '../static/pdfs/spas/joli.pdf';
-import Spdf32 from '../static/pdfs/spas/lune.pdf';
+//import Spdf32 from '../static/pdfs/spas/lune.pdf';
 import Spdf33 from '../static/pdfs/spas/luxe.pdf';
 import Spdf34 from '../static/pdfs/spas/monarque.pdf';
 import Spdf35 from '../static/pdfs/spas/mystique.pdf';
@@ -91,25 +91,25 @@ import Spdf43 from '../static/pdfs/spas/voeux.pdf';
 import HotTub from "../types/HotTub";
 
 const HotTubData: Array<HotTub> = [
-	{
-		id: "100",
-		name: "#100",
-		brand: AMERICAN_WHIRLPOOL,
-		price: 4895,
-		reviews: [],
-		description: "The American Whirlpool 100 Hot Tub is a high performing and low operating cost tub. Wood frame sub structure, ABS bottom, Copper" +
-			" reflectant to keep that heat in, Northern Exposure with BlueMAAX insulation and an added layer of 3M Thinsulate—just to name a few of the amazing features.",
-		seats: 4,
-		jets: 18,
-		gallons: 200,
-		length: 76,
-		width: 76,
-		height: 34,
-		image: Sim1,
-		pdf: Spdf1,
-		stocked: "SLO",
-		acrylic: AcrylicData
-	},
+	// {
+	// 	id: "100",
+	// 	name: "#100",
+	// 	brand: AMERICAN_WHIRLPOOL,
+	// 	price: 4895,
+	// 	reviews: [],
+	// 	description: "The American Whirlpool 100 Hot Tub is a high performing and low operating cost tub. Wood frame sub structure, ABS bottom, Copper" +
+	// 		" reflectant to keep that heat in, Northern Exposure with BlueMAAX insulation and an added layer of 3M Thinsulate—just to name a few of the amazing features.",
+	// 	seats: 4,
+	// 	jets: 18,
+	// 	gallons: 200,
+	// 	length: 76,
+	// 	width: 76,
+	// 	height: 34,
+	// 	image: Sim1,
+	// 	pdf: Spdf1,
+	// 	stocked: "SLO",
+	// 	acrylic: AcrylicData
+	// },
 	{
 		id: "151",
 		name: "#151",
@@ -496,24 +496,24 @@ const HotTubData: Array<HotTub> = [
 		stocked: false,
 		acrylic: AcrylicData
 	},
-	{
-		id: "amour",
-		name: "Amour",
-		brand: VITA_SPAS,
-		price: 4595,
-		reviews: [],
-		description: "The Amour hot tub by Vita is great for anyone who wants the perfect blend of space-saving and high-performance features. It has 23 jets, a 4.8 horsepower pump and comfortably seats two adults.",
-		seats: 2,
-		jets: 23,
-		gallons: 138,
-		length: 78,
-		width: 67,
-		height: 30,
-		image: Sim23,
-		pdf: Spdf23,
-		stocked: false,
-		acrylic: AcrylicData
-	},
+	// {
+	// 	id: "amour",
+	// 	name: "Amour",
+	// 	brand: VITA_SPAS,
+	// 	price: 4595,
+	// 	reviews: [],
+	// 	description: "The Amour hot tub by Vita is great for anyone who wants the perfect blend of space-saving and high-performance features. It has 23 jets, a 4.8 horsepower pump and comfortably seats two adults.",
+	// 	seats: 2,
+	// 	jets: 23,
+	// 	gallons: 138,
+	// 	length: 78,
+	// 	width: 67,
+	// 	height: 30,
+	// 	image: Sim23,
+	// 	pdf: Spdf23,
+	// 	stocked: false,
+	// 	acrylic: AcrylicData
+	// },
 	{
 		id: "cabaret",
 		name: "Cabaret",
@@ -532,24 +532,24 @@ const HotTubData: Array<HotTub> = [
 		stocked: false,
 		acrylic: AcrylicData
 	},
-	{
-		id: "duet",
-		name: "Duet",
-		brand: VITA_SPAS,
-		price: 3995,
-		reviews: [],
-		description: "The Duet by Vita Spa is great for anyone who wants the perfect blend of space-saving and high-performance features. It has 15 jets, a 2 horsepower / 115volt pump and comfortably seats two adults in the deep bucket seats.",
-		seats: 2,
-		jets: 15,
-		gallons: 139,
-		length: 84,
-		width: 48,
-		height: 30,
-		image: Sim25,
-		pdf: Spdf25,
-		stocked: false,
-		acrylic: AcrylicData
-	},
+	// {
+	// 	id: "duet",
+	// 	name: "Duet",
+	// 	brand: VITA_SPAS,
+	// 	price: 3995,
+	// 	reviews: [],
+	// 	description: "The Duet by Vita Spa is great for anyone who wants the perfect blend of space-saving and high-performance features. It has 15 jets, a 2 horsepower / 115volt pump and comfortably seats two adults in the deep bucket seats.",
+	// 	seats: 2,
+	// 	jets: 15,
+	// 	gallons: 139,
+	// 	length: 84,
+	// 	width: 48,
+	// 	height: 30,
+	// 	image: Sim25,
+	// 	pdf: Spdf25,
+	// 	stocked: false,
+	// 	acrylic: AcrylicData
+	// },
 	{
 		id: "elegant",
 		name: "Elegant",
@@ -658,24 +658,24 @@ const HotTubData: Array<HotTub> = [
 		stocked: "SLO",
 		acrylic: AcrylicData
 	},
-	{
-		id: "lune",
-		name: "Lune",
-		brand: VITA_SPAS,
-		price: 4895,
-		reviews: [],
-		description: "The Lune hot tub by Vita Spas is a very sociable spa with equal seating all round. The circular shape is ideally suited to certain landscapes and offers a large water capacity for the area used.",
-		seats: 4,
-		jets: 18,
-		gallons: 200,
-		length: 76,
-		width: 76,
-		height: 35,
-		image: Sim32,
-		pdf: Spdf32,
-		stocked: false,
-		acrylic: AcrylicData
-	},
+	// {
+	// 	id: "lune",
+	// 	name: "Lune",
+	// 	brand: VITA_SPAS,
+	// 	price: 4895,
+	// 	reviews: [],
+	// 	description: "The Lune hot tub by Vita Spas is a very sociable spa with equal seating all round. The circular shape is ideally suited to certain landscapes and offers a large water capacity for the area used.",
+	// 	seats: 4,
+	// 	jets: 18,
+	// 	gallons: 200,
+	// 	length: 76,
+	// 	width: 76,
+	// 	height: 35,
+	// 	image: Sim32,
+	// 	pdf: Spdf32,
+	// 	stocked: false,
+	// 	acrylic: AcrylicData
+	// },
 	{
 		id: "luxe",
 		name: "Luxe",

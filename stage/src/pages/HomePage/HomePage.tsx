@@ -6,10 +6,12 @@ import Footer from '../../components/molecules/Footer/Footer';
 import FadePageTransition from "../../animations/FadePageTransition";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
 import {Link} from "react-router-dom";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const HomePage: FunctionComponent = () => {
 	return (
 		<FadePageTransition>
+			<ScrollToTop/>
 			<div className={styles.homePage}>
 				<NavigationBar background="home"/>
 				<div className={styles.background} style={{backgroundImage: `url(${HOME_PAGE_BACKGROUND})`}}/>

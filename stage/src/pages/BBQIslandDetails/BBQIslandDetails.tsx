@@ -7,6 +7,7 @@ import BreadCrumb from "../../components/molecules/BreadCrumbs/BreadCrumbs";
 import FadePageTransition from "../../animations/FadePageTransition";
 import ScaleUpAndFadeIn from "../../animations/ScaleUpAndFadeIn";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const BBQIslandDetails: FunctionComponent<any> = (props) => {
 
@@ -21,6 +22,7 @@ const BBQIslandDetails: FunctionComponent<any> = (props) => {
 
 	return (
 		<FadePageTransition>
+			<ScrollToTop/>
 			<div className={styles.bbqIslandDetails}>
 				<NavigationBar background={'spaDetails'}/>
 				<BreadCrumb link={'/bbq-islands'} name={'All BBQ Islands'}/>
