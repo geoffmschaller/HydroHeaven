@@ -115,22 +115,22 @@ const SwimSpaData: Array<SwimSpa> = [
 		stocked: false,
 		acrylic: [AcrylicData[5]]
 	},
-	{
-		id: "RS2",
-		name: "RS2",
-		brand: AMERICAN_WHIRLPOOL,
-		description: "With a total of 81 jets—including 6 Turbo jets, and 6 Turbo Swim jets, balance bar rails and optional PowerResistance exercise kit, a complete full body aquatic workout is always challenging.",
-		seats: 7,
-		jets: 79,
-		gallons: 1010,
-		length: 144,
-		width: 90,
-		height: 50,
-		image: Sim7,
-		pdf: Spdf7,
-		stocked: false,
-		acrylic: [AcrylicData[5]]
-	}
+	// {
+	// 	id: "RS2",
+	// 	name: "RS2",
+	// 	brand: AMERICAN_WHIRLPOOL,
+	// 	description: "With a total of 81 jets—including 6 Turbo jets, and 6 Turbo Swim jets, balance bar rails and optional PowerResistance exercise kit, a complete full body aquatic workout is always challenging.",
+	// 	seats: 7,
+	// 	jets: 79,
+	// 	gallons: 1010,
+	// 	length: 144,
+	// 	width: 90,
+	// 	height: 50,
+	// 	image: Sim7,
+	// 	pdf: Spdf7,
+	// 	stocked: false,
+	// 	acrylic: [AcrylicData[5]]
+	// }
 ];
 
 export default SwimSpaData;

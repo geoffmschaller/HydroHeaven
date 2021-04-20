@@ -94,6 +94,56 @@ const Contact: FunctionComponent = () => {
 						</FadeAndSlideUp>
 					</div>
 				</div>
+				<div className={styles.left}>
+					<div className="financing-module">
+						<div>
+							<img
+							src="https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_320.jpg?v=3.0.611"
+							alt="Financing Options from GreenSky" tabIndex={0}/>
+						</div>
+						<div>
+							<img
+							src="https://www.greensky.com/merchantkit/images/finance_buttons/product_headers/hi_product_header_320.jpg?v=3.0.611"
+							width="320" height="100" alt="Finance Your Project" tabIndex={0}/>
+						</div>
+						<div>
+							<a
+							href="https://projects.greensky.com/MerchantLoanApplication?apptype=short&merchant=81069356&dealerplan=9144&channel=External-Button-03"
+							target="_blank" tabIndex={0} rel="noreferrer">
+								<img
+								src="https://www.greensky.com/merchantkit/images/finance_buttons/plans/9144_320x100.jpg?v=3.0.611"
+								width="320" height="100" alt="Reduced Rate for 144 Months"/>
+							</a>
+						</div>
+						<div>
+							<a
+							href="https://projects.greensky.com/MerchantLoanApplication?apptype=short&merchant=81069356&dealerplan=2602&channel=External-Button-03"
+							target="_blank" tabIndex={0} rel="noreferrer">
+								<img
+								src="https://www.greensky.com/merchantkit/images/finance_buttons/plans/2602_320x100.jpg?v=3.0.611"
+								width="320" height="100"
+								alt="2602 - 6 Months No Interest, with Payments (84 months) - (78 Principal Pmts)"/>
+							</a>
+						</div>
+						<div>
+							<a
+							href="https://projects.greensky.com/MerchantLoanApplication?apptype=short&merchant=81069356&dealerplan=2786&channel=External-Button-03"
+							target="_blank" tabIndex={0} rel="noreferrer">
+								<img
+								src="https://www.greensky.com/merchantkit/images/finance_buttons/plans/2786_320x100.jpg?v=3.0.611"
+								width="320" height="100"
+								alt="2786 - Reduced Rate 9.99% for 96 Months - (90 Principal Pmts)"/>
+							</a>
+						</div>
+						<div>
+							<img
+							src="https://www.greensky.com/merchantkit/images/finance_buttons/footers/footer_320.jpg?v=3.0.611"
+							width="320" height="73"
+							alt="Financing for GreenSky&#169; credit programs is provided by federally insured, federal and state chartered financial institutions without regard to race, color, religion, national origin, sex or familial status. NMLS #1416362; CT SLC-1416362; NJMT #1501607 C22"
+							tabIndex={0}/>
+						</div>
+					</div>
+				</div>
 			</div>
 			<Footer isDark={true}/>
 		</div>

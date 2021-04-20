@@ -79,7 +79,7 @@ const NavigationBar: FunctionComponent<Props> = (props) => {
 								</SlideUp>
 								<SlideUp duration={0.6}>
 									<Link to={'/service-contact'}>
-										<div className={styles.item}>Service/Contact</div>
+										<div className={styles.item}>Financing/Contact</div>
 									</Link>
 								</SlideUp>
 							</>
@@ -100,7 +100,7 @@ const NavigationBar: FunctionComponent<Props> = (props) => {
 					<div className={styles.item}>BBQs</div>
 				</Link>
 				<Link to={'/service-contact'}>
-					<div className={styles.item}>Service/Contact</div>
+					<div className={styles.item}>Financing/Contact</div>
 				</Link>
 			</div>
 		</div>
