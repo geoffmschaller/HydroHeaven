@@ -1,0 +1,63 @@
+
+.imageDisplay
+	width: 100%
+	height: 600px
+	max-width: 1400px
+	margin: 0 auto
+	text-align: center
+	position: relative
+
+	img
+		width: 100%
+		height: 600px
+		object-fit: cover
+
+	.overlay
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		width: 100%
+		background-color: rgba(0, 0, 0, 0.5)
+		display: flex
+		flex-direction: column
+		justify-content: center
+		padding: 20px
+
+		.title
+			font-size: 50px
+			color: white
+			line-height: 50px
+
+		.highlight
+			color: #f8c471
+			font-weight: bold
+			font-style: italic
+			text-transform: uppercase
+
+		.subtitle
+			color: white
+			margin-top: 10px
+
+		.viewViking
+			border: 2px solid #f8c471
+			color: #f8c471
+			margin-top: 20px
+			padding: 15px 20px
+			cursor: pointer
+			transition: all .1s ease-in-out
+			font-weight: bold
+
+			&:hover
+				color: white
+				background-color: #f8c471
+
+@media screen and (min-width: 900px)
+
+	.imageDisplay
+		margin-top: 20px
+		-webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.41)
+		box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.41)
+
+		.overlay
+			width: 30%

@@ -2,13 +2,13 @@
 
 .homePage
 	width: 100%
-	overflow: hidden
-	margin-bottom: 10rem
+	min-height: 100vh
+	overflow-y: hidden
 
 	.background
 		width: 100%
-		background-position: center
-		background-size: cover
+		height: 100%
+		object-fit: cover
 		z-index: 1
 		position: absolute
 		top: 0
@@ -53,17 +53,36 @@
 					color: white
 					margin-top: 1rem
 
-				.getStarted
-					padding: 10px 20px
-					max-width: 300px
-					text-align: center
-					font-size: 20px
-					background-color: #417eeb
-					color: white
-					cursor: pointer
+				.buttonBar
+					display: flex
+					flex-direction: row
+					justify-content: space-between
+					align-content: center
+					flex-wrap: wrap
 					margin-top: 3rem
-					transition: all .2s ease-in-out
-					border-radius: 10px
+
+					a
+						width: 100%
+						max-width: 300px
+						text-decoration: none
+
+						.button
+							padding: 20px
+							width: 100%
+							text-align: center
+							font-size: 20px
+							cursor: pointer
+							border-radius: 10px
+							margin: 0 5px
+							max-width: 290px
+
+						.getStarted
+							background-color: #417eeb
+							color: white
+
+						.available
+							background-color: #ec7063
+							color: white
 
 			.right
 				width: 50%
@@ -77,8 +96,16 @@
 					text-align: center
 					margin-top: 6rem
 
-					.getStarted
-						margin: 3rem auto
+					.buttonBar
+						justify-content: center
+						width: 100%
+
+						a
+
+							.button
+								width: 100%
+								margin: 10px 0
+								max-width: 100%
 
 				.right
 					width: 0

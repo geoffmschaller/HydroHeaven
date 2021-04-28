@@ -3,7 +3,6 @@ import styles from './BBQIslandDetails.module.sass';
 import NavigationBar from "../../components/molecules/NavigationBar/NavigationBar";
 import Footer from "../../components/molecules/Footer/Footer";
 import BBQData from '../../data/BBQData';
-import BreadCrumb from "../../components/molecules/BreadCrumbs/BreadCrumbs";
 import FadePageTransition from "../../animations/FadePageTransition";
 import ScaleUpAndFadeIn from "../../animations/ScaleUpAndFadeIn";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
@@ -25,7 +24,6 @@ const BBQIslandDetails: FunctionComponent<any> = (props) => {
 			<ScrollToTop/>
 			<div className={styles.bbqIslandDetails}>
 				<NavigationBar background={'spaDetails'}/>
-				<BreadCrumb link={'/bbq-islands'} name={'All BBQ Islands'}/>
 				<div className={styles.wrapper}>
 					<div className={styles.left}>
 						<ScaleUpAndFadeIn duration={0.3}>

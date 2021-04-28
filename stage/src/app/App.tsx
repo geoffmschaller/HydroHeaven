@@ -10,6 +10,7 @@ import BBQIslandGrid from "../pages/BBQIslandGrid/BBQIslandGrid";
 import BBQIslandDetails from "../pages/BBQIslandDetails/BBQIslandDetails";
 import {AnimatePresence} from "framer-motion";
 import Contact from "../pages/Contact/Contact";
+import HotTubAvailable from "../pages/HotTubAvailable/HotTubAvailable";
 
 const App: FunctionComponent = () => {
 	return (
@@ -18,7 +19,8 @@ const App: FunctionComponent = () => {
 				<Switch>
 					<Route path="/" exact component={HomePage}/>
 					<Route path="/spas-hot-tubs" exact component={HotTubGrid}/>
-					<Route path="/spas-hot-tubs/:id" exact component={HotTubDetails}/>
+					<Route path="/spas-hot-tubs/spa/:id" exact component={HotTubDetails}/>
+					<Route path="/spas-hot-tubs/available" exact component={HotTubAvailable}/>
 					<Route path="/swim-spas" exact component={SwimSpasGrid}/>
 					<Route path="/swim-spas/:id" exact component={SwimSpaDetails}/>
 					<Route path="/bbq-islands" exact component={BBQIslandGrid}/>

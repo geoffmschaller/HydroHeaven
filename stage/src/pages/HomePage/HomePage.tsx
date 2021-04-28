@@ -14,7 +14,7 @@ const HomePage: FunctionComponent = () => {
 			<ScrollToTop/>
 			<div className={styles.homePage}>
 				<NavigationBar background="home"/>
-				<div className={styles.background} style={{backgroundImage: `url(${HOME_PAGE_BACKGROUND})`}}/>
+				<img className={styles.background} src={HOME_PAGE_BACKGROUND}/>
 				<div className={styles.overlay}>
 					<div className={styles.display}>
 						<div className={styles.left}>
@@ -30,9 +30,17 @@ const HomePage: FunctionComponent = () => {
 								</div>
 							</FadeAndSlideUp>
 							<FadeAndSlideUp duration={0.4}>
-								<Link to={'/spas-hot-tubs'}>
-									<div className={styles.getStarted}>Get Started!</div>
-								</Link>
+								<div className={styles.buttonBar}>
+									<Link to={'/spas-hot-tubs/available'}>
+										<div className={[styles.available, styles.button].join(" ")}>View Available
+											Spas!
+										</div>
+									</Link>
+									<Link to={'/spas-hot-tubs'}>
+										<div className={[styles.getStarted, styles.button].join(" ")}>Get Started!</div>
+									</Link>
+
+								</div>
 							</FadeAndSlideUp>
 						</div>
 						<div className={styles.right}>

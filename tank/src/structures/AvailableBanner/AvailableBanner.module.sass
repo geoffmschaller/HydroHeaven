@@ -1,0 +1,64 @@
+
+.availableBanner
+	width: 100%
+	max-width: 1400px
+	margin: 30px auto
+	padding: 40px
+	display: flex
+	flex-direction: row
+	justify-content: space-between
+	align-items: center
+	background: rgb(26, 82, 119)
+	background: linear-gradient(175deg, rgba(26, 82, 119, 1) 0%, rgba(84, 153, 199, 1) 100%)
+	-webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.41)
+	box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.41)
+
+	.left
+		padding: 0 60px
+
+		.title
+			font-size: 30px
+			font-weight: bold
+			color: white
+
+		.subtitle
+			color: #d5d8dc
+
+	.highlight
+		color: #f8c471
+		font-weight: bold
+		font-style: italic
+		text-transform: uppercase
+
+	.right
+		width: 100%
+		max-width: 300px
+
+		.viewAvailable
+			border: 2px solid #f8c471
+			color: #f8c471
+			padding: 10px
+			text-align: center
+			font-weight: bold
+			cursor: pointer
+			transition: all .1s ease-in-out
+
+			&:hover
+				color: white
+				background-color: #f8c471
+
+@media screen and (max-width: 900px)
+	.availableBanner
+		flex-direction: column
+		margin: 0 auto
+		text-align: center
+
+		.left
+			padding: 0 10px
+
+			.title
+				margin-bottom: 10px
+				font-size: 40px
+
+		.right
+			margin-top: 15px

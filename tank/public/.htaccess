@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteCond %{HTTPS} !=on
+	RewriteRule ^(.*)$ https://www.hydroheavenspas.com/$1 [R,L]
+	Options -MultiViews
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.html [QSA,L]
+</IfModule>

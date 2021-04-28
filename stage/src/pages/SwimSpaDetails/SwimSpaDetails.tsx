@@ -1,7 +1,6 @@
 import React, {FunctionComponent, useState, useEffect} from 'react';
 import styles from './SwimSpaDetails.module.sass';
 import NavigationBar from "../../components/molecules/NavigationBar/NavigationBar";
-import BreadCrumb from "../../components/molecules/BreadCrumbs/BreadCrumbs";
 import Footer from "../../components/molecules/Footer/Footer";
 import SwimSpaData from '../../data/SwimSpaData';
 import FadePageTransition from "../../animations/FadePageTransition";
@@ -25,7 +24,6 @@ const SwimSpaDetails: FunctionComponent<any> = (props) => {
 			<ScrollToTop/>
 			<div className={styles.swimSpaDetails}>
 				<NavigationBar background={'spaDetails'}/>
-				<BreadCrumb link={'/swim-spas'} name={'All Swim Spas'}/>
 				<div className={styles.wrapper}>
 					<div className={styles.left}>
 						<ScaleUpAndFadeIn duration={0.3}>
@@ -36,7 +34,8 @@ const SwimSpaDetails: FunctionComponent<any> = (props) => {
 						<FadeAndSlideUp duration={0.3}>
 							<div className={styles.title}>{currentSpa.name}</div>
 							<div className={styles.brand}>By {currentSpa.brand}</div>
-							<div className={styles.dimensions}>{`${currentSpa.length}" x ${currentSpa.width}" x ${currentSpa.height}"`}</div>
+							<div
+								className={styles.dimensions}>{`${currentSpa.length}" x ${currentSpa.width}" x ${currentSpa.height}"`}</div>
 							<div className={styles.description}>{currentSpa.description}</div>
 							<div className={styles.acrylicGrid}>
 								{

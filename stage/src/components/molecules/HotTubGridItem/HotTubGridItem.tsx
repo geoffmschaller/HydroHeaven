@@ -10,7 +10,7 @@ interface Props {
 const HotTubGridItem: FunctionComponent<Props> = (props) => {
 	return (
 		<div className={styles.hotTubGridItem}>
-			<Link to={`/spas-hot-tubs/${props.hotTub.id}`}>
+			<Link to={`/spas-hot-tubs/spa/${props.hotTub.id}`}>
 				<img src={props.hotTub.image} alt=""/>
 				<div className={styles.title}>{props.hotTub.name}</div>
 				<div className={styles.brand}>By {props.hotTub.brand}</div>

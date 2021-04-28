@@ -3,7 +3,6 @@ import styles from './HotTubDetails.module.sass';
 import NavigationBar from "../../components/molecules/NavigationBar/NavigationBar";
 import Footer from "../../components/molecules/Footer/Footer";
 import HotTubData from '../../data/HotTubData';
-import BreadCrumb from "../../components/molecules/BreadCrumbs/BreadCrumbs";
 import FadePageTransition from "../../animations/FadePageTransition";
 import FadeAndSlideUp from "../../animations/FadeAndSlideUp";
 import ScaleUpAndFadeIn from "../../animations/ScaleUpAndFadeIn";
@@ -25,7 +24,6 @@ const HotTubDetails: FunctionComponent<any> = (props) => {
 			<ScrollToTop/>
 			<div className={styles.spaDetails}>
 				<NavigationBar background={'spaDetails'}/>
-				<BreadCrumb link={'/spas-hot-tubs'} name={'All Spas & Hot Tubs'}/>
 				<div className={styles.wrapper}>
 					<div className={styles.left}>
 						<ScaleUpAndFadeIn duration={0.3}>
@@ -37,7 +35,8 @@ const HotTubDetails: FunctionComponent<any> = (props) => {
 						<FadeAndSlideUp>
 							<div className={styles.title}>{currentSpa.name}</div>
 							<div className={styles.brand}>By {currentSpa.brand}</div>
-							<div className={styles.dimensions}>{`${currentSpa.length}" x ${currentSpa.width}" x ${currentSpa.height}"`}</div>
+							<div
+								className={styles.dimensions}>{`${currentSpa.length}" x ${currentSpa.width}" x ${currentSpa.height}"`}</div>
 							<div className={styles.description}>{currentSpa.description}</div>
 							<div className={styles.acrylicGrid}>
 								{
