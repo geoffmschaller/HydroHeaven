@@ -17,7 +17,8 @@ const HotTubGrid: FunctionComponent = () => {
 				<FadeAndSlideUp duration={0.3}>
 					<div className={styles.grid}>
 						{
-							SpaData.map((item, index) => <HotTubGridItem hotTub={item} key={index}/>)
+							SpaData.sort((a, b) => (a.price > b.price) ? 1 : -1).map((item, index) =>
+								<HotTubGridItem hotTub={item} key={index}/>)
 						}
 					</div>
 				</FadeAndSlideUp>

@@ -1,4 +1,4 @@
-import {AMERICAN_WHIRLPOOL, VITA_SPAS} from "./BrandsData";
+import {AMERICAN_WHIRLPOOL, VIKING_SPAS, VITA_SPAS} from "./BrandsData";
 import AcrylicData from './AcrylicData';
 
 //import Sim1 from '../static/images/spas/100.png';
@@ -44,6 +44,13 @@ import Sim40 from '../static/images/spas/sensation.png';
 import Sim41 from '../static/images/spas/trio.png';
 import Sim42 from '../static/images/spas/vivre.png';
 import Sim43 from '../static/images/spas/voeux.png';
+import Sim44 from '../static/images/spas/aurora3.png';
+import Sim45 from '../static/images/spas/heritage.png';
+import Sim46 from '../static/images/spas/legacy.png';
+import Sim47 from '../static/images/spas/legend.png';
+import Sim48 from '../static/images/spas/regal.png';
+import Sim49 from '../static/images/spas/royale.png';
+import Sim50 from '../static/images/spas/tradition.png';
 
 //import Spdf1 from '../static/pdfs/spas/100-151.pdf';
 import Spdf2 from '../static/pdfs/spas/100-151.pdf';
@@ -88,6 +95,13 @@ import Spdf40 from '../static/pdfs/spas/sensation.pdf';
 import Spdf41 from '../static/pdfs/spas/trio.pdf';
 import Spdf42 from '../static/pdfs/spas/vivre.pdf';
 import Spdf43 from '../static/pdfs/spas/voeux.pdf';
+import Spdf44 from '../static/pdfs/spas/heritage.pdf';
+import Spdf45 from '../static/pdfs/spas/legacy.pdf';
+import Spdf46 from '../static/pdfs/spas/legend.pdf';
+import Spdf47 from '../static/pdfs/spas/regal-royale.pdf';
+import Spdf48 from '../static/pdfs/spas/tradition.pdf';
+import Spdf49 from '../static/pdfs/spas/viking-aurora.pdf';
+
 import HotTub from "../types/HotTub";
 
 const HotTubData: Array<HotTub> = [
@@ -97,74 +111,30 @@ const HotTubData: Array<HotTub> = [
 	// 	brand: AMERICAN_WHIRLPOOL,
 	// 	price: 4895,
 	// 	reviews: [],
-	// 	description: "The American Whirlpool 100 Hot Tub is a high performing and low operating cost tub. Wood frame sub structure, ABS bottom, Copper" +
-	// 		" reflectant to keep that heat in, Northern Exposure with BlueMAAX insulation and an added layer of 3M Thinsulate—just to name a few of the amazing features.",
-	// 	seats: 4,
-	// 	jets: 18,
-	// 	gallons: 200,
-	// 	length: 76,
-	// 	width: 76,
-	// 	height: 34,
-	// 	image: Sim1,
-	// 	pdf: Spdf1,
-	// 	stocked: "SLO",
-	// 	acrylic: AcrylicData
-	// },
-	// {
-	// 	id: "151",
-	// 	name: "#151",
-	// 	brand: AMERICAN_WHIRLPOOL,
-	// 	price: 4895,
-	// 	reviews: [],
-	// 	description: "Having a small space doesn’t mean you can’t have an American Whirlpool Hot Tub. Packed full of amazing features, the American Whirlpool 151 Hot Tub boasts: a steel frame sub structure, ABS bottom, Copper reflectant to keep that heat in, Northern Exposure with BlueMAAX insulation—and even a waterfall feature!",
-	// 	seats: 3,
-	// 	jets: 20,
-	// 	gallons: 193,
-	// 	length: 83,
-	// 	width: 63,
-	// 	height: 30,
-	// 	image: Sim2,
-	// 	pdf: Spdf2,
-	// 	stocked: false,
-	// 	acrylic: AcrylicData
-	// },
-	// {
-	// 	id: "160",
-	// 	name: "#160",
-	// 	brand: AMERICAN_WHIRLPOOL,
-	// 	price: 4895,
-	// 	reviews: [],
-	// 	description: "The perfect finishing touch for a medium sized yard, the American Whirlpool 160 Hot Tub is a high performing and low operating cost tub, which can accommodate 4 people. Steel frame sub structure, ABS bottom, Copper reflectant to keep that heat in, Northern Exposure with BlueMAAX insulation—just to name a few of the amazing features.",
-	// 	seats: 4,
-	// 	jets: 16,
-	// 	gallons: 229,
-	// 	length: 71,
-	// 	width: 71,
-	// 	height: 35,
-	// 	image: Sim3,
-	// 	pdf: Spdf3,
-	// 	stocked: false,
-	// 	acrylic: AcrylicData
-	// },
-	// {
-	// 	id: "171",
-	// 	name: "#171",
-	// 	brand: AMERICAN_WHIRLPOOL,
-	// 	price: 5995,
-	// 	reviews: [],
-	// 	description: "Have a few more people to entertain? No problem. The American Whirlpool 171 Hot Tub is a high performing and low operating cost tub" +
-	// 		" which can seat 5 to 6 people. Steel frame sub structure, ABS bottom, Copper reflectant to keep that heat in, Northern Exposure with BlueMAAX insulation—even a lounge and waterfall!—just to name a few of the amazing features.",
-	// 	seats: 6,
-	// 	jets: 40,
-	// 	gallons: 336,
-	// 	length: 83,
-	// 	width: 83,
-	// 	height: 35,
-	// 	image: Sim4,
-	// 	pdf: Spdf4,
-	// 	stocked: false,
-	// 	acrylic: AcrylicData
-	// },
+	// 	description: "The American Whirlpool 100 Hot Tub is a high performing and low operating
+	// cost tub. Wood frame sub structure, ABS bottom, Copper" + " reflectant to keep that heat in,
+	// Northern Exposure with BlueMAAX insulation and an added layer of 3M Thinsulate—just to name
+	// a few of the amazing features.", seats: 4, jets: 18, gallons: 200, length: 76, width: 76,
+	// height: 34, image: Sim1, pdf: Spdf1, stocked: "SLO", acrylic: AcrylicData }, { id: "151",
+	// name: "#151", brand: AMERICAN_WHIRLPOOL, price: 4895, reviews: [], description: "Having a
+	// small space doesn’t mean you can’t have an American Whirlpool Hot Tub. Packed full of
+	// amazing features, the American Whirlpool 151 Hot Tub boasts: a steel frame sub structure,
+	// ABS bottom, Copper reflectant to keep that heat in, Northern Exposure with BlueMAAX
+	// insulation—and even a waterfall feature!", seats: 3, jets: 20, gallons: 193, length: 83,
+	// width: 63, height: 30, image: Sim2, pdf: Spdf2, stocked: false, acrylic: AcrylicData }, {
+	// id: "160", name: "#160", brand: AMERICAN_WHIRLPOOL, price: 4895, reviews: [], description:
+	// "The perfect finishing touch for a medium sized yard, the American Whirlpool 160 Hot Tub is
+	// a high performing and low operating cost tub, which can accommodate 4 people. Steel frame
+	// sub structure, ABS bottom, Copper reflectant to keep that heat in, Northern Exposure with
+	// BlueMAAX insulation—just to name a few of the amazing features.", seats: 4, jets: 16,
+	// gallons: 229, length: 71, width: 71, height: 35, image: Sim3, pdf: Spdf3, stocked: false,
+	// acrylic: AcrylicData }, { id: "171", name: "#171", brand: AMERICAN_WHIRLPOOL, price: 5995,
+	// reviews: [], description: "Have a few more people to entertain? No problem. The American
+	// Whirlpool 171 Hot Tub is a high performing and low operating cost tub" + " which can seat 5
+	// to 6 people. Steel frame sub structure, ABS bottom, Copper reflectant to keep that heat in,
+	// Northern Exposure with BlueMAAX insulation—even a lounge and waterfall!—just to name a few
+	// of the amazing features.", seats: 6, jets: 40, gallons: 336, length: 83, width: 83, height:
+	// 35, image: Sim4, pdf: Spdf4, stocked: false, acrylic: AcrylicData },
 	{
 		id: "250",
 		name: "#250",
@@ -181,7 +151,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim5,
 		pdf: Spdf5,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	// {
 	// 	id: "261",
@@ -189,18 +159,12 @@ const HotTubData: Array<HotTub> = [
 	// 	brand: AMERICAN_WHIRLPOOL,
 	// 	price: 5695,
 	// 	reviews: [],
-	// 	description: "The American Whirlpool 261 Hot Tub is the perfect spa for those who have an awkward or small space. Its unique shape will accommodate 2-3 people. But don’t let the size fool you—this hot tub is packed full of standard features. A hybrid sub structure, Moulded bottom pan, Copper lined to keep that heat in, BlueMAAX insulation—even a molded grab bar!",
-	// 	seats: 3,
-	// 	jets: 24,
-	// 	gallons: 198,
-	// 	length: 72,
-	// 	width: 72,
-	// 	height: 33,
-	// 	image: Sim6,
-	// 	pdf: Spdf6,
-	// 	stocked: "SLO",
-	// 	acrylic: AcrylicData
-	// },
+	// 	description: "The American Whirlpool 261 Hot Tub is the perfect spa for those who have
+	// an awkward or small space. Its unique shape will accommodate 2-3 people. But don’t let the
+	// size fool you—this hot tub is packed full of standard features. A hybrid sub structure,
+	// Moulded bottom pan, Copper lined to keep that heat in, BlueMAAX insulation—even a molded
+	// grab bar!", seats: 3, jets: 24, gallons: 198, length: 72, width: 72, height: 33, image:
+	// Sim6, pdf: Spdf6, stocked: "SLO", acrylic: AcrylicData },
 	{
 		id: "270",
 		name: "#270",
@@ -217,7 +181,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim7,
 		pdf: Spdf7,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "271",
@@ -235,7 +199,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim8,
 		pdf: Spdf8,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "280",
@@ -253,7 +217,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim9,
 		pdf: Spdf9,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "281",
@@ -271,7 +235,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim10,
 		pdf: Spdf10,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "282",
@@ -289,7 +253,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim11,
 		pdf: Spdf11,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "451",
@@ -307,7 +271,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim12,
 		pdf: Spdf12,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "460",
@@ -325,7 +289,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim13,
 		pdf: Spdf13,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "461",
@@ -343,7 +307,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim14,
 		pdf: Spdf14,
 		stocked: "SLO",
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "470",
@@ -362,7 +326,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim15,
 		pdf: Spdf15,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "471",
@@ -381,7 +345,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim16,
 		pdf: Spdf16,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "472",
@@ -399,7 +363,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim17,
 		pdf: Spdf17,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "480",
@@ -418,7 +382,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim18,
 		pdf: Spdf18,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "481",
@@ -437,7 +401,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim19,
 		pdf: Spdf19,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "881",
@@ -456,7 +420,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim20,
 		pdf: Spdf20,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	// {
 	// 	id: "890",
@@ -464,19 +428,13 @@ const HotTubData: Array<HotTub> = [
 	// 	brand: AMERICAN_WHIRLPOOL,
 	// 	price: 13995,
 	// 	reviews: [],
-	// 	description: "The American Whirlpool 890 Hot Tub was designed to transform your backyard into the perfect spa retreat. With a little imagination you" +
-	// 		" can integrate the design of this hot tub into your modern backyard. As the American Whirlpool 890 becomes the centerpiece of your retreat, it also provides physician-designed hydrotherapy. Enjoy the beauty of this modern work of art as you slip into its therapeutic water.\n",
-	// 	seats: 6,
-	// 	jets: 78,
-	// 	gallons: 470,
-	// 	length: 100,
-	// 	width: 92,
-	// 	height: 38,
-	// 	image: Sim21,
-	// 	pdf: Spdf21,
-	// 	stocked: false,
-	// 	acrylic: AcrylicData
-	// },
+	// 	description: "The American Whirlpool 890 Hot Tub was designed to transform your backyard
+	// into the perfect spa retreat. With a little imagination you" + " can integrate the design of
+	// this hot tub into your modern backyard. As the American Whirlpool 890 becomes the
+	// centerpiece of your retreat, it also provides physician-designed hydrotherapy. Enjoy the
+	// beauty of this modern work of art as you slip into its therapeutic water.\n", seats: 6,
+	// jets: 78, gallons: 470, length: 100, width: 92, height: 38, image: Sim21, pdf: Spdf21,
+	// stocked: false, acrylic: AcrylicData },
 	{
 		id: "982",
 		name: "#982",
@@ -494,7 +452,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim22,
 		pdf: Spdf22,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: [AcrylicData[6], AcrylicData[4], AcrylicData[2], AcrylicData[3]]
 	},
 	// {
 	// 	id: "amour",
@@ -502,18 +460,10 @@ const HotTubData: Array<HotTub> = [
 	// 	brand: VITA_SPAS,
 	// 	price: 4595,
 	// 	reviews: [],
-	// 	description: "The Amour hot tub by Vita is great for anyone who wants the perfect blend of space-saving and high-performance features. It has 23 jets, a 4.8 horsepower pump and comfortably seats two adults.",
-	// 	seats: 2,
-	// 	jets: 23,
-	// 	gallons: 138,
-	// 	length: 78,
-	// 	width: 67,
-	// 	height: 30,
-	// 	image: Sim23,
-	// 	pdf: Spdf23,
-	// 	stocked: false,
-	// 	acrylic: AcrylicData
-	// },
+	// 	description: "The Amour hot tub by Vita is great for anyone who wants the perfect blend
+	// of space-saving and high-performance features. It has 23 jets, a 4.8 horsepower pump and
+	// comfortably seats two adults.", seats: 2, jets: 23, gallons: 138, length: 78, width: 67,
+	// height: 30, image: Sim23, pdf: Spdf23, stocked: false, acrylic: AcrylicData },
 	{
 		id: "cabaret",
 		name: "Cabaret",
@@ -530,7 +480,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim24,
 		pdf: Spdf24,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	// {
 	// 	id: "duet",
@@ -538,18 +488,11 @@ const HotTubData: Array<HotTub> = [
 	// 	brand: VITA_SPAS,
 	// 	price: 3995,
 	// 	reviews: [],
-	// 	description: "The Duet by Vita Spa is great for anyone who wants the perfect blend of space-saving and high-performance features. It has 15 jets, a 2 horsepower / 115volt pump and comfortably seats two adults in the deep bucket seats.",
-	// 	seats: 2,
-	// 	jets: 15,
-	// 	gallons: 139,
-	// 	length: 84,
-	// 	width: 48,
-	// 	height: 30,
-	// 	image: Sim25,
-	// 	pdf: Spdf25,
-	// 	stocked: false,
-	// 	acrylic: AcrylicData
-	// },
+	// 	description: "The Duet by Vita Spa is great for anyone who wants the perfect blend of
+	// space-saving and high-performance features. It has 15 jets, a 2 horsepower / 115volt pump
+	// and comfortably seats two adults in the deep bucket seats.", seats: 2, jets: 15, gallons:
+	// 139, length: 84, width: 48, height: 30, image: Sim25, pdf: Spdf25, stocked: false, acrylic:
+	// AcrylicData },
 	{
 		id: "elegant",
 		name: "Elegant",
@@ -566,7 +509,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim26,
 		pdf: Spdf26,
 		stocked: "SLO",
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "envie",
@@ -584,7 +527,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim27,
 		pdf: Spdf27,
 		stocked: "SLO",
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "grand",
@@ -602,7 +545,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim28,
 		pdf: Spdf28,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "image",
@@ -620,7 +563,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim29,
 		pdf: Spdf29,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "intrigue",
@@ -638,7 +581,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim30,
 		pdf: Spdf30,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "joli",
@@ -656,7 +599,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim31,
 		pdf: Spdf31,
 		stocked: "SLO",
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	// {
 	// 	id: "lune",
@@ -664,18 +607,10 @@ const HotTubData: Array<HotTub> = [
 	// 	brand: VITA_SPAS,
 	// 	price: 4895,
 	// 	reviews: [],
-	// 	description: "The Lune hot tub by Vita Spas is a very sociable spa with equal seating all round. The circular shape is ideally suited to certain landscapes and offers a large water capacity for the area used.",
-	// 	seats: 4,
-	// 	jets: 18,
-	// 	gallons: 200,
-	// 	length: 76,
-	// 	width: 76,
-	// 	height: 35,
-	// 	image: Sim32,
-	// 	pdf: Spdf32,
-	// 	stocked: false,
-	// 	acrylic: AcrylicData
-	// },
+	// 	description: "The Lune hot tub by Vita Spas is a very sociable spa with equal seating
+	// all round. The circular shape is ideally suited to certain landscapes and offers a large
+	// water capacity for the area used.", seats: 4, jets: 18, gallons: 200, length: 76, width: 76,
+	// height: 35, image: Sim32, pdf: Spdf32, stocked: false, acrylic: AcrylicData },
 	{
 		id: "luxe",
 		name: "Luxe",
@@ -692,7 +627,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim33,
 		pdf: Spdf33,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "monarque",
@@ -710,7 +645,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim34,
 		pdf: Spdf34,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "mystique",
@@ -729,7 +664,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim35,
 		pdf: Spdf35,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: [AcrylicData[4], AcrylicData[6], AcrylicData[2], AcrylicData[3]]
 	},
 	{
 		id: "prestige",
@@ -747,7 +682,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim36,
 		pdf: Spdf36,
 		stocked: "SLO",
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "rendezvous",
@@ -766,7 +701,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim37,
 		pdf: Spdf37,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "riviera",
@@ -784,7 +719,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim38,
 		pdf: Spdf38,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "salon",
@@ -802,7 +737,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim39,
 		pdf: Spdf39,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "sensation",
@@ -820,7 +755,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim40,
 		pdf: Spdf40,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "trio",
@@ -838,7 +773,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim41,
 		pdf: Spdf41,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "vivre",
@@ -856,7 +791,7 @@ const HotTubData: Array<HotTub> = [
 		image: Sim42,
 		pdf: Spdf42,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
 	},
 	{
 		id: "vouex",
@@ -874,7 +809,133 @@ const HotTubData: Array<HotTub> = [
 		image: Sim43,
 		pdf: Spdf43,
 		stocked: false,
-		acrylic: AcrylicData
+		acrylic: AcrylicData.slice(0, 8)
+	},
+	{
+		id: "aurora",
+		name: "Aurora",
+		brand: VIKING_SPAS,
+		price: 6695,
+		reviews: [],
+		description: "Viking Spas Aurora Series is a great choice for those desiring a more private spa experience at a great value! This model is great for those with space constraints as well. Ranging from plug-n-play (110v/240v convertible) to a fully featured LED lighted,stainless steel jetted spa, Viking provides a good/ better/ best option for you.",
+		seats: 3,
+		jets: 31,
+		gallons: 210,
+		length: 84,
+		width: 60,
+		height: 34,
+		image: Sim44,
+		pdf: Spdf49,
+		stocked: false,
+		acrylic: AcrylicData.slice(9)
+	},
+	{
+		id: "regal",
+		name: "Regal",
+		brand: VIKING_SPAS,
+		price: 7495,
+		reviews: [],
+		description: "Looking for the best value in a hot tub? Look no further. Viking Spas’ Regal features unique seating that allows multiple ways to sit comfortably and massage all parts of your body. Ranging from plug-n-play (110v/240v convertible) to a fully featured 2 pump, LED lighted,stainless steel jetted spa, Viking provides good/ better/ best options for you.",
+		seats: 6,
+		jets: 31,
+		gallons: 290,
+		length: 78,
+		width: 78,
+		height: 34,
+		image: Sim48,
+		pdf: Spdf47,
+		stocked: false,
+		acrylic: AcrylicData.slice(9)
+	},
+	{
+		id: "royale",
+		name: "Royale",
+		brand: VIKING_SPAS,
+		price: 7495,
+		reviews: [],
+		description: "Looking for the best value in a hot tub? Look no further. Royale has it all featuring a Zero G lounger and two captain seats providing the therapeutic massage you have been looking for. Ranging from plug-n-play (110v/240v convertible) to a fully featured 2 pump, LED lighted,stainless steel jetted spa, Viking provides good/ better/ best options for you.",
+		seats: 5,
+		jets: 31,
+		gallons: 270,
+		length: 78,
+		width: 78,
+		height: 34,
+		image: Sim49,
+		pdf: Spdf47,
+		stocked: false,
+		acrylic: AcrylicData.slice(8)
+	},
+	{
+		id: "legacy",
+		name: "Legacy",
+		brand: VIKING_SPAS,
+		price: 9495,
+		reviews: [],
+		description: "The Legacy was our first design in our Destiny Series line featuring open seating with captain seats in the corners. Barrier free seating allows users to move easily from seat to seat to enjoy targeted therapy from the multiple jet configurations. The spacious design makes the Legacy a truly “conversational” spa. The Legacy is available in a 41 or 51 jetted version.",
+		seats: 6,
+		jets: 51,
+		gallons: 320,
+		length: 86,
+		width: 86,
+		height: 39,
+		image: Sim46,
+		pdf: Spdf45,
+		stocked: false,
+		acrylic: AcrylicData.slice(8)
+	},
+	{
+		id: "legend",
+		name: "Legend",
+		brand: VIKING_SPAS,
+		price: 9495,
+		reviews: [],
+		description: "Truly a masterpiece, The Legend utilizes 2 captain seats, a Zero G lounger, and a “first of its kind” 3D seat. This seat allows the user to sit in three different directions to enjoy as a lounger or upright seat. Available in 41 or 51 jetted versions, the Legend is one of the best values in the industry due to its size, features, and unmatched price.",
+		seats: 5,
+		jets: 51,
+		gallons: 300,
+		length: 86,
+		width: 86,
+		height: 39,
+		image: Sim47,
+		pdf: Spdf46,
+		stocked: false,
+		acrylic: AcrylicData.slice(9)
+	},
+	{
+		id: "heritage",
+		name: "Heritage",
+		brand: VIKING_SPAS,
+		price: 9995,
+		reviews: [],
+		description: "Viking engineers spared no expense designing the Heritage spa. Comfort and Luxury were front of mind constructing our largest lounger spa. The Heritage features a lounger with 18 jets complete with hand and foot massage and 4 neck therapy jets EACH in our King and Queen captain chairs. This 2 pump goliath is available in a 61 and 71 jetted version each showcasing the Volcano floor jet. This massive jet is the ultimate in foot massage.",
+		seats: 6,
+		jets: 71,
+		gallons: 370,
+		length: 92,
+		width: 92,
+		height: 39,
+		image: Sim45,
+		pdf: Spdf44,
+		stocked: false,
+		acrylic: AcrylicData.slice(9)
+	},
+	{
+		id: "tradition",
+		name: "Tradition",
+		brand: VIKING_SPAS,
+		price: 9995,
+		reviews: [],
+		description: "The Tradition is the epitome of comfort and indulgence. The best we have to offer featuring King and Queen captain seats and dual 3D seats there is a seat for everyone. This 2 pump goliath is available in a 61 and 71 jetted version each showcasing the Volcano floor jet. This massive jet is the ultimate in foot massage.",
+		seats: 8,
+		jets: 71,
+		gallons: 430,
+		length: 92,
+		width: 92,
+		height: 39,
+		image: Sim50,
+		pdf: Spdf48,
+		stocked: false,
+		acrylic: AcrylicData.slice(9)
 	}
 ];
 
